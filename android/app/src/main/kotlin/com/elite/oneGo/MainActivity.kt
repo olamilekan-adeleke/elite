@@ -1,4 +1,4 @@
-package com.example.elite
+package com.elite.oneGo
 
 import io.flutter.embedding.android.FlutterActivity
 

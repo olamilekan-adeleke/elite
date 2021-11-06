@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "534436649680",
-    "project_id": "elite-1ed32",
-    "storage_bucket": "elite-1ed32.appspot.com"
+    "project_number": "563074915995",
+    "project_id": "go-58922",
+    "storage_bucket": "go-58922.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:534436649680:android:fad70fe867cc169cdbdcd5",
+        "mobilesdk_app_id": "1:563074915995:android:4323dcd35e6a3b3553703e",
         "android_client_info": {
-          "package_name": "com.example.elite"
+          "package_name": "com.elite.oneGo"
         }
       },
       "oauth_client": [
         {
-          "client_id": "534436649680-nha1idmi8iksdk39i8c78m21ghqbg96l.apps.googleusercontent.com",
+          "client_id": "563074915995-684gef195v0adokbr4adtllsjs3cpmav.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDcKMytT59pFtmYaBJXblqHsm1kXXuB47M"
+          "current_key": "AIzaSyAeny5VrMFhQWCtfqROqQF-eCJthVWOTik"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "534436649680-nha1idmi8iksdk39i8c78m21ghqbg96l.apps.googleusercontent.com",
+              "client_id": "563074915995-684gef195v0adokbr4adtllsjs3cpmav.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

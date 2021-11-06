@@ -44,7 +44,7 @@ class AuthenticationRepo {
     final User? user = userCredential.user;
     infoLog('userCredential: ${user?.uid}', title: 'user log in');
 
-    final Map<String, dynamic> userData = await getLoggedInUser(email);
+    final Map<String, dynamic> userData = await getLoggedInUser();
     userData.remove('date_joined');
     await localdatabaseRepo.saveUserDataToLocalDB(userData);
     await NotificationMethods.subscribeToTopice(user!.uid);
@@ -146,11 +146,9 @@ class AuthenticationRepo {
     }
   }
 
-  Future<Map<String, dynamic>> getLoggedInUser(String email) async {
-    final QuerySnapshot<dynamic> querySnapshot =
-        await userCollectionRef.where('email', isEqualTo: email).get();
-
-    final DocumentSnapshot<dynamic> documentSnapshot = querySnapshot.docs.first;
+  Future<Map<String, dynamic>> getLoggedInUser() async {
+    final DocumentSnapshot<dynamic> documentSnapshot =
+        await userCollectionRef.doc(getUserUid()).get();
 
     return documentSnapshot.data() as Map<String, dynamic>;
   }

@@ -2,6 +2,7 @@ import 'package:elite/cores/constants/color.dart';
 import 'package:elite/features/auth/views/pages/forgot_password_screen.dart';
 import 'package:elite/features/auth/views/pages/login_screen.dart';
 import 'package:elite/features/auth/views/pages/wrapper.dart';
+import 'package:elite/features/notification/views/screens/notification_screem.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
@@ -18,10 +19,10 @@ class EliteApp extends StatelessWidget {
         defaultTransition: Transition.cupertino,
         opaqueRoute: Get.isOpaqueRouteDefault,
         popGesture: Get.isPopGestureEnable,
-        title: 'Elite',
+        title: '1go',
         theme: ThemeData(
           primaryColor: kcPrimaryColor,
-          backgroundColor: const Color(0xffE8E7E5),
+          backgroundColor: const Color(0xffECE8E8),
         ),
         home: const WrapperScreen(),
         getPages: pages(),
@@ -43,6 +44,10 @@ List<GetPage<dynamic>>? pages() {
     GetPage<Widget>(
       page: () => const ForgotPasswordScreen(),
       name: RouteName.forgotPassword,
+    ),
+    GetPage<Widget>(
+      page: () => const NotificationScreen(),
+      name: RouteName.notificationScreen,
     ),
   ];
 }

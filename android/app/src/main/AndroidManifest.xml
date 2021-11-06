@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.elite">
+    package="com.elite.oneGo">
    <application
         android:label="elite"
         android:icon="@mipmap/ic_launcher">
