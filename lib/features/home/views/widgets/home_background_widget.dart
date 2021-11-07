@@ -1,5 +1,5 @@
-import 'package:elite/cores/constants/color.dart';
-import 'package:elite/cores/utils/sizer_utils.dart';
+import '../../../../cores/constants/color.dart';
+import '../../../../cores/utils/sizer_utils.dart';
 import 'package:flutter/material.dart';
 
 class HomeBackgroundWidget extends StatelessWidget {

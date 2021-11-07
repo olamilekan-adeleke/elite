@@ -1,4 +1,4 @@
-import 'package:elite/features/home/controller/home_controller.dart';
+import '../controller/home_controller.dart';
 import 'package:get/instance_manager.dart';
 
 class HomeBinding extends Bindings {

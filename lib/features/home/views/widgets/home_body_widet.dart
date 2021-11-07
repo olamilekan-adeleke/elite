@@ -1,6 +1,6 @@
-import 'package:elite/cores/utils/sizer_utils.dart';
-import 'package:elite/features/home/views/widgets/home_header_widget.dart';
-import 'package:elite/features/home/views/widgets/home_items_list.dart';
+import '../../../../cores/utils/sizer_utils.dart';
+import 'home_header_widget.dart';
+import 'home_items_list.dart';
 import 'package:flutter/material.dart';
 
 class HomeBodyWidget extends StatelessWidget {

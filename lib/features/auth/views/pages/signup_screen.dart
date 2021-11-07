@@ -1,10 +1,10 @@
-import 'package:elite/cores/components/custom_button.dart';
-import 'package:elite/cores/components/custom_scaffold_widget.dart';
-import 'package:elite/cores/components/custom_text_widget.dart';
-import 'package:elite/cores/components/custom_textfiled.dart';
-import 'package:elite/cores/utils/emums.dart';
-import 'package:elite/cores/utils/navigator_service.dart';
-import 'package:elite/cores/utils/route_name.dart';
+import '../../../../cores/components/custom_button.dart';
+import '../../../../cores/components/custom_scaffold_widget.dart';
+import '../../../../cores/components/custom_text_widget.dart';
+import '../../../../cores/components/custom_textfiled.dart';
+import '../../../../cores/utils/emums.dart';
+import '../../../../cores/utils/navigator_service.dart';
+import '../../../../cores/utils/route_name.dart';
 import 'package:elite/cores/utils/sizer_utils.dart';
 import 'package:elite/cores/utils/validator.dart';
 import 'package:elite/features/auth/controllers/register_controller.dart';

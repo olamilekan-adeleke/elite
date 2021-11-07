@@ -1,8 +1,8 @@
-import 'package:elite/cores/constants/color.dart';
-import 'package:elite/features/auth/views/pages/forgot_password_screen.dart';
-import 'package:elite/features/auth/views/pages/login_screen.dart';
-import 'package:elite/features/auth/views/pages/wrapper.dart';
-import 'package:elite/features/notification/views/screens/notification_screem.dart';
+import 'cores/constants/color.dart';
+import 'features/auth/views/pages/forgot_password_screen.dart';
+import 'features/auth/views/pages/login_screen.dart';
+import 'features/auth/views/pages/wrapper.dart';
+import 'features/notification/views/screens/notification_screem.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';

@@ -1,6 +1,6 @@
-import 'package:elite/cores/components/custom_text_widget.dart';
-import 'package:elite/cores/components/shimmer_widget.dart';
-import 'package:elite/cores/utils/emums.dart';
+import '../../../../cores/components/custom_text_widget.dart';
+import '../../../../cores/components/shimmer_widget.dart';
+import '../../../../cores/utils/emums.dart';
 import 'package:elite/cores/utils/navigator_service.dart';
 import 'package:elite/cores/utils/route_name.dart';
 import 'package:elite/cores/utils/sizer_utils.dart';

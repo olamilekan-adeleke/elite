@@ -1,6 +1,6 @@
-import 'package:elite/cores/utils/route_name.dart';
-import 'package:elite/cores/utils/sizer_utils.dart';
-import 'package:elite/features/home/views/widgets/home_item_widget.dart';
+import '../../../../cores/utils/route_name.dart';
+import '../../../../cores/utils/sizer_utils.dart';
+import 'home_item_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomeItemsList extends StatelessWidget {

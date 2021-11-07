@@ -1,8 +1,8 @@
-import 'package:elite/cores/utils/emums.dart';
-import 'package:elite/cores/utils/local_database_repo.dart';
-import 'package:elite/cores/utils/snack_bar_service.dart';
-import 'package:elite/features/auth/model/user_details_model.dart';
-import 'package:elite/features/auth/services/auth_services.dart';
+import '../../../cores/utils/emums.dart';
+import '../../../cores/utils/local_database_repo.dart';
+import '../../../cores/utils/snack_bar_service.dart';
+import '../../auth/model/user_details_model.dart';
+import '../../auth/services/auth_services.dart';
 import 'package:get/get_rx/get_rx.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:get/instance_manager.dart';
@@ -15,7 +15,7 @@ class HomeController extends GetxController {
 
   ControllerStateEnum get state => _state.value;
 
-  Future<void> getFullanme() async {
+  Future<void> getFullName() async {
     _state.value = ControllerStateEnum.busy;
     try {
       final Map<String, dynamic> userData =
@@ -34,7 +34,7 @@ class HomeController extends GetxController {
 
   @override
   void onReady() {
-    getFullanme();
+    getFullName();
     super.onReady();
   }
 }
