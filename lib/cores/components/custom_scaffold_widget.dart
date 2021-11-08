@@ -21,7 +21,7 @@ class CustomScaffoldWidget extends StatelessWidget {
         backgroundColor: Colors.white,
         body: Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: usePadding ? sizerSp(10.0) : 0,
+            horizontal: usePadding ? sizerSp(15.0) : 0,
           ),
           child: body,
         ),

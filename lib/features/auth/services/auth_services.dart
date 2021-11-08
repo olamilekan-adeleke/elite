@@ -167,6 +167,22 @@ class AuthenticationRepo {
     }
   }
 
+  Future<void> createWalletPin(String walletPin) async {
+    try {
+      // ! hash wallet pin
+      await userCollectionRef.doc(getUserUid()).update(
+        <String, dynamic>{
+          'wallet_pin': walletPin,
+          'has_create_wallet_pin': true,
+        },
+      );
+    } catch (e, s) {
+      debugPrint(e.toString());
+      debugPrint(s.toString());
+      throw Exception(e.toString());
+    }
+  }
+
   Future<void> updateProfile(String url) async {
     try {
       await userCollectionRef.doc(getUserUid()).update(

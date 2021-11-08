@@ -19,6 +19,7 @@ import '../services/auth_services.dart';
 class RegisterController extends GetxController {
   final Rx<ControllerState> _controllerStateEnum = ControllerState.init.obs;
   final Rx<ControllerState> smsState = ControllerState.init.obs;
+  final Rx<ControllerState> createWalletPinState = ControllerState.init.obs;
   final Rx<ControllerState> imageState = ControllerState.init.obs;
   static final AuthenticationRepo _authenticationRepo =
       Get.find<AuthenticationRepo>();
@@ -28,6 +29,8 @@ class RegisterController extends GetxController {
       TextEditingController(text: '');
   final TextEditingController emailController = TextEditingController(text: '');
   final TextEditingController smsCodeController =
+      TextEditingController(text: '');
+  final TextEditingController walletPinController =
       TextEditingController(text: '');
   final TextEditingController usernameController =
       TextEditingController(text: '');
@@ -73,6 +76,7 @@ class RegisterController extends GetxController {
       imageState.value = ControllerState.success;
     } catch (e, s) {
       imageState.value = ControllerState.error;
+      CustomSnackBarService.showErrorSnackBar('Error', e.toString());
       log(e.toString());
       log(s.toString());
     }
@@ -159,6 +163,13 @@ class RegisterController extends GetxController {
   }
 
   Future<void> signInWithPhoneNumber() async {
+    if (smsCodeController.text.trim().isEmpty) {
+      return CustomSnackBarService.showErrorSnackBar(
+        'Error',
+        'Please Enter The Sms Code Sent!',
+      );
+    }
+
     try {
       smsState.value = ControllerState.busy;
 
@@ -196,6 +207,36 @@ class RegisterController extends GetxController {
       log(s.toString());
       CustomSnackBarService.showErrorSnackBar('Error', e.toString());
       smsState.value = ControllerState.error;
+    }
+  }
+
+  Future<void> createWalletPin() async {
+    try {
+      createWalletPinState.value = ControllerState.busy;
+
+      final walletPin = walletPinController.text.trim();
+
+      await _authenticationRepo.createWalletPin(walletPin);
+
+      // log(url.toString());
+
+      // if (url != null) {
+      //   await _authenticationRepo.updateProfile(url);
+      // }
+
+      CustomSnackBarService.showSuccessSnackBar(
+        'Success',
+        'Wallet Pin Successfully Created!',
+      );
+
+      await Future<dynamic>.delayed(const Duration(milliseconds: 500));
+
+      createWalletPinState.value = ControllerState.success;
+    } catch (e, s) {
+      createWalletPinState.value = ControllerState.error;
+      CustomSnackBarService.showErrorSnackBar('Error', e.toString());
+      log(e.toString());
+      log(s.toString());
     }
   }
 

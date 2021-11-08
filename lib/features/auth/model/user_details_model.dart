@@ -12,6 +12,8 @@ class UserDetailsModel {
     this.profilePicUrl,
     this.dateJoined,
     required this.walletBalance,
+    this.hasVerifyNumber,
+    this.hasCreateWalletPin,
   });
 
   factory UserDetailsModel.fromMap(Map<String, dynamic>? map) {
@@ -20,6 +22,8 @@ class UserDetailsModel {
       email: map['email'] as String,
       username: map['username'] as String,
       fullName: map['full_name'] as String,
+      hasVerifyNumber: (map['has_verify_number'] ?? false) as bool,
+      hasCreateWalletPin: (map['has_create_wallet_pin'] ?? false) as bool,
       walletBalance: map['wallet_balance'] != null
           ? double.parse(map['wallet_balance'].toString())
           : 0.0,
@@ -43,6 +47,8 @@ class UserDetailsModel {
   final String? profilePicUrl;
   final Timestamp? dateJoined;
   final double? walletBalance;
+  final bool? hasVerifyNumber;
+  final bool? hasCreateWalletPin;
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -54,6 +60,7 @@ class UserDetailsModel {
       'profile_pic_url': profilePicUrl,
       'date_joined': dateJoined,
       'has_verify_number': false,
+      'has_create_wallet_pin': false,
     };
   }
 
@@ -78,6 +85,8 @@ class UserDetailsModel {
     String? profilePicUrl,
     Timestamp? dateJoined,
     double? walletBalance,
+    bool? hasVerifyNumber,
+    bool? hasCreateWalletPin,
   }) {
     return UserDetailsModel(
       uid: uid ?? this.uid,
@@ -88,6 +97,8 @@ class UserDetailsModel {
       profilePicUrl: profilePicUrl ?? this.profilePicUrl,
       dateJoined: dateJoined ?? this.dateJoined,
       walletBalance: walletBalance ?? this.walletBalance,
+      hasVerifyNumber: hasVerifyNumber ?? this.hasVerifyNumber,
+      hasCreateWalletPin: hasCreateWalletPin ?? this.hasCreateWalletPin,
     );
   }
 }
