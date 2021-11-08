@@ -132,7 +132,7 @@ class RegisterController extends GetxController {
   Future<void> sendSms() async {
     await _authenticationRepo.firebaseAuth.verifyPhoneNumber(
       phoneNumber: getFormattedPhoneNumber(),
-      timeout: const Duration(seconds: 5),
+      // timeout: const Duration(seconds: 5),
       forceResendingToken: _resendToken,
       verificationCompleted: (PhoneAuthCredential credential) async {
         await _authenticationRepo.firebaseAuth.currentUser
@@ -266,7 +266,7 @@ class RegisterController extends GetxController {
       lastnameController.text = 'kod-x';
       usernameController.text = 'kod-x';
       emailController.text = 'ola100@gmail.com';
-      phoneController.text = '09016468355'; // 07052936789
+      phoneController.text = '07052936789'; // '09016468355'
       passwordController.text = 'test123456';
       confirmPasswordController.text = 'test123456';
     }

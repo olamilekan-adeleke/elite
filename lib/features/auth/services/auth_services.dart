@@ -33,7 +33,7 @@ class AuthenticationRepo {
         .map((User? user) => userFromFirestore(user));
   }
 
-  Future<void> loginUserWithEmailAndPassword(
+  Future<UserDetailsModel> loginUserWithEmailAndPassword(
     String email,
     String password,
   ) async {
@@ -50,6 +50,8 @@ class AuthenticationRepo {
     userData.remove('date_joined');
     await localDatabaseRepo.saveUserDataToLocalDB(userData);
     await NotificationMethods.subscribeToTopic(user!.uid);
+
+    return UserDetailsModel.fromMap(userData);
   }
 
   Future<bool> authenticateUser(String password) async {
