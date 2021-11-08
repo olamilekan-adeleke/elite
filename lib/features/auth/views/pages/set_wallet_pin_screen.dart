@@ -1,5 +1,7 @@
+import 'package:elite/cores/components/custom_button.dart';
 import 'package:elite/cores/components/custom_scaffold_widget.dart';
 import 'package:elite/cores/components/custom_text_widget.dart';
+import 'package:elite/cores/utils/emums.dart';
 import 'package:elite/cores/utils/sizer_utils.dart';
 import 'package:elite/features/auth/controllers/register_controller.dart';
 import 'package:flutter/material.dart';
@@ -7,8 +9,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
-class SetWalletPinScreen extends StatelessWidget {
-  const SetWalletPinScreen({Key? key}) : super(key: key);
+class CreateWalletPinScreen extends StatelessWidget {
+  const CreateWalletPinScreen({Key? key}) : super(key: key);
 
   static final RegisterController registerController =
       Get.find<RegisterController>();
@@ -18,7 +20,7 @@ class SetWalletPinScreen extends StatelessWidget {
     return CustomScaffoldWidget(
       body: ListView(
         children: [
-          SizedBox(height: sizerSp(30)),
+          SizedBox(height: sizerSp(50)),
           Center(
             child: SvgPicture.asset(
               'assets/images/wallet.svg',
@@ -50,13 +52,24 @@ class SetWalletPinScreen extends StatelessWidget {
               colorBuilder: FixedColorBuilder(Colors.black.withOpacity(0.3)),
             ),
             onCodeChanged: (String? code) {
-              if (code!.length == 6) {
+              if (code!.length == 4) {
                 FocusScope.of(context).requestFocus(FocusNode());
               }
 
-              registerController.smsCodeController.text = code;
+              registerController.walletPinController.text = code;
             },
           ),
+          SizedBox(height: sizerSp(60)),
+          Obx(() {
+            if (registerController.createWalletPinState.value ==
+                ControllerState.busy) {
+              return const CustomButton.loading();
+            }
+            return CustomButton(
+              text: 'Create Pin',
+              onTap: () => registerController.createWalletPin(),
+            );
+          }),
         ],
       ),
     );

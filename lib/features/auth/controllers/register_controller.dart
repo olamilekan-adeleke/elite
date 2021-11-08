@@ -4,7 +4,8 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
-import 'package:get/get_rx/get_rx.dart';
+import 'package:get/get.dart';
+
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:get/instance_manager.dart';
 import 'package:image_picker/image_picker.dart';
@@ -55,6 +56,8 @@ class RegisterController extends GetxController {
   }
 
   Future<void> uploadImage() async {
+    if (filePath.isEmpty) return;
+
     try {
       imageState.value = ControllerState.busy;
       final String? url =
@@ -72,6 +75,8 @@ class RegisterController extends GetxController {
       );
 
       await Future<dynamic>.delayed(const Duration(milliseconds: 500));
+
+      Get.offNamed('create-wallet-pin');
 
       imageState.value = ControllerState.success;
     } catch (e, s) {
@@ -188,7 +193,11 @@ class RegisterController extends GetxController {
         'Phone Number Successfully Verify!',
       );
 
+      await Future<dynamic>.delayed(const Duration(milliseconds: 500));
+
       smsState.value = ControllerState.success;
+
+      Get.offNamed('update-profile');
     } on FirebaseAuthException catch (e) {
       log(e.code);
       if (e.code == 'account-exists-with-different-credential') {
@@ -211,6 +220,13 @@ class RegisterController extends GetxController {
   }
 
   Future<void> createWalletPin() async {
+    if (walletPinController.text.trim().isEmpty) {
+      return CustomSnackBarService.showWarningSnackBar(
+        'Error',
+        'Please Enter Wallet Pin!',
+      );
+    }
+
     try {
       createWalletPinState.value = ControllerState.busy;
 
@@ -231,6 +247,8 @@ class RegisterController extends GetxController {
 
       await Future<dynamic>.delayed(const Duration(milliseconds: 500));
 
+      Get.offAllNamed('/home');
+
       createWalletPinState.value = ControllerState.success;
     } catch (e, s) {
       createWalletPinState.value = ControllerState.error;
@@ -248,7 +266,7 @@ class RegisterController extends GetxController {
       lastnameController.text = 'kod-x';
       usernameController.text = 'kod-x';
       emailController.text = 'ola100@gmail.com';
-      phoneController.text = '09016468355';
+      phoneController.text = '09016468355'; // 07052936789
       passwordController.text = 'test123456';
       confirmPasswordController.text = 'test123456';
     }

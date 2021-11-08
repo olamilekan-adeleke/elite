@@ -97,7 +97,7 @@ class UpdateProfilePicScreen extends StatelessWidget {
                 Expanded(
                   child: CustomButton(
                     text: 'Skip',
-                    onTap: () {},
+                    onTap: () => Get.offNamed('create-wallet-pin'),
                     color: Colors.grey.shade400,
                   ),
                 ),

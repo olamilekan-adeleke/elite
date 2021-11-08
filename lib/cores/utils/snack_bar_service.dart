@@ -48,8 +48,8 @@ class CustomSnackBarService {
       dismissDirection: SnackDismissDirection.HORIZONTAL,
       isDismissible: true,
       icon: const Icon(Icons.error, color: Colors.white),
-      margin: EdgeInsets.symmetric(horizontal: sizerSp(10)),
-      padding: EdgeInsets.symmetric(horizontal: sizerSp(10)),
+      margin: EdgeInsets.all(sizerSp(10)),
+      padding: EdgeInsets.all(sizerSp(10)),
       snackPosition: SnackPosition.TOP,
     );
   }
