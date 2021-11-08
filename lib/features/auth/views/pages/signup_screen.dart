@@ -1,10 +1,3 @@
-import '../../../../cores/components/custom_button.dart';
-import '../../../../cores/components/custom_scaffold_widget.dart';
-import '../../../../cores/components/custom_text_widget.dart';
-import '../../../../cores/components/custom_textfiled.dart';
-import '../../../../cores/utils/emums.dart';
-import '../../../../cores/utils/navigator_service.dart';
-import '../../../../cores/utils/route_name.dart';
 import 'package:elite/cores/utils/sizer_utils.dart';
 import 'package:elite/cores/utils/validator.dart';
 import 'package:elite/features/auth/controllers/register_controller.dart';
@@ -12,6 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/instance_manager.dart';
 import 'package:get/state_manager.dart';
+
+import '../../../../cores/components/custom_button.dart';
+import '../../../../cores/components/custom_scaffold_widget.dart';
+import '../../../../cores/components/custom_text_widget.dart';
+import '../../../../cores/components/custom_textfiled.dart';
+import '../../../../cores/utils/emums.dart';
+import '../../../../cores/utils/navigator_service.dart';
 
 class SignupScreen extends StatelessWidget {
   const SignupScreen();
@@ -74,6 +74,12 @@ class SignupScreen extends StatelessWidget {
           ),
           SizedBox(height: sizerSp(10)),
           CustomTextField(
+            hintText: 'Username',
+            textEditingController: registerController.usernameController,
+            textInputType: TextInputType.name,
+          ),
+          SizedBox(height: sizerSp(10)),
+          CustomTextField(
             hintText: 'Phone number',
             textEditingController: registerController.phoneController,
             textInputType: TextInputType.number,
@@ -87,6 +93,14 @@ class SignupScreen extends StatelessWidget {
             isPassword: true,
             validator: (String? value) =>
                 formFieldValidator(value, 'password', 5),
+          ),
+          SizedBox(height: sizerSp(10)),
+          CustomTextField(
+            hintText: 'Confirm Password',
+            textEditingController: registerController.confirmPasswordController,
+            isPassword: true,
+            validator: (String? value) =>
+                formFieldValidator(value, 'Confirm Password', 5),
           ),
           SizedBox(height: sizerSp(40)),
           Obx(() {
@@ -120,6 +134,7 @@ class SignupScreen extends StatelessWidget {
               ],
             ),
           ),
+          SizedBox(height: sizerSp(30)),
         ],
       ),
     );

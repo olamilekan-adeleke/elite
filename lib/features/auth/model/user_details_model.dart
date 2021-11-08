@@ -7,6 +7,7 @@ class UserDetailsModel {
     required this.uid,
     required this.email,
     required this.fullName,
+    required this.username,
     required this.phoneNumber,
     this.profilePicUrl,
     this.dateJoined,
@@ -17,6 +18,7 @@ class UserDetailsModel {
     return UserDetailsModel(
       uid: map!['uid'] as String,
       email: map['email'] as String,
+      username: map['username'] as String,
       fullName: map['full_name'] as String,
       walletBalance: map['wallet_balance'] != null
           ? double.parse(map['wallet_balance'].toString())
@@ -36,6 +38,7 @@ class UserDetailsModel {
   final String uid;
   final String email;
   final String fullName;
+  final String username;
   final int phoneNumber;
   final String? profilePicUrl;
   final Timestamp? dateJoined;
@@ -45,10 +48,12 @@ class UserDetailsModel {
     return <String, dynamic>{
       'uid': uid,
       'email': email,
+      'username': username,
       'full_name': fullName,
       'phone_number': phoneNumber,
       'profile_pic_url': profilePicUrl,
       'date_joined': dateJoined,
+      'has_verify_number': false,
     };
   }
 
@@ -68,6 +73,7 @@ class UserDetailsModel {
     String? uid,
     String? email,
     String? fullName,
+    String? username,
     int? phoneNumber,
     String? profilePicUrl,
     Timestamp? dateJoined,
@@ -77,6 +83,7 @@ class UserDetailsModel {
       uid: uid ?? this.uid,
       email: email ?? this.email,
       fullName: fullName ?? this.fullName,
+      username: username ?? this.username,
       phoneNumber: phoneNumber ?? this.phoneNumber,
       profilePicUrl: profilePicUrl ?? this.profilePicUrl,
       dateJoined: dateJoined ?? this.dateJoined,

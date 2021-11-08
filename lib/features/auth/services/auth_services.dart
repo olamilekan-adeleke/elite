@@ -69,6 +69,7 @@ class AuthenticationRepo {
     required String email,
     required String password,
     required String fullName,
+    required String username,
     required int number,
   }) async {
     final UserCredential userCredential = await _firebaseAuth
@@ -87,6 +88,7 @@ class AuthenticationRepo {
       walletBalance: 0.0,
       phoneNumber: number,
       dateJoined: Timestamp.now(),
+      username: username,
     );
 
     infoLog('userCredential: ${user.uid}', title: 'user sign up');
@@ -101,6 +103,7 @@ class AuthenticationRepo {
       fullName: fullName,
       phoneNumber: number,
       walletBalance: 0.0,
+      username: username,
     );
 
     await localdatabaseRepo

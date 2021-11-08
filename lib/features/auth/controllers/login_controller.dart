@@ -16,9 +16,10 @@ class LoginControllers extends GetxController {
       ControllerStateEnum.init.obs;
   static final AuthenticationRepo _authenticationRepo =
       Get.find<AuthenticationRepo>();
-  final TextEditingController emailController = TextEditingController(text: '');
+  final TextEditingController emailController =
+      TextEditingController(text: ' ola100@gmail.com');
   final TextEditingController passwordController =
-      TextEditingController(text: '');
+      TextEditingController(text: 'test123456');
 
   ControllerStateEnum get controllerStateEnum => _controllerStateEnum.value;
 
@@ -34,7 +35,9 @@ class LoginControllers extends GetxController {
     } on SocketException {
       _controllerStateEnum.value = ControllerStateEnum.error;
       CustomSnackBarService.showErrorSnackBar(
-          'Error', noInternetConnectionText);
+        'Error',
+        noInternetConnectionText,
+      );
     } catch (e, s) {
       errorLog('$e', 'Error loging in user', title: 'login', trace: '$s');
       _controllerStateEnum.value = ControllerStateEnum.error;

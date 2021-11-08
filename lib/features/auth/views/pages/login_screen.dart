@@ -5,7 +5,6 @@ import 'package:elite/cores/utils/sizer_utils.dart';
 import 'package:elite/cores/utils/validator.dart';
 import 'package:elite/features/auth/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/instance_manager.dart';
 import 'package:get/state_manager.dart';
 
