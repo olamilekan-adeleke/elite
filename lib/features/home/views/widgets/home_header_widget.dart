@@ -1,3 +1,5 @@
+import 'package:elite/features/auth/services/auth_services.dart';
+
 import '../../../../cores/components/custom_text_widget.dart';
 import '../../../../cores/components/shimmer_widget.dart';
 import '../../../../cores/utils/emums.dart';
@@ -21,50 +23,19 @@ class HomeHeaderWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Obx(() {
-                if (homeController.state == ControllerStateEnum.busy) {
-                  return CustomShimmerWidget(
-                    child: CircleAvatar(
-                      radius: 35,
-                      backgroundColor: Colors.grey.shade200,
-                    ),
-                  );
-                }
-                return CircleAvatar(
-                  radius: 35,
-                  backgroundColor: Colors.grey.shade200,
-                  child: Icon(Icons.person, color: Colors.grey.shade400),
-                );
-              }),
-              SizedBox(height: sizerSp(10.0)),
-              Obx(() {
-                if (homeController.state == ControllerStateEnum.busy) {
-                  return CustomShimmerWidget(
-                    child: Container(
-                      height: sizerSp(10),
-                      width: sizerSp(80),
-                      color: Colors.grey,
-                    ),
-                  );
-                }
-                return CustomTextWidget(
-                  'Welcome, ${homeController.fullname}',
-                  textColor: Colors.white,
-                  fontSize: sizerSp(15),
-                );
-              }),
-            ],
+          IconButton(
+            onPressed: () => AuthenticationRepo().signOut(),
+            icon: Icon(
+              Icons.menu_rounded,
+              size: sizerSp(25.0),
+            ),
           ),
           IconButton(
             onPressed: () =>
                 NavigationService.navigateTo(RouteName.notificationScreen),
             icon: Icon(
               Icons.notifications,
-              color: Colors.white,
-              size: sizerSp(25.0),
+              size: sizerSp(20.0),
             ),
           )
         ],

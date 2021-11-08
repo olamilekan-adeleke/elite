@@ -10,10 +10,10 @@ class HomeBodyWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        SizedBox(height: sizerSp(35.0)),
+        SizedBox(height: sizerSp(15.0)),
         const HomeHeaderWidget(),
         SizedBox(height: sizerSp(65.0)),
-        const HomeItemsList(),
+        // const HomeItemsList(),
       ],
     );
   }

@@ -16,7 +16,7 @@ class HomeScreen extends StatelessWidget {
         height: sizerHeight(100),
         child: Stack(
           children: const <Widget>[
-            HomeBackgroundWidget(),
+            // HomeBackgroundWidget(),
             HomeBodyWidget(),
           ],
         ),
