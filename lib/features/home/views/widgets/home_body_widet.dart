@@ -14,6 +14,7 @@ class HomeBodyWidget extends StatelessWidget {
         const HomeHeaderWidget(),
         SizedBox(height: sizerSp(65.0)),
         // const HomeItemsList(),
+        Center(child: Text('Home'))
       ],
     );
   }
