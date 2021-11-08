@@ -1,7 +1,3 @@
-import '../../../../cores/components/custom_button.dart';
-import '../../../../cores/components/custom_scaffold_widget.dart';
-import '../../../../cores/components/custom_text_widget.dart';
-import '../../../../cores/components/custom_textfiled.dart';
 import 'package:elite/cores/utils/emums.dart';
 import 'package:elite/cores/utils/navigator_service.dart';
 import 'package:elite/cores/utils/route_name.dart';
@@ -12,6 +8,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/instance_manager.dart';
 import 'package:get/state_manager.dart';
+
+import '../../../../cores/components/custom_button.dart';
+import '../../../../cores/components/custom_scaffold_widget.dart';
+import '../../../../cores/components/custom_text_widget.dart';
+import '../../../../cores/components/custom_textfiled.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen();
@@ -25,6 +26,7 @@ class LoginScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            SizedBox(height: sizerSp(60)),
             SizedBox(height: sizerSp(20)),
             CustomTextWidget(
               'Login',
@@ -37,14 +39,14 @@ class LoginScreen extends StatelessWidget {
               fontSize: sizerSp(14),
             ),
             SizedBox(height: sizerSp(20)),
-            Center(
-              child: SvgPicture.asset(
-                'assets/images/login.svg',
-                height: sizerSp(100),
-                width: sizerSp(150),
-              ),
-            ),
-            SizedBox(height: sizerSp(40)),
+            // Center(
+            //   child: SvgPicture.asset(
+            //     'assets/images/login.svg',
+            //     height: sizerSp(100),
+            //     width: sizerSp(150),
+            //   ),
+            // ),
+            // SizedBox(height: sizerSp(40)),
             CustomTextField(
               hintText: 'Email',
               textEditingController: loginControllers.emailController,
@@ -61,8 +63,29 @@ class LoginScreen extends StatelessWidget {
                   formFieldValidator(value, 'password', 5),
             ),
             SizedBox(height: sizerSp(10)),
+            GestureDetector(
+              onTap: () => NavigationService.navigateTo(RouteName.signup),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  CustomTextWidget(
+                    // ignore: avoid_escaping_inner_quotes
+                    'Don\'t have an account? ',
+                    fontWeight: FontWeight.w200,
+                    fontSize: sizerSp(13),
+                  ),
+                  CustomTextWidget(
+                    'Sign Up Here',
+                    fontWeight: FontWeight.w200,
+                    fontSize: sizerSp(13),
+                    textColor: Colors.blue,
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: sizerSp(40)),
             Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 GestureDetector(
                   onTap: () =>
@@ -88,26 +111,6 @@ class LoginScreen extends StatelessWidget {
               );
             }),
             SizedBox(height: sizerSp(20)),
-            GestureDetector(
-              onTap: () => NavigationService.navigateTo(RouteName.signup),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  CustomTextWidget(
-                    // ignore: avoid_escaping_inner_quotes
-                    'Don\'t have an account? ',
-                    fontWeight: FontWeight.w200,
-                    fontSize: sizerSp(13),
-                  ),
-                  CustomTextWidget(
-                    'Sign Up Here',
-                    fontWeight: FontWeight.w200,
-                    fontSize: sizerSp(13),
-                    textColor: Colors.blue,
-                  ),
-                ],
-              ),
-            ),
           ],
         ),
       ),
