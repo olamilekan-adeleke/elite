@@ -101,7 +101,7 @@ class LoginScreen extends StatelessWidget {
             SizedBox(height: sizerSp(40)),
             Obx(() {
               if (loginControllers.controllerStateEnum ==
-                  ControllerStateEnum.busy) {
+                  ControllerState.busy) {
                 return const CustomButton.loading();
               }
               return CustomButton(

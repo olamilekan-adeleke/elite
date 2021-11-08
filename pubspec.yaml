@@ -41,6 +41,7 @@ dependencies:
   sizer: ^2.0.13
   uuid: ^3.0.4
   sms_autofill: ^2.2.0
+  dbcrypt: ^2.0.0
 
 dev_dependencies:
   flutter_test:

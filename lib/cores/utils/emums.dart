@@ -1,5 +1,5 @@
 /// controller State
-enum ControllerStateEnum { busy, error, success, init }
+enum ControllerState { busy, error, success, init }
 
 /// Ayuth state enum
 enum AuthStateEnum { loggedIn, loggedOut }

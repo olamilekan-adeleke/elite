@@ -23,7 +23,7 @@ class UserDetailsModel {
       walletBalance: map['wallet_balance'] != null
           ? double.parse(map['wallet_balance'].toString())
           : 0.0,
-      phoneNumber: map['phone_number'] as int,
+      phoneNumber: map['phone_number'] as String,
       profilePicUrl: map['profile_pic_url'] != null
           ? map['profile_pic_url'] as String
           : null,
@@ -39,7 +39,7 @@ class UserDetailsModel {
   final String email;
   final String fullName;
   final String username;
-  final int phoneNumber;
+  final String phoneNumber;
   final String? profilePicUrl;
   final Timestamp? dateJoined;
   final double? walletBalance;
@@ -74,7 +74,7 @@ class UserDetailsModel {
     String? email,
     String? fullName,
     String? username,
-    int? phoneNumber,
+    String? phoneNumber,
     String? profilePicUrl,
     Timestamp? dateJoined,
     double? walletBalance,

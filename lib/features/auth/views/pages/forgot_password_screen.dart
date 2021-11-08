@@ -57,7 +57,7 @@ class ForgotPasswordScreen extends StatelessWidget {
             SizedBox(height: sizerSp(80)),
             Obx(() {
               if (forgotPasswordController.controllerStateEnum ==
-                  ControllerStateEnum.busy) {
+                  ControllerState.busy) {
                 return const CustomButton.loading();
               }
 

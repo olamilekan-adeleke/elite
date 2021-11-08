@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -11,9 +9,9 @@ import '../../../features/auth/model/login_user_model.dart';
 import '../../../features/auth/model/user_details_model.dart';
 
 class AuthenticationRepo {
-  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  static final LocaldatabaseRepo localdatabaseRepo =
-      Get.find<LocaldatabaseRepo>();
+  final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  static final LocalDatabaseRepo localDatabaseRepo =
+      Get.find<LocalDatabaseRepo>();
   final CollectionReference<dynamic> userCollectionRef =
       FirebaseFirestore.instance.collection('users');
 
@@ -22,11 +20,11 @@ class AuthenticationRepo {
   }
 
   String? getUserUid() {
-    return _firebaseAuth.currentUser?.uid;
+    return firebaseAuth.currentUser?.uid;
   }
 
   Stream<LoginUserModel?> get userAuthState {
-    return _firebaseAuth
+    return firebaseAuth
         .authStateChanges()
         .map((User? user) => userFromFirestore(user));
   }
@@ -36,7 +34,7 @@ class AuthenticationRepo {
     String password,
   ) async {
     final UserCredential userCredential =
-        await _firebaseAuth.signInWithEmailAndPassword(
+        await firebaseAuth.signInWithEmailAndPassword(
       email: email,
       password: password,
     );
@@ -46,16 +44,16 @@ class AuthenticationRepo {
 
     final Map<String, dynamic> userData = await getLoggedInUser();
     userData.remove('date_joined');
-    await localdatabaseRepo.saveUserDataToLocalDB(userData);
-    await NotificationMethods.subscribeToTopice(user!.uid);
+    await localDatabaseRepo.saveUserDataToLocalDB(userData);
+    await NotificationMethods.subscribeToTopic(user!.uid);
   }
 
   Future<bool> authenticateUser(String password) async {
     bool authenticated = false;
     final String email =
-        (await localdatabaseRepo.getUserDataFromLocalDB()).email;
+        (await localDatabaseRepo.getUserDataFromLocalDB()).email;
 
-    final UserCredential userCredential = await _firebaseAuth
+    final UserCredential userCredential = await firebaseAuth
         .signInWithEmailAndPassword(email: email, password: password);
 
     if (userCredential.user != null) {
@@ -70,16 +68,22 @@ class AuthenticationRepo {
     required String password,
     required String fullName,
     required String username,
-    required int number,
+    required String number,
   }) async {
-    final UserCredential userCredential = await _firebaseAuth
+    final bool usernameCheck = await checkUsernameExist(username);
+
+    if (usernameCheck) throw 'Username Already Exist!';
+
+    final bool checkPhoneNumber = await checkPhoneNumberExist(number);
+
+    if (checkPhoneNumber) throw 'Phone Number Already In Use By Another User!';
+
+    final UserCredential userCredential = await firebaseAuth
         .createUserWithEmailAndPassword(email: email, password: password);
 
     final User? user = userCredential.user;
 
-    if (user == null) throw Exception('Opps, an error occured!');
-
-    // TODO: add phone number check
+    if (user == null) throw Exception('Opps, an error occurred!');
 
     final UserDetailsModel userDetailsModel = UserDetailsModel(
       uid: user.uid,
@@ -95,7 +99,7 @@ class AuthenticationRepo {
 
     await addUserDataToFirestore(userDetailsModel);
 
-    await NotificationMethods.subscribeToTopice(user.uid);
+    await NotificationMethods.subscribeToTopic(user.uid);
 
     final UserDetailsModel userDetailsForLocalDb = UserDetailsModel(
       uid: user.uid,
@@ -106,19 +110,19 @@ class AuthenticationRepo {
       username: username,
     );
 
-    await localdatabaseRepo
+    await localDatabaseRepo
         .saveUserDataToLocalDB(userDetailsForLocalDb.toMap());
   }
 
   Future<void> resetPassword(String email) async {
-    await _firebaseAuth.sendPasswordResetEmail(email: email);
+    await firebaseAuth.sendPasswordResetEmail(email: email);
     infoLog('user email: $email', title: 'reset password');
   }
 
   Future<void> signOut() async {
     try {
-      await _firebaseAuth.signOut();
-      infoLog('user loging out', title: 'log out');
+      await firebaseAuth.signOut();
+      infoLog('user logging out', title: 'log out');
     } catch (e, s) {
       errorLog(
         e.toString(),
@@ -131,17 +135,27 @@ class AuthenticationRepo {
   }
 
   Future<void> addUserDataToFirestore(UserDetailsModel userDetails) async {
-    await userCollectionRef
-        .doc(userDetails.uid)
-        .set(userDetails.toMapForLocalDb());
+    await userCollectionRef.doc(userDetails.uid).set(userDetails.toMap());
     infoLog('Added User database', title: 'Add user data To Db');
   }
 
   Future<void> updateUserData(UserDetailsModel userDetails) async {
     try {
       await userCollectionRef.doc(userDetails.uid).update(userDetails.toMap());
-      await localdatabaseRepo.saveUserDataToLocalDB(userDetails.toMap());
-      infoLog('Upadted User database', title: 'Upadted user data To Db');
+      await localDatabaseRepo.saveUserDataToLocalDB(userDetails.toMap());
+      infoLog('Updated User database', title: 'Updated user data To Db');
+    } catch (e, s) {
+      debugPrint(e.toString());
+      debugPrint(s.toString());
+      throw Exception(e.toString());
+    }
+  }
+
+  Future<void> updatePhonStatus(String userUid) async {
+    try {
+      await userCollectionRef.doc(userUid).update(
+        <String, dynamic>{'has_verify_number': true},
+      );
     } catch (e, s) {
       debugPrint(e.toString());
       debugPrint(s.toString());
@@ -154,5 +168,27 @@ class AuthenticationRepo {
         await userCollectionRef.doc(getUserUid()).get();
 
     return documentSnapshot.data() as Map<String, dynamic>;
+  }
+
+  Future<bool> checkUsernameExist(String username) async {
+    final QuerySnapshot querySnapshot =
+        await userCollectionRef.where('username', isEqualTo: username).get();
+
+    if (querySnapshot.docs.isNotEmpty) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  Future<bool> checkPhoneNumberExist(String phone) async {
+    final QuerySnapshot querySnapshot =
+        await userCollectionRef.where('phone_number', isEqualTo: phone).get();
+
+    if (querySnapshot.docs.isNotEmpty) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

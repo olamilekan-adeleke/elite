@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "563074915995-gpn21nno3kkh2s9lb3h26stn4h97g32r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.elite.oneGo",
+            "certificate_hash": "eff696e20924dea8cbda90c0b29105af77f3e90e"
+          }
+        },
+        {
           "client_id": "563074915995-684gef195v0adokbr4adtllsjs3cpmav.apps.googleusercontent.com",
           "client_type": 3
         }

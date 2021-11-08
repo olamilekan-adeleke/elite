@@ -105,7 +105,7 @@ class SignupScreen extends StatelessWidget {
           SizedBox(height: sizerSp(40)),
           Obx(() {
             if (registerController.controllerStateEnum ==
-                ControllerStateEnum.busy) {
+                ControllerState.busy) {
               return const CustomButton.loading();
             }
 

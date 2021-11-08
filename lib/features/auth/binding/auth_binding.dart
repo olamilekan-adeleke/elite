@@ -9,7 +9,7 @@ import 'package:get/instance_manager.dart';
 class AuthenticationBinding extends Bindings {
   @override
   void dependencies() {
-    Get.put<LocaldatabaseRepo>(LocaldatabaseRepo());
+    Get.put<LocalDatabaseRepo>(LocalDatabaseRepo());
     Get.put<AuthenticationRepo>(AuthenticationRepo());
     Get.put<AuthStateController>(AuthStateController());
     Get.put<RegisterController>(RegisterController());

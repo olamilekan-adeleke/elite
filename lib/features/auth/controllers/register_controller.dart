@@ -1,5 +1,8 @@
+import 'dart:developer';
 import 'dart:io';
 
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get_rx/get_rx.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
@@ -13,8 +16,8 @@ import '../../../cores/utils/snack_bar_service.dart';
 import '../services/auth_services.dart';
 
 class RegisterController extends GetxController {
-  final Rx<ControllerStateEnum> _controllerStateEnum =
-      ControllerStateEnum.init.obs;
+  final Rx<ControllerState> _controllerStateEnum = ControllerState.init.obs;
+  final Rx<ControllerState> smsState = ControllerState.init.obs;
   static final AuthenticationRepo _authenticationRepo =
       Get.find<AuthenticationRepo>();
   final TextEditingController firstnameController =
@@ -22,6 +25,8 @@ class RegisterController extends GetxController {
   final TextEditingController lastnameController =
       TextEditingController(text: '');
   final TextEditingController emailController = TextEditingController(text: '');
+  final TextEditingController smsCodeController =
+      TextEditingController(text: '');
   final TextEditingController usernameController =
       TextEditingController(text: '');
   final TextEditingController phoneController = TextEditingController(text: '');
@@ -29,11 +34,13 @@ class RegisterController extends GetxController {
       TextEditingController(text: '');
   final TextEditingController confirmPasswordController =
       TextEditingController(text: '');
+  String? _verificationId;
+  int? _resendToken;
 
-  ControllerStateEnum get controllerStateEnum => _controllerStateEnum.value;
+  ControllerState get controllerStateEnum => _controllerStateEnum.value;
 
   Future<void> registerUser() async {
-    _controllerStateEnum.value = ControllerStateEnum.busy;
+    _controllerStateEnum.value = ControllerState.busy;
 
     try {
       await _authenticationRepo.registerUserWithEmailAndPassword(
@@ -41,24 +48,130 @@ class RegisterController extends GetxController {
         password: passwordController.text.trim(),
         fullName: '${firstnameController.text.trim()}'
             ' ${lastnameController.text.trim()}',
-        number: int.parse(phoneController.text.trim()),
+        number: phoneController.text.trim(),
         username: usernameController.text.trim(),
       );
-      _controllerStateEnum.value = ControllerStateEnum.success;
-      NavigationService.goBack();
+      _controllerStateEnum.value = ControllerState.success;
+      await NavigationService.navigateReplace('/smsCode');
       CustomSnackBarService.showSuccessSnackBar(
         'Success',
         'Account Successfully Created!',
       );
     } on SocketException {
-      _controllerStateEnum.value = ControllerStateEnum.error;
+      _controllerStateEnum.value = ControllerState.error;
       CustomSnackBarService.showErrorSnackBar(
-          'Error', noInternetConnectionText);
+        'Error',
+        noInternetConnectionText,
+      );
     } catch (e, s) {
-      errorLog('$e', 'Error siging up in user', title: 'sign up', trace: '$s');
+      errorLog('$e', 'Error signing up in user', title: 'sign up', trace: '$s');
 
-      _controllerStateEnum.value = ControllerStateEnum.error;
+      _controllerStateEnum.value = ControllerState.error;
       CustomSnackBarService.showErrorSnackBar('Error', e.toString());
+    }
+  }
+
+  String getFormattedPhoneNumber() {
+    String phone = phoneController.text.trim();
+
+    if (phone.startsWith('0')) {
+      phone = phone.replaceFirst('0', '+234');
+    }
+
+    return phone;
+  }
+
+  Future<void> sendSms() async {
+    await _authenticationRepo.firebaseAuth.verifyPhoneNumber(
+      phoneNumber: getFormattedPhoneNumber(),
+      timeout: const Duration(seconds: 5),
+      forceResendingToken: _resendToken,
+      verificationCompleted: (PhoneAuthCredential credential) async {
+        await _authenticationRepo.firebaseAuth.currentUser
+            ?.linkWithCredential(credential);
+        CustomSnackBarService.showSuccessSnackBar(
+          'Success',
+          'Phone number automatically verified!',
+        );
+      },
+      verificationFailed: (FirebaseAuthException e) {
+        if (e.code == 'invalid-phone-number') {
+          log('The provided phone number is not valid.');
+        }
+
+        log(e.message ?? '');
+        log(e.toString());
+        log(e.stackTrace.toString());
+
+        CustomSnackBarService.showErrorSnackBar('Error', e.message ?? '');
+      },
+      codeSent: (String verificationId, int? resendToken) async {
+        _verificationId = verificationId;
+        _resendToken = resendToken;
+      },
+      codeAutoRetrievalTimeout: (String verificationId) {
+        _verificationId = verificationId;
+        // CustomSnackBarService.showErrorSnackBar(
+        //   'Error',
+        //   'verification code: $verificationId',
+        // );
+      },
+    );
+  }
+
+  Future<void> signInWithPhoneNumber() async {
+    try {
+      smsState.value = ControllerState.busy;
+
+      final AuthCredential credential = PhoneAuthProvider.credential(
+        verificationId: _verificationId!,
+        smsCode: smsCodeController.text.trim(),
+      );
+
+      final UserCredential? user = await _authenticationRepo
+          .firebaseAuth.currentUser
+          ?.linkWithCredential(credential);
+
+      await _authenticationRepo.updatePhonStatus(user?.user?.uid ?? '');
+
+      CustomSnackBarService.showSuccessSnackBar(
+        'Success',
+        'Phone Number Successfully Verify!',
+      );
+
+      smsState.value = ControllerState.success;
+    } on FirebaseAuthException catch (e) {
+      log(e.code);
+      if (e.code == 'account-exists-with-different-credential') {
+        CustomSnackBarService.showErrorSnackBar(
+          'Error',
+          'User Already Exist, Please Login!',
+        );
+      }
+      CustomSnackBarService.showErrorSnackBar(
+        'Error',
+        e.message ?? '',
+      );
+      smsState.value = ControllerState.error;
+    } catch (e, s) {
+      log(e.toString());
+      log(s.toString());
+      CustomSnackBarService.showErrorSnackBar('Error', e.toString());
+      smsState.value = ControllerState.error;
+    }
+  }
+
+  @override
+  void onInit() {
+    super.onInit();
+    if (kDebugMode) {
+      firstnameController.text = 'olami';
+      lastnameController.text = 'kod-x';
+      usernameController.text = 'kod-x';
+      emailController.text = 'ola100@gmail.com';
+      phoneController.text = '07052936789';
+      passwordController.text = 'test123456';
+      confirmPasswordController.text = 'test123456';
     }
   }
 }

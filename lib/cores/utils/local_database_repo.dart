@@ -1,7 +1,7 @@
 import '../../features/auth/model/user_details_model.dart';
 import 'package:get_storage/get_storage.dart';
 
-class LocaldatabaseRepo {
+class LocalDatabaseRepo {
   static const String userDataBoxName = 'user_data';
   static final GetStorage box = GetStorage('box');
 

@@ -10,13 +10,13 @@ import 'package:get/instance_manager.dart';
 class HomeController extends GetxController {
   static final AuthenticationRepo authenticationRepo =
       Get.find<AuthenticationRepo>();
-  final Rx<ControllerStateEnum> _state = ControllerStateEnum.init.obs;
+  final Rx<ControllerState> _state = ControllerState.init.obs;
   RxString fullname = ''.obs;
 
-  ControllerStateEnum get state => _state.value;
+  ControllerState get state => _state.value;
 
   Future<void> getFullName() async {
-    _state.value = ControllerStateEnum.busy;
+    _state.value = ControllerState.busy;
     try {
       final Map<String, dynamic> userData =
           await authenticationRepo.getLoggedInUser();
@@ -25,10 +25,10 @@ class HomeController extends GetxController {
 
       fullname.value = userDetails.fullName;
 
-      _state.value = ControllerStateEnum.success;
+      _state.value = ControllerState.success;
     } catch (e) {
       CustomSnackBarService.showErrorSnackBar('Error', e.toString());
-      _state.value = ControllerStateEnum.error;
+      _state.value = ControllerState.error;
     }
   }
 
