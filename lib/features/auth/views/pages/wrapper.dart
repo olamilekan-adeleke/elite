@@ -1,3 +1,4 @@
+import 'package:elite/features/auth/views/pages/update_profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/instance_manager.dart';
 
@@ -20,6 +21,6 @@ class WrapperScreen extends StatelessWidget {
     //   }
     // });
 
-    return const LoginScreen();
+    return const UpdateProfilePicScreen();
   }
 }

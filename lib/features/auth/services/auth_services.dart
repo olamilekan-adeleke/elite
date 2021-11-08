@@ -1,5 +1,9 @@
+import 'dart:developer';
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/instance_manager.dart';
 import '../../../cores/utils/firebase_messaging_utils.dart';
@@ -151,10 +155,22 @@ class AuthenticationRepo {
     }
   }
 
-  Future<void> updatePhonStatus(String userUid) async {
+  Future<void> updatePhonStatus() async {
     try {
-      await userCollectionRef.doc(userUid).update(
+      await userCollectionRef.doc(getUserUid()).update(
         <String, dynamic>{'has_verify_number': true},
+      );
+    } catch (e, s) {
+      debugPrint(e.toString());
+      debugPrint(s.toString());
+      throw Exception(e.toString());
+    }
+  }
+
+  Future<void> updateProfile(String url) async {
+    try {
+      await userCollectionRef.doc(getUserUid()).update(
+        <String, dynamic>{'profile_pic_url': url},
       );
     } catch (e, s) {
       debugPrint(e.toString());
@@ -190,5 +206,38 @@ class AuthenticationRepo {
     } else {
       return false;
     }
+  }
+
+  Future<String?> uploadImage(File file) async {
+    String? imageUrl;
+
+    try {
+      Reference ref = FirebaseStorage.instance
+          .ref('uploads/images/${DateTime.now().millisecond}');
+
+      UploadTask uploadTask = ref.putFile(file);
+
+      uploadTask.snapshotEvents.listen((TaskSnapshot snapshot) {
+        print(
+          'Progress: ${(snapshot.bytesTransferred / snapshot.totalBytes) * 100} %',
+        );
+        // loadingPercentage.value =
+        //     (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        // print('loadingPercentage.value: ${loadingPercentage.value}');
+      });
+
+      await uploadTask;
+
+      imageUrl = await ref.getDownloadURL();
+      // loadingPercentage.value = 0;
+      // imageCount.value++;
+
+    } on FirebaseException catch (e) {
+      log(e.toString());
+
+      // e.g, e.code == 'canceled'
+    }
+
+    return imageUrl;
   }
 }

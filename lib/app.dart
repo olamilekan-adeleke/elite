@@ -8,6 +8,7 @@ import 'features/auth/views/pages/forgot_password_screen.dart';
 import 'features/auth/views/pages/login_screen.dart';
 import 'features/auth/views/pages/signup_screen.dart';
 import 'features/auth/views/pages/sms_verification_screen.dart';
+import 'features/auth/views/pages/update_profile_screen.dart';
 import 'features/auth/views/pages/wrapper.dart';
 import 'features/notification/views/screens/notification_screem.dart';
 
@@ -53,6 +54,10 @@ List<GetPage<dynamic>>? pages() {
     GetPage<Widget>(
       page: () => const SmsVerificationScreen(),
       name: RouteName.smsCode,
+    ),
+    GetPage<Widget>(
+      page: () => const UpdateProfilePicScreen(),
+      name: '/update-profile',
     ),
   ];
 }

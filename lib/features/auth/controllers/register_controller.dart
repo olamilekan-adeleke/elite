@@ -7,6 +7,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get_rx/get_rx.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:get/instance_manager.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../cores/constants/error_text.dart';
 import '../../../cores/utils/emums.dart';
@@ -34,10 +35,29 @@ class RegisterController extends GetxController {
       TextEditingController(text: '');
   final TextEditingController confirmPasswordController =
       TextEditingController(text: '');
+  final RxString filePath = ''.obs;
+  final ImagePicker _picker = ImagePicker();
+  // ignore: use_late_for_private_fields_and_variables
   String? _verificationId;
   int? _resendToken;
 
   ControllerState get controllerStateEnum => _controllerStateEnum.value;
+
+  Future<void> pickImage() async {
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      filePath.value = image.path;
+    }
+  }
+
+  Future<void> uploadImage() async {
+    final String? url =
+        await _authenticationRepo.uploadImage(File(filePath.value));
+
+    if (url != null) {
+      await _authenticationRepo.updateProfile(url);
+    }
+  }
 
   Future<void> registerUser() async {
     _controllerStateEnum.value = ControllerState.busy;
@@ -128,11 +148,10 @@ class RegisterController extends GetxController {
         smsCode: smsCodeController.text.trim(),
       );
 
-      final UserCredential? user = await _authenticationRepo
-          .firebaseAuth.currentUser
+      await _authenticationRepo.firebaseAuth.currentUser
           ?.linkWithCredential(credential);
 
-      await _authenticationRepo.updatePhonStatus(user?.user?.uid ?? '');
+      await _authenticationRepo.updatePhonStatus();
 
       CustomSnackBarService.showSuccessSnackBar(
         'Success',
@@ -169,7 +188,7 @@ class RegisterController extends GetxController {
       lastnameController.text = 'kod-x';
       usernameController.text = 'kod-x';
       emailController.text = 'ola100@gmail.com';
-      phoneController.text = '07052936789';
+      phoneController.text = '09016468355';
       passwordController.text = 'test123456';
       confirmPasswordController.text = 'test123456';
     }
