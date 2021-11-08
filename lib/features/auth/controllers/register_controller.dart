@@ -19,6 +19,7 @@ import '../services/auth_services.dart';
 class RegisterController extends GetxController {
   final Rx<ControllerState> _controllerStateEnum = ControllerState.init.obs;
   final Rx<ControllerState> smsState = ControllerState.init.obs;
+  final Rx<ControllerState> imageState = ControllerState.init.obs;
   static final AuthenticationRepo _authenticationRepo =
       Get.find<AuthenticationRepo>();
   final TextEditingController firstnameController =
@@ -51,11 +52,29 @@ class RegisterController extends GetxController {
   }
 
   Future<void> uploadImage() async {
-    final String? url =
-        await _authenticationRepo.uploadImage(File(filePath.value));
+    try {
+      imageState.value = ControllerState.busy;
+      final String? url =
+          await _authenticationRepo.uploadImage(File(filePath.value));
 
-    if (url != null) {
-      await _authenticationRepo.updateProfile(url);
+      log(url.toString());
+
+      if (url != null) {
+        await _authenticationRepo.updateProfile(url);
+      }
+
+      CustomSnackBarService.showSuccessSnackBar(
+        'Success',
+        'Image Updated Successfully!',
+      );
+
+      await Future<dynamic>.delayed(const Duration(milliseconds: 500));
+
+      imageState.value = ControllerState.success;
+    } catch (e, s) {
+      imageState.value = ControllerState.error;
+      log(e.toString());
+      log(s.toString());
     }
   }
 
