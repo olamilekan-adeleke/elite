@@ -1,24 +1,25 @@
-import '../utils/sizer_utils.dart';
 import 'package:flutter/material.dart';
+import '../utils/sizer_utils.dart';
 
 class CustomScaffoldWidget extends StatelessWidget {
   const CustomScaffoldWidget({
     Key? key,
     required this.body,
     this.appBar,
-    this.usePadding = true,
+    this.usePadding = true, this.bg,
   }) : super(key: key);
 
   final Widget body;
   final AppBar? appBar;
   final bool usePadding;
+  final Color? bg;
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: appBar,
-        backgroundColor: Colors.white.withOpacity(0.98),
+        backgroundColor: bg ?? Colors.white.withOpacity(0.98),
         body: Padding(
           padding: EdgeInsets.symmetric(
             horizontal: usePadding ? sizerSp(15.0) : 0,

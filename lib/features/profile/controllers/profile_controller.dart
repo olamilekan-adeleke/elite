@@ -18,6 +18,8 @@ class ProfileController extends GetxController {
 
       userDetailsModel =
           Rx<UserDetailsModel>(UserDetailsModel.fromMap(userData));
+      
+    
 
       controllerState.value = ControllerState.success;
     } catch (e) {
