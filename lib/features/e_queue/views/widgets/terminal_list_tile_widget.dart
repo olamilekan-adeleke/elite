@@ -1,15 +1,16 @@
 import 'package:elite/cores/components/custom_text_widget.dart';
-
+import 'package:elite/features/e_queue/model/terminal_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../cores/utils/sizer_utils.dart';
 
 class TerminalListTileWidget extends StatelessWidget {
-  const TerminalListTileWidget({
+  const TerminalListTileWidget(
+    this.terminalModel, {
     Key? key,
   }) : super(key: key);
 
-  
+  final TerminalModel terminalModel;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,7 @@ class TerminalListTileWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   CustomTextWidget(
-                    'Terminal one',
+                    terminalModel.name,
                     fontWeight: FontWeight.w600,
                     fontSize: sizerSp(14),
                   ),
@@ -48,7 +49,7 @@ class TerminalListTileWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     CustomTextWidget(
-                      '6,512',
+                      '${terminalModel.todayCount}',
                       fontWeight: FontWeight.bold,
                       fontSize: sizerSp(12),
                       textColor: Colors.green,
@@ -70,7 +71,7 @@ class TerminalListTileWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     CustomTextWidget(
-                      '436',
+                      '${terminalModel.queueNumber}',
                       fontWeight: FontWeight.bold,
                       fontSize: sizerSp(12),
                     ),

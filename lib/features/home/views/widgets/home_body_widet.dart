@@ -1,4 +1,3 @@
-
 import 'package:elite/features/e_queue/views/screens/termial_list_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -15,9 +14,11 @@ class HomeBodyWidget extends StatelessWidget {
         SizedBox(height: sizerSp(15.0)),
         const HomeHeaderWidget(),
         SizedBox(height: sizerSp(20.0)),
-        const TerminalsListScreen(),
+        SizedBox(
+          height: sizerHeight(45),
+          child: const TerminalsListScreen(),
+        ),
       ],
     );
   }
 }
-
