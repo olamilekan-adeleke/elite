@@ -88,7 +88,8 @@ class HomeProfileWidget extends StatelessWidget {
                     ),
                   SizedBox(height: sizerSp(15)),
                   CustomTextWidget(
-                    'Good afternoon, Joy',
+                    'Good afternoon, '
+                    '${profileController.userDetailsModel?.value.fullName}',
                     fontSize: sizerSp(17),
                     fontWeight: FontWeight.w300,
                   ),

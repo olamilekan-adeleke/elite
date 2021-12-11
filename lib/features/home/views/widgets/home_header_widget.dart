@@ -1,7 +1,6 @@
 import 'package:elite/cores/utils/navigator_service.dart';
 import 'package:elite/cores/utils/route_name.dart';
 import 'package:elite/cores/utils/sizer_utils.dart';
-import 'package:elite/features/auth/services/auth_services.dart';
 import 'package:elite/features/home/controller/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/instance_manager.dart';
