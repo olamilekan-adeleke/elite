@@ -59,7 +59,7 @@ class HomeProfileWidget extends StatelessWidget {
             () {
               if (profileController.controllerState.value ==
                   ControllerState.busy) {
-                return const CircularProgressIndicator();
+                return const Center(child: CircularProgressIndicator());
               }
               return Column(
                 children: <Widget>[

@@ -1,11 +1,7 @@
-import 'package:elite/features/auth/services/auth_services.dart';
-
-import '../../../../cores/components/custom_text_widget.dart';
-import '../../../../cores/components/shimmer_widget.dart';
-import '../../../../cores/utils/emums.dart';
 import 'package:elite/cores/utils/navigator_service.dart';
 import 'package:elite/cores/utils/route_name.dart';
 import 'package:elite/cores/utils/sizer_utils.dart';
+import 'package:elite/features/auth/services/auth_services.dart';
 import 'package:elite/features/home/controller/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/instance_manager.dart';
@@ -24,7 +20,7 @@ class HomeHeaderWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           IconButton(
-            onPressed: () => AuthenticationRepo().signOut(),
+            onPressed: () => homeController.openDrawer(),
             icon: Icon(
               Icons.menu_rounded,
               size: sizerSp(25.0),

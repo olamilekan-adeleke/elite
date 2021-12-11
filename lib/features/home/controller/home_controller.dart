@@ -1,13 +1,15 @@
-import '../../../cores/utils/emums.dart';
-import '../../../cores/utils/local_database_repo.dart';
-import '../../../cores/utils/snack_bar_service.dart';
-import '../../auth/model/user_details_model.dart';
-import '../../auth/services/auth_services.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get_rx/get_rx.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:get/instance_manager.dart';
 
+import '../../../cores/utils/emums.dart';
+import '../../../cores/utils/snack_bar_service.dart';
+import '../../auth/model/user_details_model.dart';
+import '../../auth/services/auth_services.dart';
+
 class HomeController extends GetxController {
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
   static final AuthenticationRepo authenticationRepo =
       Get.find<AuthenticationRepo>();
   final Rx<ControllerState> _state = ControllerState.init.obs;
@@ -31,6 +33,8 @@ class HomeController extends GetxController {
       _state.value = ControllerState.error;
     }
   }
+
+  void openDrawer() => scaffoldKey.currentState?.openDrawer();
 
   @override
   void onReady() {
