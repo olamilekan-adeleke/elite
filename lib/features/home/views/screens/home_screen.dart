@@ -11,14 +11,14 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomScaffoldWidget(
+      
       usePadding: false,
       body: SizedBox(
         height: sizerHeight(100),
-        child: Stack(
+        child: ListView(
           children: const <Widget>[
             // HomeBackgroundWidget(),
-            HomeBodyWidget(),
-            
+             HomeBodyWidget(),
           ],
         ),
       ),

@@ -18,7 +18,7 @@ class CustomScaffoldWidget extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: appBar,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.white.withOpacity(0.98),
         body: Padding(
           padding: EdgeInsets.symmetric(
             horizontal: usePadding ? sizerSp(15.0) : 0,

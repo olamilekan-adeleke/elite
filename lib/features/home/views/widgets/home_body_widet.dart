@@ -1,7 +1,9 @@
+
+import 'package:elite/features/e_queue/views/screens/termial_list_screen.dart';
+import 'package:flutter/material.dart';
+
 import '../../../../cores/utils/sizer_utils.dart';
 import 'home_header_widget.dart';
-import 'home_items_list.dart';
-import 'package:flutter/material.dart';
 
 class HomeBodyWidget extends StatelessWidget {
   const HomeBodyWidget({Key? key}) : super(key: key);
@@ -12,10 +14,10 @@ class HomeBodyWidget extends StatelessWidget {
       children: <Widget>[
         SizedBox(height: sizerSp(15.0)),
         const HomeHeaderWidget(),
-        SizedBox(height: sizerSp(65.0)),
-        // const HomeItemsList(),
-        Center(child: Text('Home'))
+        SizedBox(height: sizerSp(20.0)),
+        const TerminalsListScreen(),
       ],
     );
   }
 }
+
