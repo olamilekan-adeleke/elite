@@ -14,6 +14,7 @@ class HomeController extends GetxController {
       Get.find<AuthenticationRepo>();
   final Rx<ControllerState> _state = ControllerState.init.obs;
   RxString fullname = ''.obs;
+  final RxInt currentIndex = 0.obs;
 
   ControllerState get state => _state.value;
 
@@ -35,6 +36,11 @@ class HomeController extends GetxController {
   }
 
   void openDrawer() => scaffoldKey.currentState?.openDrawer();
+
+  // ignore: use_setters_to_change_properties
+  void updateIndex(int index) {
+    currentIndex.value = index;
+  }
 
   @override
   void onReady() {

@@ -9,10 +9,11 @@ class CustomScaffoldWidget extends StatelessWidget {
     this.usePadding = true,
     this.bg,
     this.scaffoldKey,
-    this.drawer,
+    this.drawer, this.bottomNav,
   }) : super(key: key);
 
   final Widget? drawer;
+  final Widget? bottomNav;
   final Widget body;
   final AppBar? appBar;
   final bool usePadding;
@@ -33,6 +34,7 @@ class CustomScaffoldWidget extends StatelessWidget {
           child: body,
         ),
         drawer: drawer,
+        bottomNavigationBar: bottomNav,
       ),
     );
   }
