@@ -54,3 +54,51 @@ class CustomSnackBarService {
     );
   }
 }
+
+void showErrorSnackBar(String message, {Duration? duration}) {
+  Get.snackbar(
+    '',
+    message,
+    duration: duration ?? const Duration(seconds: 3),
+    backgroundColor: Colors.red,
+    colorText: Colors.white,
+    dismissDirection: SnackDismissDirection.HORIZONTAL,
+    isDismissible: true,
+    icon: const Icon(Icons.error, color: Colors.white),
+    margin: EdgeInsets.all(sizerSp(10)),
+    padding: EdgeInsets.all(sizerSp(10)),
+    snackPosition: SnackPosition.TOP,
+  );
+}
+
+void showSuccessSnackBar(String message, {Duration? duration}) {
+  Get.snackbar(
+    '',
+    message,
+    duration: duration ?? const Duration(seconds: 3),
+    backgroundColor: Colors.green,
+    colorText: Colors.white,
+    dismissDirection: SnackDismissDirection.HORIZONTAL,
+    isDismissible: true,
+    icon: const Icon(Icons.error, color: Colors.white),
+    margin: EdgeInsets.all(sizerSp(10)),
+    padding: EdgeInsets.all(sizerSp(10)),
+    snackPosition: SnackPosition.TOP,
+  );
+}
+
+void showWarningSnackBar(String message, {Duration? duration}) {
+  Get.snackbar(
+    '',
+    message,
+    duration: duration ?? const Duration(seconds: 3),
+    backgroundColor: Colors.grey,
+    colorText: Colors.white,
+    dismissDirection: SnackDismissDirection.HORIZONTAL,
+    isDismissible: true,
+    icon: const Icon(Icons.error, color: Colors.white),
+    margin: EdgeInsets.all(sizerSp(10)),
+    padding: EdgeInsets.all(sizerSp(10)),
+    snackPosition: SnackPosition.TOP,
+  );
+}

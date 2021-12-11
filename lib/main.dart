@@ -6,6 +6,6 @@ import 'app.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  setUpLocator();
+  // setUpLocator();
   runApp(EliteApp());
 }

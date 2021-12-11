@@ -1,9 +1,12 @@
+import 'package:elite/features/home/binding/home_bindings.dart';
+import 'package:elite/features/profile/bindings/profile_binding.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
 import 'cores/constants/color.dart';
 import 'cores/utils/route_name.dart';
+import 'features/auth/binding/auth_binding.dart';
 import 'features/auth/views/pages/forgot_password_screen.dart';
 import 'features/auth/views/pages/login_screen.dart';
 import 'features/auth/views/pages/set_wallet_pin_screen.dart';
@@ -30,6 +33,7 @@ class EliteApp extends StatelessWidget {
         ),
         home: const WrapperScreen(),
         getPages: pages(),
+        initialBinding: AuthenticationBinding(),
       );
     });
   }
@@ -68,6 +72,10 @@ List<GetPage<dynamic>>? pages() {
     GetPage<Widget>(
       page: () => const HomeScreen(),
       name: '/home',
+      bindings: <Bindings>[
+        HomeBinding(),
+        ProfileBindings(),
+      ],
     ),
   ];
 }

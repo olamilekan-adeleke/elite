@@ -9,16 +9,24 @@ class HomeBodyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        SizedBox(height: sizerSp(15.0)),
-        const HomeHeaderWidget(),
-        SizedBox(height: sizerSp(20.0)),
-        SizedBox(
-          height: sizerHeight(45),
-          child: const TerminalsListScreen(),
-        ),
-      ],
+    return SizedBox(
+      height: sizerHeight(100),
+      child: Column(
+        children: <Widget>[
+          SizedBox(height: sizerSp(15.0)),
+          const HomeHeaderWidget(),
+          SizedBox(height: sizerSp(20.0)),
+          SizedBox(
+            height: sizerHeight(45),
+            child: const TerminalsListScreen(),
+          ),
+          Expanded(
+            child: Container(
+              color: Colors.red,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
