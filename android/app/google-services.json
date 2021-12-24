@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "563074915995",
+    "project_id": "go-58922",
+    "storage_bucket": "go-58922.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:563074915995:android:4323dcd35e6a3b3553703e",
+        "android_client_info": {
+          "package_name": "com.elite.oneGo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "563074915995-fbao1jn8bg167ovsqph08u4g3aru0nd8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.elite.oneGo",
+            "certificate_hash": "75e26a06d3834c47f62f4efd76807a365a2cdfc0"
+          }
+        },
+        {
+          "client_id": "563074915995-gpn21nno3kkh2s9lb3h26stn4h97g32r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.elite.oneGo",
+            "certificate_hash": "eff696e20924dea8cbda90c0b29105af77f3e90e"
+          }
+        },
+        {
+          "client_id": "563074915995-684gef195v0adokbr4adtllsjs3cpmav.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAeny5VrMFhQWCtfqROqQF-eCJthVWOTik"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "563074915995-684gef195v0adokbr4adtllsjs3cpmav.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

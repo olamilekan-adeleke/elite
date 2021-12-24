@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "/home/kod-x/projects/elite/build/image_picker/intermediates/res/merged/debug/drawable-hdpi-v4/notify_panel_notification_icon_bg.png",
+        "source": "/home/kod-x/.gradle/caches/transforms-2/files-2.1/4810624ac23759363a1aae9fa883f450/core-1.6.0/res/drawable-hdpi-v4/notify_panel_notification_icon_bg.png"
+    },
+    {
+        "merged": "/home/kod-x/projects/elite/build/image_picker/intermediates/res/merged/debug/drawable-hdpi-v4/notification_bg_low_pressed.9.png",
+        "source": "/home/kod-x/.gradle/caches/transforms-2/files-2.1/4810624ac23759363a1aae9fa883f450/core-1.6.0/res/drawable-hdpi-v4/notification_bg_low_pressed.9.png"
+    },
+    {
+        "merged": "/home/kod-x/projects/elite/build/image_picker/intermediates/res/merged/debug/drawable-hdpi-v4/notification_bg_normal.9.png",
+        "source": "/home/kod-x/.gradle/caches/transforms-2/files-2.1/4810624ac23759363a1aae9fa883f450/core-1.6.0/res/drawable-hdpi-v4/notification_bg_normal.9.png"
+    },
+    {
+        "merged": "/home/kod-x/projects/elite/build/image_picker/intermediates/res/merged/debug/drawable-hdpi-v4/notification_bg_low_normal.9.png",
+        "source": "/home/kod-x/.gradle/caches/transforms-2/files-2.1/4810624ac23759363a1aae9fa883f450/core-1.6.0/res/drawable-hdpi-v4/notification_bg_low_normal.9.png"
+    },
+    {
+        "merged": "/home/kod-x/projects/elite/build/image_picker/intermediates/res/merged/debug/drawable-hdpi-v4/notification_bg_normal_pressed.9.png",
+        "source": "/home/kod-x/.gradle/caches/transforms-2/files-2.1/4810624ac23759363a1aae9fa883f450/core-1.6.0/res/drawable-hdpi-v4/notification_bg_normal_pressed.9.png"
+    }
+]

@@ -1,0 +1,20 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="co.paystack.flutterpaystack"
+4    android:versionCode="21"
+5    android:versionName="3.0.10" >
+6
+7    <uses-sdk android:minSdkVersion="16" />
+7-->/home/kod-x/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_paystack-1.0.5+1/android/src/main/AndroidManifest.xml
+8
+9    <application>
+9-->/home/kod-x/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_paystack-1.0.5+1/android/src/main/AndroidManifest.xml:4:5-8:19
+10        <activity
+10-->/home/kod-x/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_paystack-1.0.5+1/android/src/main/AndroidManifest.xml:5:9-7:54
+11            android:name="co.paystack.flutterpaystack.AuthActivity"
+11-->/home/kod-x/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_paystack-1.0.5+1/android/src/main/AndroidManifest.xml:6:13-41
+12            android:theme="@style/Paystack.Dialog" />
+12-->/home/kod-x/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_paystack-1.0.5+1/android/src/main/AndroidManifest.xml:7:13-51
+13    </application>
+14
+15</manifest>

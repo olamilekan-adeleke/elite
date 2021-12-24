@@ -1,0 +1,4 @@
+io/flutter/plugins/GeneratedPluginRegistrant.java
+ io.flutter.plugins.GeneratedPluginRegistrant
+com/elite/oneGo/BuildConfig.java
+ com.elite.oneGo.BuildConfig

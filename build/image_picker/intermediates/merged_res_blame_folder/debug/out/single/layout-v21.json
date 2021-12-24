@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/home/kod-x/projects/elite/build/image_picker/intermediates/res/merged/debug/layout-v21/notification_template_custom_big.xml",
+        "source": "/home/kod-x/.gradle/caches/transforms-2/files-2.1/4810624ac23759363a1aae9fa883f450/core-1.6.0/res/layout-v21/notification_template_custom_big.xml"
+    },
+    {
+        "merged": "/home/kod-x/projects/elite/build/image_picker/intermediates/res/merged/debug/layout-v21/notification_action.xml",
+        "source": "/home/kod-x/.gradle/caches/transforms-2/files-2.1/4810624ac23759363a1aae9fa883f450/core-1.6.0/res/layout-v21/notification_action.xml"
+    },
+    {
+        "merged": "/home/kod-x/projects/elite/build/image_picker/intermediates/res/merged/debug/layout-v21/notification_action_tombstone.xml",
+        "source": "/home/kod-x/.gradle/caches/transforms-2/files-2.1/4810624ac23759363a1aae9fa883f450/core-1.6.0/res/layout-v21/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "/home/kod-x/projects/elite/build/image_picker/intermediates/res/merged/debug/layout-v21/notification_template_icon_group.xml",
+        "source": "/home/kod-x/.gradle/caches/transforms-2/files-2.1/4810624ac23759363a1aae9fa883f450/core-1.6.0/res/layout-v21/notification_template_icon_group.xml"
+    }
+]

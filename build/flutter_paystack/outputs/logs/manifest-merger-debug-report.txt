@@ -1,0 +1,39 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /home/kod-x/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_paystack-1.0.5+1/android/src/main/AndroidManifest.xml:1:1-9:12
+INJECTED from /home/kod-x/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_paystack-1.0.5+1/android/src/main/AndroidManifest.xml:1:1-9:12
+INJECTED from /home/kod-x/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_paystack-1.0.5+1/android/src/main/AndroidManifest.xml:1:1-9:12
+INJECTED from /home/kod-x/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_paystack-1.0.5+1/android/src/main/AndroidManifest.xml:1:1-9:12
+INJECTED from /home/kod-x/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_paystack-1.0.5+1/android/src/main/AndroidManifest.xml:1:1-9:12
+INJECTED from /home/kod-x/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_paystack-1.0.5+1/android/src/main/AndroidManifest.xml:1:1-9:12
+INJECTED from /home/kod-x/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_paystack-1.0.5+1/android/src/main/AndroidManifest.xml:1:1-9:12
+	package
+		ADDED from /home/kod-x/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_paystack-1.0.5+1/android/src/main/AndroidManifest.xml:2:5-42
+		INJECTED from /home/kod-x/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_paystack-1.0.5+1/android/src/main/AndroidManifest.xml
+		INJECTED from /home/kod-x/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_paystack-1.0.5+1/android/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /home/kod-x/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_paystack-1.0.5+1/android/src/main/AndroidManifest.xml
+		ADDED from /home/kod-x/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_paystack-1.0.5+1/android/src/main/AndroidManifest.xml:1:1-9:12
+		INJECTED from /home/kod-x/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_paystack-1.0.5+1/android/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /home/kod-x/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_paystack-1.0.5+1/android/src/main/AndroidManifest.xml
+		ADDED from /home/kod-x/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_paystack-1.0.5+1/android/src/main/AndroidManifest.xml:1:1-9:12
+		INJECTED from /home/kod-x/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_paystack-1.0.5+1/android/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /home/kod-x/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_paystack-1.0.5+1/android/src/main/AndroidManifest.xml:1:11-69
+application
+ADDED from /home/kod-x/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_paystack-1.0.5+1/android/src/main/AndroidManifest.xml:4:5-8:19
+activity#co.paystack.flutterpaystack.AuthActivity
+ADDED from /home/kod-x/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_paystack-1.0.5+1/android/src/main/AndroidManifest.xml:5:9-7:54
+	android:theme
+		ADDED from /home/kod-x/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_paystack-1.0.5+1/android/src/main/AndroidManifest.xml:7:13-51
+	android:name
+		ADDED from /home/kod-x/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_paystack-1.0.5+1/android/src/main/AndroidManifest.xml:6:13-41
+uses-sdk
+INJECTED from /home/kod-x/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_paystack-1.0.5+1/android/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/kod-x/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_paystack-1.0.5+1/android/src/main/AndroidManifest.xml
+INJECTED from /home/kod-x/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_paystack-1.0.5+1/android/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /home/kod-x/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_paystack-1.0.5+1/android/src/main/AndroidManifest.xml
+		ADDED from /home/kod-x/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_paystack-1.0.5+1/android/src/main/AndroidManifest.xml
+		INJECTED from /home/kod-x/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_paystack-1.0.5+1/android/src/main/AndroidManifest.xml
