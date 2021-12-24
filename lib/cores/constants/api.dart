@@ -1,0 +1,1 @@
+const String firebaseBaseUrl = 'https://us-central1-go-58922.cloudfunctions.net';

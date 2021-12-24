@@ -1,9 +1,11 @@
 import 'package:elite/cores/utils/emums.dart';
 import 'package:elite/cores/utils/snack_bar_service.dart';
+import 'package:elite/features/wallet/services/transfer_services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class TransferController extends GetxController {
+  static final TransferServices transferServices = TransferServices();
   final Rx<String> type = 'Cash'.obs;
   final Rx<String> receivedAs = 'Cash'.obs;
   final Rx<ControllerState> state = ControllerState.init.obs;
@@ -17,23 +19,23 @@ class TransferController extends GetxController {
   void send() {
     // turn type to lower case
   }
+
   void proceed() {
     if (amountController.text.isEmpty) {
-      showWarningSnackBar('Amount cannot be empty!');
+      return showWarningSnackBar('Amount cannot be empty!');
     }
 
     if (pinController.text.isEmpty) {
-      showWarningSnackBar('Please Enter Your Wallet Pin!');
+      return showWarningSnackBar('Please Enter Your Wallet Pin!');
     }
 
     if (usernameController.text.isEmpty) {
-      showWarningSnackBar('Please Enter Receiver Username!');
+      return showWarningSnackBar('Please Enter Receiver Username!');
     }
 
     // send request to backend and backend return user details
-    
 
-    // Get.toNamed('/confirm-transfer');
+    Get.toNamed('/confirm-transfer');
   }
 
   void showPopUp() {}
