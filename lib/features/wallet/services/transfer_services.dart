@@ -36,4 +36,32 @@ class TransferServices {
       throw e.toString();
     }
   }
+
+  Future<UserDetailsModel?> sendFund(Map<String, dynamic> data) async {
+    try {
+      final http.Response response = await http.post(
+        Uri.parse('$firebaseBaseUrl/sendFund'),
+        headers: <String, String>{
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: json.encode(data),
+      );
+
+      final Map<String, dynamic> responseData =
+          json.decode(response.body) as Map<String, dynamic>;
+
+      if (responseData['status'] == 'success') {
+        return UserDetailsModel.fromMap(
+            responseData['data'] as Map<String, dynamic>);
+      } else {
+        throw responseData['msg'].toString();
+      }
+    } catch (e, s) {
+      log(e.toString());
+      log(s.toString());
+
+      throw e.toString();
+    }
+  }
 }

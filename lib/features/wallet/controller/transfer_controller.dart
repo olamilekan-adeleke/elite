@@ -1,6 +1,9 @@
 import 'dart:developer';
 
+import 'package:elite/cores/components/custom_button.dart';
+import 'package:elite/cores/components/custom_text_widget.dart';
 import 'package:elite/cores/utils/emums.dart';
+import 'package:elite/cores/utils/sizer_utils.dart';
 import 'package:elite/cores/utils/snack_bar_service.dart';
 import 'package:elite/features/auth/model/user_details_model.dart';
 import 'package:elite/features/wallet/services/transfer_services.dart';
@@ -20,8 +23,38 @@ class TransferController extends GetxController {
       TextEditingController(text: '');
   final List<String> typeList = <String>['Cash', 'Coin'];
 
-  void send() {
+  Future<void> send() async {
     // turn type to lower case
+
+    if (receiverDetails == null) {
+      return showWarningSnackBar(
+        'Opps, something went wrong, Please try again',
+      );
+    }
+
+    try {
+      state.value = ControllerState.busy;
+
+      final Map<String, dynamic> data = <String, dynamic>{
+        'receiver_id': receiverDetails!.value.uid,
+        'sender_id': '',
+        'amount': amountController.text.trim(),
+        'type': type.value,
+        'wallet_pin': pinController.text.trim(),
+      };
+
+      await transferServices.sendFund(data);
+
+      state.value = ControllerState.success;
+
+      showPopUp();
+    } catch (e, s) {
+      log(e.toString());
+      log(s.toString());
+      state.value = ControllerState.error;
+
+      showErrorSnackBar(e.toString());
+    }
   }
 
   Future<void> proceed() async {
@@ -60,7 +93,23 @@ class TransferController extends GetxController {
     }
   }
 
-  void showPopUp() {}
+  void showPopUp() {
+    Get.defaultDialog(
+      title: 'Success',
+      content: CustomTextWidget(
+        'Fund Transfer Successful',
+        fontSize: sizerSp(18),
+      ),
+      actions: <Widget>[
+        CustomButton(
+          text: 'OK',
+          onTap: () {
+            Get.back();
+          },
+        ),
+      ],
+    );
+  }
 
   void updateType(String? val) {
     if (val == null) return;
