@@ -37,7 +37,7 @@ class TransferServices {
     }
   }
 
-  Future<UserDetailsModel?> sendFund(Map<String, dynamic> data) async {
+  Future<void> sendFund(Map<String, dynamic> data) async {
     try {
       final http.Response response = await http.post(
         Uri.parse('$firebaseBaseUrl/sendFund'),
@@ -48,12 +48,12 @@ class TransferServices {
         body: json.encode(data),
       );
 
-      final Map<String, dynamic> responseData =
-          json.decode(response.body) as Map<String, dynamic>;
+      final Map<String, dynamic> responseData = Map<String, dynamic>.from(
+        json.decode(response.body) as Map<String, dynamic>,
+      );
 
       if (responseData['status'] == 'success') {
-        return UserDetailsModel.fromMap(
-            responseData['data'] as Map<String, dynamic>);
+        return;
       } else {
         throw responseData['msg'].toString();
       }

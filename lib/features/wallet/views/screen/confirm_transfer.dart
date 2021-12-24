@@ -72,7 +72,7 @@ class ConfirmTransferScreen extends StatelessWidget {
                   fontWeight: FontWeight.w300,
                 ),
                 CustomTextWidget(
-                  '${transferController.receiverDetails?.value.username}',
+                  '@${transferController.receiverDetails?.value.username}',
                   fontSize: sizerSp(15),
                   fontWeight: FontWeight.w500,
                 ),

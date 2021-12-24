@@ -4,9 +4,6 @@ import 'package:elite/cores/utils/route_name.dart';
 import 'package:elite/features/auth/model/user_details_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'package:get/instance_manager.dart';
-
 import '../../../cores/constants/error_text.dart';
 import '../../../cores/utils/emums.dart';
 import '../../../cores/utils/logger.dart';

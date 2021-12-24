@@ -6,6 +6,7 @@ import 'package:elite/cores/utils/emums.dart';
 import 'package:elite/cores/utils/sizer_utils.dart';
 import 'package:elite/cores/utils/snack_bar_service.dart';
 import 'package:elite/features/auth/model/user_details_model.dart';
+import 'package:elite/features/auth/services/auth_services.dart';
 import 'package:elite/features/wallet/services/transfer_services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,6 +17,8 @@ class TransferController extends GetxController {
   final Rx<String> receivedAs = 'Cash'.obs;
   Rx<UserDetailsModel>? receiverDetails;
   final Rx<ControllerState> state = ControllerState.init.obs;
+  static final AuthenticationRepo _authenticationRepo =
+      Get.find<AuthenticationRepo>();
   final TextEditingController amountController =
       TextEditingController(text: '');
   final TextEditingController pinController = TextEditingController(text: '');
@@ -37,7 +40,7 @@ class TransferController extends GetxController {
 
       final Map<String, dynamic> data = <String, dynamic>{
         'receiver_id': receiverDetails!.value.uid,
-        'sender_id': '',
+        'sender_id': _authenticationRepo.getUserUid(),
         'amount': amountController.text.trim(),
         'type': type.value,
         'wallet_pin': pinController.text.trim(),
@@ -95,9 +98,8 @@ class TransferController extends GetxController {
 
   void showPopUp() {
     Get.defaultDialog(
-      title: 'Success',
       content: CustomTextWidget(
-        'Fund Transfer Successful',
+        'Your fund transfer of NGN ${amountController.text} to  successful',
         fontSize: sizerSp(18),
       ),
       actions: <Widget>[

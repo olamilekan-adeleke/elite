@@ -57,7 +57,7 @@ class CustomSnackBarService {
 
 void showErrorSnackBar(String message, {Duration? duration}) {
   Get.snackbar(
-    '',
+    'Error',
     message,
     duration: duration ?? const Duration(seconds: 3),
     backgroundColor: Colors.red,
@@ -73,7 +73,7 @@ void showErrorSnackBar(String message, {Duration? duration}) {
 
 void showSuccessSnackBar(String message, {Duration? duration}) {
   Get.snackbar(
-    '',
+    'Success',
     message,
     duration: duration ?? const Duration(seconds: 3),
     backgroundColor: Colors.green,
@@ -89,7 +89,7 @@ void showSuccessSnackBar(String message, {Duration? duration}) {
 
 void showWarningSnackBar(String message, {Duration? duration}) {
   Get.snackbar(
-    '',
+    'Warning',
     message,
     duration: duration ?? const Duration(seconds: 3),
     backgroundColor: Colors.grey,
