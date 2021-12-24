@@ -131,7 +131,7 @@ class TransferScreen extends StatelessWidget {
                 return const CustomButton.loading();
               }
               return CustomButton(
-                text: 'Send',
+                text: 'Proceed',
                 onTap: () => transferController.proceed(),
               );
             }),

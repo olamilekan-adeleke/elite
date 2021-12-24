@@ -7,14 +7,17 @@ import 'package:http/http.dart' as http;
 
 class TransferServices {
   Future<UserDetailsModel?> getUserDetails(String username) async {
+    final Map<String, dynamic> body = <String, dynamic>{
+      'receiver_username': username
+    };
     try {
       final http.Response response = await http.post(
         Uri.parse('$firebaseBaseUrl/initSendFund'),
-        body: <String, dynamic>{'receiver_username': username},
         headers: <String, String>{
           'Content-Type': 'application/json',
           'Accept': 'application/json',
         },
+        body: json.encode(body),
       );
 
       final Map<String, dynamic> responseData =
