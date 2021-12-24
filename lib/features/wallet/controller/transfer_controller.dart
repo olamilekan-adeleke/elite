@@ -98,9 +98,13 @@ class TransferController extends GetxController {
 
   void showPopUp() {
     Get.defaultDialog(
-      content: CustomTextWidget(
-        'Your fund transfer of NGN ${amountController.text} to  successful',
-        fontSize: sizerSp(18),
+      content: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: CustomTextWidget(
+          'Your fund transfer of NGN ${amountController.text} to '
+          '${receiverDetails!.value.username} was successful',
+          fontSize: sizerSp(18),
+        ),
       ),
       actions: <Widget>[
         CustomButton(
