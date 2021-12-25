@@ -1,7 +1,3 @@
-import '../../../../cores/components/custom_button.dart';
-import '../../../../cores/components/custom_scaffold_widget.dart';
-import '../../../../cores/components/custom_text_widget.dart';
-import '../../../../cores/components/custom_textfiled.dart';
 import 'package:elite/cores/utils/emums.dart';
 import 'package:elite/cores/utils/sizer_utils.dart';
 import 'package:elite/features/auth/controllers/forgot_password_controller.dart';
@@ -9,6 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/instance_manager.dart';
 import 'package:get/state_manager.dart';
+
+import '../../../../cores/components/custom_button.dart';
+import '../../../../cores/components/custom_scaffold_widget.dart';
+import '../../../../cores/components/custom_text_widget.dart';
+import '../../../../cores/components/custom_textfiled.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
   const ForgotPasswordScreen();

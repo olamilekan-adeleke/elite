@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+
 import '../../../../cores/components/custom_text_widget.dart';
 import '../../../../cores/utils/sizer_utils.dart';
-import 'package:flutter/material.dart';
 
 class HomeItemWidget extends StatelessWidget {
   const HomeItemWidget({

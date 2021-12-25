@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+
 import '../../../../cores/constants/color.dart';
 import '../../../../cores/utils/sizer_utils.dart';
-import 'package:flutter/material.dart';
 
 class HomeBackgroundWidget extends StatelessWidget {
   const HomeBackgroundWidget({Key? key}) : super(key: key);

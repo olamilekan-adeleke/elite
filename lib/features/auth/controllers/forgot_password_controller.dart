@@ -1,15 +1,16 @@
 import 'dart:io';
 
+import 'package:flutter/material.dart';
+import 'package:get/get_rx/get_rx.dart';
+import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:get/instance_manager.dart';
+
 import '../../../cores/constants/error_text.dart';
 import '../../../cores/constants/success_text.dart';
 import '../../../cores/utils/emums.dart';
 import '../../../cores/utils/logger.dart';
 import '../../../cores/utils/snack_bar_service.dart';
 import '../services/auth_services.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get_rx/get_rx.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
-import 'package:get/instance_manager.dart';
 
 class ForgotPasswordController extends GetxController {
   final Rx<ControllerState> _controllerStateEnum =

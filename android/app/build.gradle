@@ -61,7 +61,12 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation platform('com.google.firebase:firebase-bom:28.3.0')
     implementation 'com.google.firebase:firebase-analytics'
+<<<<<<< HEAD
     implementation 'androidx.browser:browser:1.3.0'
 }
 
 
+=======
+
+}
+>>>>>>> 21d2e7928055e1dd50a62732c1984ad8a9801055
