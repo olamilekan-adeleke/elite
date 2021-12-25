@@ -39,6 +39,8 @@ class EQueueController extends GetxController {
   }
 
   Future<void> joinQueue() async {
+    if (joiningQueueState.value == ControllerState.busy) return;
+
     try {
       joiningQueueState.value = ControllerState.busy;
       final bool checkPin = await authenticationRepo
@@ -73,7 +75,7 @@ class EQueueController extends GetxController {
   Future<void> getTerminals() async {
     try {
       terminals.value = await eQueueService.getTerminals();
-      log('terminals: ${terminals.value}');
+      // log('terminals: ${terminals.value}');
     } catch (e, s) {
       log(e.toString());
       log(s.toString());
@@ -90,15 +92,15 @@ class EQueueController extends GetxController {
           children: <Widget>[
             CustomTextWidget(
               'You have been successfully added to the e-queue.',
-              fontSize: sizerSp(16),
-              fontWeight: FontWeight.w300,
+              fontSize: sizerSp(15),
               textAlign: TextAlign.center,
             ),
+            SizedBox(height: sizerSp(10)),
             CustomTextWidget(
               'Your notification shall arrive in not more than 45 minutes. '
               'Once you get your notification, please proceed to your '
               'terminal(Pepsi village) to get your ride  ',
-              fontSize: sizerSp(16),
+              fontSize: sizerSp(14),
               fontWeight: FontWeight.w300,
               textAlign: TextAlign.center,
             ),
