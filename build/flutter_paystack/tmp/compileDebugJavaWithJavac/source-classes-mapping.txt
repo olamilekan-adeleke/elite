@@ -1,2 +1,0 @@
-co/paystack/flutterpaystack/BuildConfig.java
- co.paystack.flutterpaystack.BuildConfig
