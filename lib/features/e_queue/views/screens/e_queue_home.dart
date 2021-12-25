@@ -1,12 +1,16 @@
 import 'package:elite/cores/components/custom_button.dart';
 import 'package:elite/cores/components/custom_scaffold_widget.dart';
 import 'package:elite/cores/components/custom_text_widget.dart';
-import 'package:elite/cores/constants/color.dart';
 import 'package:elite/cores/utils/sizer_utils.dart';
+import 'package:elite/features/e_queue/controllers/e_queu_controller.dart';
+import 'package:elite/features/e_queue/model/terminal_model.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class EQueueHome extends StatelessWidget {
   const EQueueHome({Key? key}) : super(key: key);
+
+  static EQueueController eQueueController = Get.find<EQueueController>();
 
   @override
   Widget build(BuildContext context) {
@@ -35,13 +39,28 @@ class EQueueHome extends StatelessWidget {
               fontWeight: FontWeight.w300,
             ),
             SizedBox(height: sizerSp(40)),
-            // Center(
-            //   child: SvgPicture.asset(
-            //     'assets/images/time.svg',
-            //     height: sizerSp(150),
-            //     width: sizerSp(200),
-            //   ),
-            // ),
+            Obx(() {
+              return DropdownButton<String>(
+                hint: CustomTextWidget(
+                  '${eQueueController.selectedTerminal.value.isEmpty ? 'Select your terminal' : eQueueController.selectedTerminal.value}',
+                  fontSize: sizerSp(16),
+                  textColor: Colors.black,
+                  fontWeight: FontWeight.w300,
+                ),
+                items: eQueueController.terminals.map((TerminalModel value) {
+                  return DropdownMenuItem<String>(
+                    value: value.name,
+                    child: Text(value.name),
+                  );
+                }).toList(),
+                onChanged: (String? val) {
+                  if (val != null) {
+                    eQueueController.selectedTerminal.value = val;
+                  }
+                },
+                isExpanded: true,
+              );
+            }),
             SizedBox(height: sizerSp(60)),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,

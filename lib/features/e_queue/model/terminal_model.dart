@@ -1,4 +1,3 @@
-
 class TerminalModel {
   TerminalModel({
     required this.name,
@@ -30,5 +29,8 @@ class TerminalModel {
     };
   }
 
-
+  @override
+  String toString() =>
+      'TerminalModel(name: $name, queueNumber: $queueNumber,'
+      ' todayCount: $todayCount)';
 }
