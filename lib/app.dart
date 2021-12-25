@@ -15,6 +15,7 @@ import 'features/auth/views/pages/signup_screen.dart';
 import 'features/auth/views/pages/sms_verification_screen.dart';
 import 'features/auth/views/pages/update_profile_screen.dart';
 import 'features/auth/views/pages/wrapper.dart';
+import 'features/e_queue/bindings/e_queu_binding.dart';
 import 'features/home/views/screens/home_screen.dart';
 import 'features/notification/views/screens/notification_screem.dart';
 import 'features/profile/views/screens/profile_page.dart';
@@ -101,7 +102,12 @@ List<GetPage<dynamic>>? pages() {
         HomeBinding(),
         ProfileBindings(),
         WalletBinding(),
+        EQueueBinding(),
       ],
     ),
+    // GetPage<Widget>(
+    //   page: () => const ConfirmTransferScreen(),
+    //   name: '',
+    // ),
   ];
 }
