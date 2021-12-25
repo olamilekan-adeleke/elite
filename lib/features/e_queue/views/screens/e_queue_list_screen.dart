@@ -3,17 +3,14 @@
 import 'package:elite/cores/components/custom_button.dart';
 import 'package:elite/cores/components/custom_scaffold_widget.dart';
 import 'package:elite/cores/components/custom_text_widget.dart';
-import 'package:elite/cores/constants/color.dart';
 import 'package:elite/cores/utils/emums.dart';
 import 'package:elite/cores/utils/sizer_utils.dart';
 import 'package:elite/features/e_queue/controllers/e_queu_controller.dart';
 import 'package:elite/features/e_queue/model/terminal_model.dart';
-import 'package:elite/features/e_queue/views/screens/e_queue_home.dart';
 import 'package:elite/features/e_queue/views/screens/join_queu_screen.dart';
 import 'package:elite/features/e_queue/views/screens/queue_list_widget.dart';
 import 'package:elite/features/profile/controllers/profile_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/route_manager.dart';
@@ -125,12 +122,21 @@ class JoinAndLeaveQueueButton extends StatelessWidget {
               children: <Widget>[
                 const SizedBox(width: double.infinity),
                 SizedBox(height: sizerSp(10)),
-                CustomButton(
-                  text: 'Join e-queue',
-                  onTap: () {
-                    Get.to(() => const JoinQueueWidget());
-                  },
-                ),
+                if (profileController.isInQueue.value == true)
+                  CustomButton(
+                    text: 'Leave e-queue',
+                    onTap: () {
+                      Get.to(() => const JoinQueueWidget());
+                    },
+                    color: Colors.grey,
+                  )
+                else
+                  CustomButton(
+                    text: 'Join e-queue',
+                    onTap: () {
+                      eQueueController.leaveQueue();
+                    },
+                  ),
                 SizedBox(height: sizerSp(15)),
                 CustomTextWidget(
                   '${eQueueController.selectedTerminalModel?.value.todayCount}  Successful rides today',

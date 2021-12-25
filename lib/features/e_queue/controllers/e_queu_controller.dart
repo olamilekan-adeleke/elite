@@ -126,9 +126,15 @@ class EQueueController extends GetxController {
     walletPinController.clear();
   }
 
+
+  void leaveQueue() {
+    
+  }
+
   @override
   void onReady() {
     getTerminals();
     super.onReady();
   }
+
 }

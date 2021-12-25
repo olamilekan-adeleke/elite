@@ -2,6 +2,7 @@ import 'package:elite/cores/components/custom_button.dart';
 import 'package:elite/cores/components/custom_scaffold_widget.dart';
 import 'package:elite/cores/components/custom_text_widget.dart';
 import 'package:elite/cores/utils/sizer_utils.dart';
+import 'package:elite/cores/utils/snack_bar_service.dart';
 import 'package:elite/features/e_queue/controllers/e_queu_controller.dart';
 import 'package:elite/features/e_queue/model/terminal_model.dart';
 import 'package:elite/features/e_queue/views/screens/e_queue_list_screen.dart';
@@ -21,7 +22,6 @@ class EQueueHome extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: sizerSp(15.0)),
         color: Colors.white,
         child: Column(
-          
           children: <Widget>[
             AppBar(
               iconTheme: const IconThemeData(color: Colors.black),
@@ -92,7 +92,11 @@ class EQueueHome extends StatelessWidget {
             CustomButton(
               text: 'Continue',
               onTap: () {
-                Get.to(() => const SelectRiderScreen());
+                if (eQueueController.selectedTerminalModel?.value != null) {
+                  Get.to(() => const SelectRiderScreen());
+                } else {
+                  showWarningSnackBar('Select your terminal');
+                }
               },
             ),
             SizedBox(height: sizerSp(20)),
