@@ -105,7 +105,7 @@ class CashWalletWidget extends StatelessWidget {
     return StreamBuilder<DocumentSnapshot<dynamic>>(
       stream: walletService.walletData(),
       builder: (_, AsyncSnapshot<DocumentSnapshot<dynamic>> snapshot) {
-        log((snapshot.data?.data() ?? {}).toString());
+        // log((snapshot.data?.data() ?? {}).toString());
 
         // final Map<String, dynamic> data =
         //     (snapshot.data?.data ?? {}) as Map<String, dynamic>;

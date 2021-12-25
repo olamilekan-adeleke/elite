@@ -45,7 +45,7 @@ class EQueueService {
       },
     );
 
-    batch.update(userDocRef, {'isInQueue': true});
+    batch.update(userDocRef, {'is_in_queue': true});
 
     await batch.commit();
   }

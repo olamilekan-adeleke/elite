@@ -22,7 +22,7 @@ class QueueListWidget extends StatelessWidget {
         final Map<String, dynamic>? data =
             documentSnapshots.data() as Map<String, dynamic>?;
 
-        log(data.toString());
+        // log(data.toString());
 
         final QueueModel queueModel = QueueModel.fromMap(
           data ?? <String, dynamic>{},

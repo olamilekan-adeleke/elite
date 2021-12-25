@@ -16,6 +16,7 @@ class ProfileController extends GetxController {
   final Rx<ControllerState> state = ControllerState.init.obs;
   final Rx<ControllerState> controllerState = ControllerState.init.obs;
   Rx<UserDetailsModel>? userDetailsModel;
+  final RxBool isInQueue = false.obs;
   final RxString filePath = ''.obs;
   final ImagePicker _picker = ImagePicker();
   final TextEditingController fullNameController =
@@ -117,11 +118,16 @@ class ProfileController extends GetxController {
 
       authenticationRepo
           .getLoggedInUserStream()
-          .listen((DocumentSnapshot event) async {
-        log('userData: ${event.data()} ');
+          .listen((DocumentSnapshot event) {
+        // log('userData: ${event.data()} ');
 
         final Map<String, dynamic> userData =
             (event.data() ?? {}) as Map<String, dynamic>;
+
+        // log('userData: $userData ');
+        // log('userData bbol: ${userData['is_in_queue']} ');
+
+        isInQueue.value = (userData['is_in_queue'] ?? false) as bool;
 
         if (userDetailsModel?.value != null) {
           userDetailsModel!.value = UserDetailsModel.fromMap(userData);
@@ -143,6 +149,8 @@ class ProfileController extends GetxController {
     controllerState.value = ControllerState.busy;
     await Future<dynamic>.delayed(const Duration(milliseconds: 200));
     controllerState.value = ControllerState.success;
+
+    log('isInQueue: ${isInQueue.toString()}');
   }
 
   @override
