@@ -2,6 +2,8 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elite/cores/components/custom_text_widget.dart';
+import 'package:elite/cores/components/image_widget.dart';
+import 'package:elite/cores/utils/emums.dart';
 import 'package:elite/cores/utils/sizer_utils.dart';
 import 'package:elite/features/e_queue/model/queue_model.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +28,10 @@ class QueueListWidget extends StatelessWidget {
           data ?? <String, dynamic>{},
         );
 
-        return QueueListTileWidget(queueModel);
+        return QueueListTileWidget(
+          index + 1,
+          queueModel,
+        );
       },
       query: FirebaseFirestore.instance
           .collection('terminals')
@@ -61,17 +66,18 @@ class QueueListWidget extends StatelessWidget {
 
 class QueueListTileWidget extends StatelessWidget {
   const QueueListTileWidget(
+    this.index,
     this.queueModel, {
     Key? key,
   }) : super(key: key);
 
   final QueueModel queueModel;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: sizerSp(10.0)),
-      height: sizerSp(80),
+      // margin: EdgeInsets.symmetric(horizontal: sizerSp(10.0)),
       child: Card(
         child: Padding(
           padding: EdgeInsets.symmetric(
@@ -81,19 +87,41 @@ class QueueListTileWidget extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+              Row(
                 children: <Widget>[
-                  CustomTextWidget(
-                    queueModel.user.fullName,
-                    fontWeight: FontWeight.w600,
-                    fontSize: sizerSp(14),
-                  ),
-                  CustomTextWidget(
-                    'View Location',
-                    fontWeight: FontWeight.w200,
-                    fontSize: sizerSp(14),
-                    textColor: const Color(0xff1F66D0),
+                  if ((queueModel.user.profilePicUrl ?? '').isNotEmpty)
+                    SizedBox(
+                      height: sizerSp(35),
+                      width: sizerSp(35),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(sizerSp(100)),
+                        child: CustomImageWidget(
+                          imageUrl: queueModel.user.profilePicUrl ?? '',
+                          imageTypes: ImageTypes.network,
+                        ),
+                      ),
+                    )
+                  else
+                    CircleAvatar(
+                      radius: sizerSp(30),
+                      child: const Icon(Icons.person),
+                    ),
+                  SizedBox(width: sizerSp(10)),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      CustomTextWidget(
+                        queueModel.user.fullName,
+                        fontWeight: FontWeight.w500,
+                        fontSize: sizerSp(15),
+                      ),
+                      CustomTextWidget(
+                        '@${queueModel.user.username}',
+                        fontWeight: FontWeight.w200,
+                        fontSize: sizerSp(13),
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -107,12 +135,10 @@ class QueueListTileWidget extends StatelessWidget {
                       '${queueModel.numberOfSeats}',
                       fontWeight: FontWeight.bold,
                       fontSize: sizerSp(12),
-                      textColor: Colors.green,
                     ),
                     CustomTextWidget(
                       'Seat(s)',
                       fontSize: sizerSp(13),
-                      textColor: Colors.green,
                       fontWeight: FontWeight.w200,
                       textAlign: TextAlign.center,
                     ),
@@ -126,7 +152,7 @@ class QueueListTileWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     CustomTextWidget(
-                      '${queueModel.serialNumber}',
+                      '$index',
                       fontWeight: FontWeight.bold,
                       fontSize: sizerSp(12),
                     ),
