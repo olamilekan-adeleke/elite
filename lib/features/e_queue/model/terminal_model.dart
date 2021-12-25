@@ -1,6 +1,7 @@
 class TerminalModel {
   TerminalModel({
     required this.name,
+    required this.id,
     required this.queueNumber,
     required this.todayCount,
   });
@@ -11,6 +12,7 @@ class TerminalModel {
     final String todayData = '${now.year}-${now.month}-${now.day}';
 
     return TerminalModel(
+      id: map['id'] as String,
       name: (map['name'] ?? '') as String,
       queueNumber: (map['queue_number'] ?? 0) as int,
       todayCount: (map[todayData] ?? 0) as int,
@@ -18,6 +20,7 @@ class TerminalModel {
   }
 
   final String name;
+  final String id;
   final int queueNumber;
   final int todayCount;
 
@@ -30,7 +33,8 @@ class TerminalModel {
   }
 
   @override
-  String toString() =>
-      'TerminalModel(name: $name, queueNumber: $queueNumber,'
-      ' todayCount: $todayCount)';
+  String toString() {
+    return 'TerminalModel(name: $name, id: $id, queueNumber: '
+        '$queueNumber, todayCount: $todayCount)';
+  }
 }

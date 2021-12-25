@@ -10,7 +10,10 @@ class EQueueService {
 
     final List<TerminalModel> list =
         querySnapshot.docs.map((QueryDocumentSnapshot<Object?> doc) {
-      return TerminalModel.fromMap((doc.data() ?? {}) as Map<String, dynamic>);
+      return TerminalModel.fromMap(<String, dynamic>{
+        ...(doc.data() ?? {}) as Map<String, dynamic>,
+        'id': doc.id,
+      });
     }).toList();
 
     return list;

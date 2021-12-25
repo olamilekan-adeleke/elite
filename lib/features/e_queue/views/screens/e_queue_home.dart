@@ -4,6 +4,7 @@ import 'package:elite/cores/components/custom_text_widget.dart';
 import 'package:elite/cores/utils/sizer_utils.dart';
 import 'package:elite/features/e_queue/controllers/e_queu_controller.dart';
 import 'package:elite/features/e_queue/model/terminal_model.dart';
+import 'package:elite/features/e_queue/views/screens/e_queue_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -20,6 +21,7 @@ class EQueueHome extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: sizerSp(15.0)),
         color: Colors.white,
         child: Column(
+          
           children: <Widget>[
             AppBar(
               iconTheme: const IconThemeData(color: Colors.black),
@@ -39,7 +41,7 @@ class EQueueHome extends StatelessWidget {
               fontWeight: FontWeight.w300,
             ),
             SizedBox(height: sizerSp(40)),
-            DropdownButton<String>(
+            DropdownButtonFormField<String>(
               hint: Obx(() {
                 return CustomTextWidget(
                   '${eQueueController.selectedTerminalText.value.isEmpty ? 'Select your terminal' : eQueueController.selectedTerminalText.value}',
@@ -60,6 +62,11 @@ class EQueueHome extends StatelessWidget {
                 }
               },
               isExpanded: true,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                ),
+              ),
             ),
             SizedBox(height: sizerSp(60)),
             Column(
@@ -84,7 +91,9 @@ class EQueueHome extends StatelessWidget {
             const Spacer(),
             CustomButton(
               text: 'Continue',
-              onTap: () {},
+              onTap: () {
+                Get.to(() => const SelectRiderScreen());
+              },
             ),
             SizedBox(height: sizerSp(20)),
           ],

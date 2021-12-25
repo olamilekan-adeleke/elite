@@ -17,6 +17,10 @@ class EQueueController extends GetxController {
 
     selectedTerminalText.value = _selectedTerminalModel.name;
     selectedTerminalModel = Rx<TerminalModel>(_selectedTerminalModel);
+
+    log('Selected Terminal: $_selectedTerminalModel');
+
+    // update list
   }
 
   Future<void> getTerminals() async {

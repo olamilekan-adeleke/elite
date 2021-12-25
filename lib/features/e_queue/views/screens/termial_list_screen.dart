@@ -16,10 +16,13 @@ class TerminalsListScreen extends StatelessWidget {
         final Map<String, dynamic>? data =
             documentSnapshots.data() as Map<String, dynamic>?;
 
-        log(data.toString());
+        // log(data.toString());
 
         final TerminalModel terminalModel = TerminalModel.fromMap(
-          data ?? <String, dynamic>{},
+          {
+            ...data ?? <String, dynamic>{},
+            'id': documentSnapshots.id,
+          },
         );
 
         return TerminalListTileWidget(terminalModel);
