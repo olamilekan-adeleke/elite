@@ -21,6 +21,9 @@ class SelectRiderScreen extends StatelessWidget {
           EQueueWidget(),
           InstantRideWidget(),
         ],
+        slideIconWidget: const Icon(Icons.arrow_back_ios),
+        fullTransitionValue: 880,
+        ignoreUserGestureWhileAnimating: true,
       ),
     );
   }
@@ -79,7 +82,7 @@ class EQueueWidget extends StatelessWidget {
               Expanded(
                 child: CustomButton(
                   text: 'Select',
-                  onTap: () => Get.to(()=> const EQueueHome()),
+                  onTap: () => Get.to(() => const EQueueHome()),
                 ),
               ),
               SizedBox(width: sizerSp(8)),
