@@ -1,11 +1,16 @@
 import 'dart:developer';
 
+import 'package:elite/cores/utils/emums.dart';
 import 'package:elite/cores/utils/snack_bar_service.dart';
 import 'package:elite/features/e_queue/model/terminal_model.dart';
 import 'package:elite/features/e_queue/service/e_queue_service.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class EQueueController extends GetxController {
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController walletPinController = TextEditingController();
+  final Rx<ControllerState> joiningQueueState = ControllerState.init.obs;
   static final EQueueService eQueueService = EQueueService();
   final RxList<TerminalModel> terminals = <TerminalModel>[].obs;
   final RxString selectedTerminalText = ''.obs;
@@ -23,6 +28,10 @@ class EQueueController extends GetxController {
     // update list
   }
 
+  void joinQueue() {}
+
+
+
   Future<void> getTerminals() async {
     try {
       terminals.value = await eQueueService.getTerminals();
@@ -39,4 +48,6 @@ class EQueueController extends GetxController {
     getTerminals();
     super.onReady();
   }
+
+  
 }

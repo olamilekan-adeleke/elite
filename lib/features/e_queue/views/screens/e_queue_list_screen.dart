@@ -9,6 +9,7 @@ import 'package:elite/cores/utils/sizer_utils.dart';
 import 'package:elite/features/e_queue/controllers/e_queu_controller.dart';
 import 'package:elite/features/e_queue/model/terminal_model.dart';
 import 'package:elite/features/e_queue/views/screens/e_queue_home.dart';
+import 'package:elite/features/e_queue/views/screens/join_queu_screen.dart';
 import 'package:elite/features/e_queue/views/screens/queue_list_widget.dart';
 import 'package:elite/features/profile/controllers/profile_controller.dart';
 import 'package:flutter/material.dart';
@@ -127,7 +128,7 @@ class JoinAndLeaveQueueButton extends StatelessWidget {
                 CustomButton(
                   text: 'Join e-queue',
                   onTap: () {
-                    // Get.to(() => const SelectRiderScreen());
+                    Get.to(() => const JoinQueueWidget());
                   },
                 ),
                 SizedBox(height: sizerSp(15)),
