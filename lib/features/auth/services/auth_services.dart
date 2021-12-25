@@ -274,4 +274,25 @@ class AuthenticationRepo {
       throw Exception(e.toString());
     }
   }
+
+  Future<bool> validateUserPin(String pin) async {
+    try {
+      final DocumentSnapshot doc = await userCollectionRef
+          .doc(getUserUid())
+          .get(const GetOptions(source: Source.server));
+
+      final Map<String, dynamic> data =
+          (doc.data() ?? {}) as Map<String, dynamic>;
+
+      if (data['wallet_pin'] == pin) {
+        return true;
+      } else {
+        throw 'Invalid or Incorrect pin!';
+      }
+    } catch (e, s) {
+      debugPrint(e.toString());
+      debugPrint(s.toString());
+      throw e.toString();
+    }
+  }
 }

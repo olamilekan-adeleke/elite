@@ -61,7 +61,7 @@ class JoinQueueWidget extends StatelessWidget {
               SizedBox(height: sizerSp(20)),
               CustomTextField(
                 hintText: 'Number of Seat(s)',
-                textEditingController: eQueueController.phoneController,
+                textEditingController: eQueueController.seatController,
                 textInputType: TextInputType.number,
                 validator: (String? value) => seatNumberValidator(value),
               ),
@@ -75,7 +75,7 @@ class JoinQueueWidget extends StatelessWidget {
               CustomButton(
                 text: 'Continue',
                 onTap: () {
-                  final String seatNo = eQueueController.phoneController.text;
+                  final String seatNo = eQueueController.seatController.text;
                   if (seatNo.isNotEmpty &&
                       int.parse(seatNo) > 0 &&
                       int.parse(seatNo) <= 5) {

@@ -1,14 +1,24 @@
 import 'dart:developer';
 
+import 'package:elite/cores/components/custom_button.dart';
+import 'package:elite/cores/components/custom_text_widget.dart';
 import 'package:elite/cores/utils/emums.dart';
+import 'package:elite/cores/utils/sizer_utils.dart';
 import 'package:elite/cores/utils/snack_bar_service.dart';
+import 'package:elite/features/auth/services/auth_services.dart';
+import 'package:elite/features/e_queue/model/queue_model.dart';
 import 'package:elite/features/e_queue/model/terminal_model.dart';
 import 'package:elite/features/e_queue/service/e_queue_service.dart';
+import 'package:elite/features/profile/controllers/profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class EQueueController extends GetxController {
-  final TextEditingController phoneController = TextEditingController();
+  static final AuthenticationRepo authenticationRepo =
+      Get.find<AuthenticationRepo>();
+  static final ProfileController profileController =
+      Get.find<ProfileController>();
+  final TextEditingController seatController = TextEditingController();
   final TextEditingController walletPinController = TextEditingController();
   final Rx<ControllerState> joiningQueueState = ControllerState.init.obs;
   static final EQueueService eQueueService = EQueueService();
@@ -28,9 +38,37 @@ class EQueueController extends GetxController {
     // update list
   }
 
-  void joinQueue() {}
+  Future<void> joinQueue() async {
+    try {
+      joiningQueueState.value = ControllerState.busy;
+      final bool checkPin = await authenticationRepo
+          .validateUserPin(walletPinController.text.trim());
 
+      if (checkPin) {
+        if (profileController.userDetailsModel?.value == null) {
+          throw 'Opps, Something went wrong. Could not add user to the queue!';
+        }
 
+        final QueueModel queueModel = QueueModel(
+          user: profileController.userDetailsModel!.value,
+          numberOfSeats: int.parse(seatController.text.trim()),
+          isSentNotification: false,
+        );
+
+        await eQueueService.addToEQueue(
+          selectedTerminalModel!.value.id,
+          queueModel,
+        );
+
+        joiningQueueState.value = ControllerState.success;
+        showPopUp();
+      }
+    } catch (e, s) {
+      log('Error: $e', error: e, stackTrace: s);
+      showErrorSnackBar(e.toString());
+      joiningQueueState.value = ControllerState.error;
+    }
+  }
 
   Future<void> getTerminals() async {
     try {
@@ -43,11 +81,52 @@ class EQueueController extends GetxController {
     }
   }
 
+  void showPopUp() {
+    Get.defaultDialog(
+      title: 'Success',
+      content: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          children: <Widget>[
+            CustomTextWidget(
+              'You have been successfully added to the e-queue.',
+              fontSize: sizerSp(16),
+              fontWeight: FontWeight.w300,
+              textAlign: TextAlign.center,
+            ),
+            CustomTextWidget(
+              'Your notification shall arrive in not more than 45 minutes. '
+              'Once you get your notification, please proceed to your '
+              'terminal(Pepsi village) to get your ride  ',
+              fontSize: sizerSp(16),
+              fontWeight: FontWeight.w300,
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
+      ),
+      actions: <Widget>[
+        CustomButton(
+          text: 'OK',
+          onTap: () {
+            Get.back();
+            Get.back();
+            Get.back();
+            clearData();
+          },
+        ),
+      ],
+    );
+  }
+
+  void clearData() {
+    seatController.clear();
+    walletPinController.clear();
+  }
+
   @override
   void onReady() {
     getTerminals();
     super.onReady();
   }
-
-  
 }
