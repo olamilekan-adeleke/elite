@@ -3,6 +3,7 @@ import 'package:elite/cores/components/custom_text_widget.dart';
 import 'package:elite/cores/components/image_widget.dart';
 import 'package:elite/cores/utils/emums.dart';
 import 'package:elite/features/e_queue/views/screens/termial_list_screen.dart';
+import 'package:elite/features/home/views/screens/select_ride_screen.dart';
 import 'package:elite/features/profile/controllers/profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -102,7 +103,9 @@ class HomeProfileWidget extends StatelessWidget {
                   const Spacer(),
                   CustomButton(
                     text: 'Get a ride',
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(() => const SelectRiderScreen());
+                    },
                   ),
                   SizedBox(height: sizerSp(15)),
                 ],
