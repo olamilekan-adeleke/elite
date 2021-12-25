@@ -1,3 +1,5 @@
+// ignore_for_file: always_specify_types
+
 import 'dart:developer';
 import 'dart:io';
 
@@ -204,6 +206,10 @@ class AuthenticationRepo {
         await userCollectionRef.doc(getUserUid()).get();
 
     return documentSnapshot.data() as Map<String, dynamic>;
+  }
+
+  Stream<DocumentSnapshot<dynamic>> getLoggedInUserStream() async* {
+    yield* userCollectionRef.doc(getUserUid()).snapshots();
   }
 
   Future<bool> checkUsernameExist(String username) async {

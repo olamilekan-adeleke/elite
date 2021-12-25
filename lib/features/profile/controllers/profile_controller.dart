@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elite/cores/utils/emums.dart';
 import 'package:elite/cores/utils/snack_bar_service.dart';
 import 'package:elite/features/auth/model/user_details_model.dart';
@@ -79,7 +80,7 @@ class ProfileController extends GetxController {
 
       await authenticationRepo.updateUserDetails(data);
 
-      await getUserData();
+      // await getUserData();
 
       state.value = ControllerState.success;
 
@@ -111,17 +112,37 @@ class ProfileController extends GetxController {
   Future<void> getUserData() async {
     try {
       controllerState.value = ControllerState.busy;
-      final Map<String, dynamic> userData =
-          await authenticationRepo.getLoggedInUser();
+      // final Map<String, dynamic> userData =
+      //     await authenticationRepo.getLoggedInUser();
 
-      userDetailsModel =
-          Rx<UserDetailsModel>(UserDetailsModel.fromMap(userData));
+      authenticationRepo
+          .getLoggedInUserStream()
+          .listen((DocumentSnapshot event) async {
+        log('userData: ${event.data()} ');
 
-      controllerState.value = ControllerState.success;
+        final Map<String, dynamic> userData =
+            (event.data() ?? {}) as Map<String, dynamic>;
+
+        if (userDetailsModel?.value != null) {
+          userDetailsModel!.value = UserDetailsModel.fromMap(userData);
+        } else {
+          userDetailsModel =
+              Rx<UserDetailsModel>(UserDetailsModel.fromMap(userData));
+        }
+
+        updateData();
+        controllerState.value = ControllerState.success;
+      });
     } catch (e) {
       controllerState.value = ControllerState.error;
       showErrorSnackBar(e.toString());
     }
+  }
+
+  Future<void> updateData() async {
+    controllerState.value = ControllerState.busy;
+    await Future<dynamic>.delayed(const Duration(milliseconds: 200));
+    controllerState.value = ControllerState.success;
   }
 
   @override

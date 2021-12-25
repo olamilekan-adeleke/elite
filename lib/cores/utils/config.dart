@@ -1,6 +1,7 @@
-import '../constants/keys.dart';
 import 'package:flutter_paystack/flutter_paystack.dart';
 import 'package:get_storage/get_storage.dart' as storage;
+
+import '../constants/keys.dart';
 import 'firebase_messaging_utils.dart';
 
 class Config {
