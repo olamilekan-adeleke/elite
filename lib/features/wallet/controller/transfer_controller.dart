@@ -42,7 +42,7 @@ class TransferController extends GetxController {
         'receiver_id': receiverDetails!.value.uid,
         'sender_id': _authenticationRepo.getUserUid(),
         'amount': amountController.text.trim(),
-        'type': type.value,
+        'type': type.value.toLowerCase(),
         'wallet_pin': pinController.text.trim(),
       };
 
