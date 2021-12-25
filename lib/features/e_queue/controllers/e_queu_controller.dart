@@ -8,7 +8,16 @@ import 'package:get/get.dart';
 class EQueueController extends GetxController {
   static final EQueueService eQueueService = EQueueService();
   final RxList<TerminalModel> terminals = <TerminalModel>[].obs;
-  final RxString selectedTerminal = ''.obs;
+  final RxString selectedTerminalText = ''.obs;
+  Rx<TerminalModel>? selectedTerminalModel;
+
+  void updateSelectedTerminal(String text) {
+    final TerminalModel _selectedTerminalModel =
+        terminals.firstWhere((TerminalModel terminal) => terminal.name == text);
+
+    selectedTerminalText.value = _selectedTerminalModel.name;
+    selectedTerminalModel = Rx<TerminalModel>(_selectedTerminalModel);
+  }
 
   Future<void> getTerminals() async {
     try {

@@ -39,28 +39,28 @@ class EQueueHome extends StatelessWidget {
               fontWeight: FontWeight.w300,
             ),
             SizedBox(height: sizerSp(40)),
-            Obx(() {
-              return DropdownButton<String>(
-                hint: CustomTextWidget(
-                  '${eQueueController.selectedTerminal.value.isEmpty ? 'Select your terminal' : eQueueController.selectedTerminal.value}',
+            DropdownButton<String>(
+              hint: Obx(() {
+                return CustomTextWidget(
+                  '${eQueueController.selectedTerminalText.value.isEmpty ? 'Select your terminal' : eQueueController.selectedTerminalText.value}',
                   fontSize: sizerSp(16),
                   textColor: Colors.black,
                   fontWeight: FontWeight.w300,
-                ),
-                items: eQueueController.terminals.map((TerminalModel value) {
-                  return DropdownMenuItem<String>(
-                    value: value.name,
-                    child: Text(value.name),
-                  );
-                }).toList(),
-                onChanged: (String? val) {
-                  if (val != null) {
-                    eQueueController.selectedTerminal.value = val;
-                  }
-                },
-                isExpanded: true,
-              );
-            }),
+                );
+              }),
+              items: eQueueController.terminals.map((TerminalModel value) {
+                return DropdownMenuItem<String>(
+                  value: value.name,
+                  child: Text(value.name),
+                );
+              }).toList(),
+              onChanged: (String? val) {
+                if (val != null) {
+                  eQueueController.updateSelectedTerminal(val);
+                }
+              },
+              isExpanded: true,
+            ),
             SizedBox(height: sizerSp(60)),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
