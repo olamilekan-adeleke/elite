@@ -21,6 +21,7 @@ class EQueueController extends GetxController {
   final TextEditingController seatController = TextEditingController();
   final TextEditingController walletPinController = TextEditingController();
   final Rx<ControllerState> joiningQueueState = ControllerState.init.obs;
+  final Rx<ControllerState> leavingQueueState = ControllerState.init.obs;
   static final EQueueService eQueueService = EQueueService();
   final RxList<TerminalModel> terminals = <TerminalModel>[].obs;
   final RxString selectedTerminalText = ''.obs;
@@ -121,14 +122,57 @@ class EQueueController extends GetxController {
     );
   }
 
+  void showPopUpLeave() {
+    Get.defaultDialog(
+      title: 'Success',
+      content: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          children: <Widget>[
+            CustomTextWidget(
+              'You have been successfully Remove from the e-queue.',
+              fontSize: sizerSp(15),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: sizerSp(10)),
+          ],
+        ),
+      ),
+      actions: <Widget>[
+        CustomButton(
+          text: 'OK',
+          onTap: () {
+            Get.back();
+          },
+        ),
+      ],
+    );
+  }
+
   void clearData() {
     seatController.clear();
     walletPinController.clear();
   }
 
+  Future<void> leaveQueue() async {
+    if (leavingQueueState.value == ControllerState.busy) return;
 
-  void leaveQueue() {
-    
+    try {
+      leavingQueueState.value = ControllerState.busy;
+
+      if (profileController.userDetailsModel?.value == null) {
+        throw 'Opps, Something went wrong. Could not add user to the queue!';
+      }
+
+      await eQueueService.leaveQueue(selectedTerminalModel!.value.id);
+
+      leavingQueueState.value = ControllerState.success;
+      showPopUpLeave();
+    } catch (e, s) {
+      log('Error: $e', error: e, stackTrace: s);
+      showErrorSnackBar(e.toString());
+      leavingQueueState.value = ControllerState.error;
+    }
   }
 
   @override
@@ -136,5 +180,4 @@ class EQueueController extends GetxController {
     getTerminals();
     super.onReady();
   }
-
 }

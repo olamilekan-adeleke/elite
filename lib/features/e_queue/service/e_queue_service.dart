@@ -31,6 +31,13 @@ class EQueueService {
   Future<void> addToEQueue(String terminalId, QueueModel queueModel) async {
     final WriteBatch batch = FirebaseFirestore.instance.batch();
 
+    final Map<String, dynamic> userData =
+        await authenticationRepo.getLoggedInUser();
+
+    if (userData['is_in_queue'] == true) {
+      throw 'User Is already in a queue';
+    }
+
     final DocumentReference queueDocRef =
         terminalRef.doc(terminalId).collection('queue').doc();
 
@@ -42,10 +49,38 @@ class EQueueService {
       <String, dynamic>{
         ...queueModel.toMap(),
         'id': queueDocRef.id,
+        'user_id': userData['uid'],
       },
     );
 
     batch.update(userDocRef, {'is_in_queue': true});
+
+    await batch.commit();
+  }
+
+  Future<void> leaveQueue(String terminalId) async {
+    final WriteBatch batch = FirebaseFirestore.instance.batch();
+
+    final Map<String, dynamic> userData =
+        await authenticationRepo.getLoggedInUser();
+
+    final QuerySnapshot querySnapshot = await terminalRef
+        .doc(terminalId)
+        .collection('queue')
+        .where('user_id', isEqualTo: userData['id'])
+        .limit(1)
+        .get(const GetOptions(source: Source.server));
+
+    final DocumentReference queueDocRef = terminalRef
+        .doc(terminalId)
+        .collection('queue')
+        .doc(querySnapshot.docs.first.id);
+
+    final DocumentReference userDocRef =
+        userCollectionRef.doc(authenticationRepo.getUserUid());
+
+    batch.update(userDocRef, {'is_in_queue': false});
+    batch.delete(queueDocRef);
 
     await batch.commit();
   }

@@ -202,8 +202,9 @@ class AuthenticationRepo {
   }
 
   Future<Map<String, dynamic>> getLoggedInUser() async {
-    final DocumentSnapshot<dynamic> documentSnapshot =
-        await userCollectionRef.doc(getUserUid()).get();
+    final DocumentSnapshot<dynamic> documentSnapshot = await userCollectionRef
+        .doc(getUserUid())
+        .get(const GetOptions(source: Source.server));
 
     return documentSnapshot.data() as Map<String, dynamic>;
   }

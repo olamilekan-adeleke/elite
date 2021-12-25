@@ -123,18 +123,24 @@ class JoinAndLeaveQueueButton extends StatelessWidget {
                 const SizedBox(width: double.infinity),
                 SizedBox(height: sizerSp(10)),
                 if (profileController.isInQueue.value == true)
-                  CustomButton(
-                    text: 'Leave e-queue',
-                    onTap: () {
-                      Get.to(() => const JoinQueueWidget());
-                    },
-                    color: Colors.grey,
-                  )
+                  Obx(() {
+                    if (eQueueController.leavingQueueState.value ==
+                        ControllerState.busy) {
+                      return const CustomButton.loading();
+                    }
+                    return CustomButton(
+                      text: 'Leave e-queue',
+                      onTap: () {
+                        eQueueController.leaveQueue();
+                      },
+                      color: Colors.grey,
+                    );
+                  })
                 else
                   CustomButton(
                     text: 'Join e-queue',
                     onTap: () {
-                      eQueueController.leaveQueue();
+                      Get.to(() => const JoinQueueWidget());
                     },
                   ),
                 SizedBox(height: sizerSp(15)),
