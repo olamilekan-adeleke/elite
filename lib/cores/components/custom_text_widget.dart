@@ -1,7 +1,7 @@
+import 'package:elite/cores/constants/color.dart';
+import 'package:elite/cores/constants/font_size.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../cores/constants/color.dart';
-import '../../cores/constants/font_size.dart';
 
 class CustomTextWidget extends StatelessWidget {
   const CustomTextWidget(
