@@ -7,9 +7,9 @@ const sendUserNotificationOnJoinEQueue = async (snapshot, context) => {
 
     await sendNotificationToUser(
       data.user.uid,
-      "You have been added to the queue",
+      "You have been added to the queue 🎉",
       `Hello ${data.user.username}, You joined the queue, you will get a notification to proceed` +
-        ` to the park very soon. Please be on standby.`
+        ` to the park very soon. Please be on standby. 🚶`
     );
 
     return Promise.resolve();
