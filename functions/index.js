@@ -22,6 +22,6 @@ exports.sendUserNotificationOnLeaveQueue = functions.firestore
   .document("/terminals/{terminalsId}/queue/{queueId}")
   .onDelete(onLeaveEQueue);
 
-exports.checkIfFundPaymnetByPaystackSuccessful = functions.firestore
+exports.checkIfFundPaymentByPaystackSuccessful = functions.firestore
   .document("users/{userId}/transactions/{transactionId}")
   .onCreate(verifyPaystackPayment);
