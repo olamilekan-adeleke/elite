@@ -20,7 +20,6 @@ class WalletController extends GetxController {
   Future<void> fundWallet({
     required int amount,
     required String reference,
-    required String token,
   }) async {
     try {
       fundWalletState.value = ControllerState.busy;
@@ -34,14 +33,9 @@ class WalletController extends GetxController {
         senderId: authenticationRepo.getUserUid(),
       );
 
-      await WalletService().fundWallet(
-        transaction,
-        reference: reference,
-        token: token,
-      );
+      await WalletService().fundWallet(transaction, reference: reference);
 
-    fundWalletState.value = ControllerState.success;
-
+      fundWalletState.value = ControllerState.success;
     } catch (e, s) {
       log(e.toString());
       log(s.toString());

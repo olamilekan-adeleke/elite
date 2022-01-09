@@ -4,11 +4,15 @@ import 'dart:io';
 import 'package:elite/cores/constants/keys.dart';
 import 'package:elite/cores/utils/config.dart';
 import 'package:elite/cores/utils/snack_bar_service.dart';
+import 'package:elite/features/wallet/controller/wallet_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_paystack/flutter_paystack.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
-class FundWallet {
+class FundWalletService {
+  static final WalletController _walletController =
+      Get.find<WalletController>();
   String _getReference() {
     String platform;
     if (Platform.isIOS) {
@@ -97,10 +101,10 @@ class FundWallet {
 
     if (response.status == true) {
       await _verifyOnServer(response.reference ?? '');
-      // WalletMethods().updateWallet(
-      //   amount: price,
-      //   history: history,
-      // );
+      await _walletController.fundWallet(
+        amount: price,
+        reference: _getReference(),
+      );
     } else {
       print('error');
     }

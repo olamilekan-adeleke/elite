@@ -20,7 +20,7 @@ class WalletService {
   Future<void> fundWallet(
     TransactionModel transactions, {
     required String reference,
-    required String token,
+    
   }) async {
     await _userCollectionRef
         .doc(authenticationRepo.getUserUid())
@@ -29,7 +29,7 @@ class WalletService {
       {
         ...transactions.toMap(),
         "reference": reference,
-        "token": token,
+        
       },
     );
   }

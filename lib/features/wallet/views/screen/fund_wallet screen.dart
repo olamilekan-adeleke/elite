@@ -1,9 +1,12 @@
 import 'package:elite/cores/components/custom_button.dart';
 import 'package:elite/cores/components/custom_text_widget.dart';
 import 'package:elite/cores/components/custom_textfiled.dart';
+import 'package:elite/cores/utils/emums.dart';
 import 'package:elite/cores/utils/sizer_utils.dart';
 import 'package:elite/cores/utils/validator.dart';
+import 'package:elite/features/profile/controllers/profile_controller.dart';
 import 'package:elite/features/wallet/controller/wallet_controller.dart';
+import 'package:elite/features/wallet/services/fund_wallet_servive.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -13,6 +16,9 @@ class FundWalletScreen extends StatelessWidget {
 
   static final WalletController _walletController =
       Get.find<WalletController>();
+
+  static final ProfileController _profileController =
+      Get.find<ProfileController>();
 
   @override
   Widget build(BuildContext context) {
@@ -61,10 +67,23 @@ class FundWalletScreen extends StatelessWidget {
                 //   textAlign: TextAlign.left,
                 // ),
                 const Spacer(),
-                CustomButton(
-                  text: 'Fund Wallet',
-                  onTap: () {},
-                ),
+                Obx(() {
+                  if (_walletController.fundWalletState.value ==
+                      ControllerState.busy) {
+                    return const CustomButton.loading();
+                  }
+
+                  return CustomButton(
+                    text: 'Fund Wallet',
+                    onTap: () => FundWalletService().chargeCard(
+                      context: context,
+                      price: int.parse(_walletController.amountController.text),
+                      userEmail:
+                          _profileController.userDetailsModel?.value.email ??
+                              'test email',
+                    ),
+                  );
+                }),
                 SizedBox(height: sizerSp(20)),
               ],
             ),
