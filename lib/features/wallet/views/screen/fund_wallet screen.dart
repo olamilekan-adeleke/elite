@@ -3,6 +3,7 @@ import 'package:elite/cores/components/custom_text_widget.dart';
 import 'package:elite/cores/components/custom_textfiled.dart';
 import 'package:elite/cores/utils/emums.dart';
 import 'package:elite/cores/utils/sizer_utils.dart';
+import 'package:elite/cores/utils/snack_bar_service.dart';
 import 'package:elite/cores/utils/validator.dart';
 import 'package:elite/features/profile/controllers/profile_controller.dart';
 import 'package:elite/features/wallet/controller/wallet_controller.dart';
@@ -75,13 +76,21 @@ class FundWalletScreen extends StatelessWidget {
 
                   return CustomButton(
                     text: 'Fund Wallet',
-                    onTap: () => FundWalletService().chargeCard(
-                      context: context,
-                      price: int.parse(_walletController.amountController.text),
-                      userEmail:
-                          _profileController.userDetailsModel?.value.email ??
-                              'test email',
-                    ),
+                    onTap: () {
+                      if (_walletController.amountController.text.isEmpty) {
+                        return showWarningSnackBar(
+                          'Please Enter Amount To Fund Wallet!',
+                        );
+                      }
+                      FundWalletService().chargeCard(
+                        context: context,
+                        price:
+                            int.parse(_walletController.amountController.text),
+                        userEmail:
+                            _profileController.userDetailsModel?.value.email ??
+                                'test email',
+                      );
+                    },
                   );
                 }),
                 SizedBox(height: sizerSp(20)),

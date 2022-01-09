@@ -36,6 +36,8 @@ class WalletController extends GetxController {
       await WalletService().fundWallet(transaction, reference: reference);
 
       fundWalletState.value = ControllerState.success;
+
+      showSuccessSnackBar('Payment SuccessFull!');
     } catch (e, s) {
       log(e.toString());
       log(s.toString());

@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:elite/cores/constants/keys.dart';
 import 'package:elite/cores/utils/config.dart';
+import 'package:elite/cores/utils/emums.dart';
 import 'package:elite/cores/utils/snack_bar_service.dart';
 import 'package:elite/features/wallet/controller/wallet_controller.dart';
 import 'package:flutter/material.dart';
@@ -83,6 +84,8 @@ class FundWalletService {
     required BuildContext context,
     required String userEmail,
   }) async {
+    _walletController.fundWalletState.value = ControllerState.busy;
+
     Charge charge = Charge()
       ..amount = (price * 100).toInt()
       ..reference = _getReference()
@@ -96,17 +99,19 @@ class FundWalletService {
     CheckoutResponse response = await Config.paystackPlugin.checkout(
       context,
       method: CheckoutMethod.card,
+      fullscreen: true,
       charge: charge,
     );
 
     if (response.status == true) {
-      await _verifyOnServer(response.reference ?? '');
+      // await _verifyOnServer(response.reference ?? '');
       await _walletController.fundWallet(
         amount: price,
         reference: _getReference(),
       );
     } else {
       print('error');
+      _walletController.fundWalletState.value = ControllerState.error;
     }
   }
 }

@@ -14,7 +14,7 @@ const verifyPaystackPayment = async (snapshot, context) => {
 
   const config = {
     method: "get",
-    url: `https://api.paystack.co/transaction/verify/${_reference}`,
+    url: `https://api.paystack.co/transaction/verify/${reference}`,
     headers: headers,
   };
 
