@@ -9,6 +9,18 @@ const transferFundToUserByUserId = async (req) => {
   const sendDoc = admin.firestore().collection("wallets").doc(sender_id);
   const receiverDoc = admin.firestore().collection("wallets").doc(receiver_id);
 
+  const senderData = await admin
+    .firestore()
+    .collection("users")
+    .doc(sender_id.trim())
+    .get();
+
+  const receiverData = await admin
+    .firestore()
+    .collection("users")
+    .doc(receiver_id.trim())
+    .get();
+
   if (type === "cash") {
     // deduct sender
     batch.update(sendDoc, {
@@ -37,14 +49,14 @@ const transferFundToUserByUserId = async (req) => {
   await sendNotificationToUser(
     sender_id,
     "Fund Transfer 🎉💵",
-    `Your fund transfer of \u20A6 ${amount} to @${receiverDoc.username} was successful.`
+    `Your fund transfer of \u20A6 ${amount} was to @${receiverData.username} successful.`
   );
 
   // send notification to receiver
   await sendNotificationToUser(
     sender_id,
     "Fund Transfer 🎉💵",
-    `You just received a fund transfer of \u20A6 ${amount} from @${sendDoc.username}.`
+    `You just received a fund transfer of \u20A6 ${amount} from @${senderData.username}.`
   );
 
   // add history to sender
@@ -52,7 +64,7 @@ const transferFundToUserByUserId = async (req) => {
     sender_id,
     amount,
     sender_id,
-    receiverDoc,
+    receiverData,
     "send_fund"
   );
 
@@ -61,7 +73,7 @@ const transferFundToUserByUserId = async (req) => {
     receiver_id,
     amount,
     sender_id,
-    send_fund,
+    senderData,
     "receive_fund"
   );
 };

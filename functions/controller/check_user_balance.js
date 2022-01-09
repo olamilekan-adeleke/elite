@@ -24,12 +24,12 @@ const checkUserBalanceAndPin = async (req) => {
     coin_balance: userWalletData.data().coin_balance ?? 0,
   };
 
-   if (wallet_pin !== userData.data().wallet_pin) {
-     throw {
-       code: 404,
-       msg: "Wallet Pin Is InCorrect!",
-     };
-   }
+  if (wallet_pin !== userData.data().wallet_pin) {
+    throw {
+      code: 404,
+      msg: "Wallet Pin Is InCorrect!",
+    };
+  }
 
   if (type === "cash") {
     if (userWallet.cash_balance < parseInt(amount)) {
@@ -46,8 +46,6 @@ const checkUserBalanceAndPin = async (req) => {
       };
     }
   }
-
- 
 };
 
 module.exports = checkUserBalanceAndPin;

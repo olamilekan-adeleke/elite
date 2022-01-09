@@ -6,7 +6,7 @@ const addTransferToHistory = async (
   amount,
   sender_id,
   user_details,
-  type,
+  type
 ) => {
   await admin
     .firestore()
@@ -15,7 +15,7 @@ const addTransferToHistory = async (
     .collection("transactions")
     .add({
       amount: amount,
-      description: description,
+      description: "fund transfer",
       sender_id: sender_id,
       status: "success",
       user_details: user_details,
