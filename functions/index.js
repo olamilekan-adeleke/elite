@@ -5,7 +5,6 @@ const sendFundFunction = require("./http_function/sendFundFunction");
 const sendUserNotificationOnJoinEQueue = require("./reactive_function/send_notification_on_join_queue");
 const onLeaveEQueue = require("./reactive_function/on_leave_queue");
 
-
 exports.createWalletOnNewUsersCreated = functions.firestore
   .document("/users/{userId}")
   .onCreate(createUserWallet);
@@ -18,6 +17,6 @@ exports.sendUserNotificationOnJoinEQueue = functions.firestore
   .document("/terminals/{terminalsId}/queue/{queueId}")
   .onCreate(sendUserNotificationOnJoinEQueue);
 
-exports.sendUserNotificationOnJoinEQueue = functions.firestore
+exports.sendUserNotificationOnLeaveQueue = functions.firestore
   .document("/terminals/{terminalsId}/queue/{queueId}")
   .onDelete(onLeaveEQueue);
