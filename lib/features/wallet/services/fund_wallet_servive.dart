@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:elite/cores/constants/keys.dart';
 import 'package:elite/cores/utils/config.dart';
 import 'package:elite/cores/utils/emums.dart';
-import 'package:elite/cores/utils/snack_bar_service.dart';
 import 'package:elite/features/wallet/controller/wallet_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_paystack/flutter_paystack.dart';
@@ -51,33 +50,33 @@ class FundWalletService {
     return accessCode;
   }
 
-  Future<void> _verifyOnServer(String reference) async {
-    String skTest = secretKey;
+  // Future<void> _verifyOnServer(String reference) async {
+  //   String skTest = secretKey;
 
-    try {
-      Map<String, String> headers = {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': 'Bearer $skTest',
-      };
+  //   try {
+  //     Map<String, String> headers = {
+  //       'Content-Type': 'application/json',
+  //       'Accept': 'application/json',
+  //       'Authorization': 'Bearer $skTest',
+  //     };
 
-      http.Response response = await http.get(
-        Uri.parse('https://api.paystack.co/transaction/verify/' + reference),
-        headers: headers,
-      );
+  //     http.Response response = await http.get(
+  //       Uri.parse('https://api.paystack.co/transaction/verify/' + reference),
+  //       headers: headers,
+  //     );
 
-      final Map body = json.decode(response.body);
+  //     final Map body = json.decode(response.body);
 
-      if (body['data']['status'] == 'success') {
-        showSuccessSnackBar('Payment SuccessFull!');
-      } else {
-        showErrorSnackBar('Error Occurred');
-      }
-    } catch (e) {
-      print(e);
-      showErrorSnackBar('Error: $e');
-    }
-  }
+  //     if (body['data']['status'] == 'success') {
+  //       showSuccessSnackBar('Payment SuccessFull!');
+  //     } else {
+  //       showErrorSnackBar('Error Occurred');
+  //     }
+  //   } catch (e) {
+  //     print(e);
+  //     showErrorSnackBar('Error: $e');
+  //   }
+  // }
 
   Future chargeCard({
     required int price,
@@ -105,10 +104,7 @@ class FundWalletService {
 
     if (response.status == true) {
       // await _verifyOnServer(response.reference ?? '');
-      await _walletController.fundWallet(
-        amount: price,
-        reference: _getReference(),
-      );
+      await _walletController.fundWallet(reference: _getReference());
     } else {
       print('error');
       _walletController.fundWalletState.value = ControllerState.error;

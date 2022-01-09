@@ -18,14 +18,14 @@ class WalletController extends GetxController {
   final Rx<ControllerState> fundWalletState = ControllerState.init.obs;
 
   Future<void> fundWallet({
-    required int amount,
+    
     required String reference,
   }) async {
     try {
       fundWalletState.value = ControllerState.busy;
 
       TransactionModel transaction = TransactionModel(
-        amount: amount,
+        amount: int.parse(amountController.text),
         description: 'You Funded Your Wallet',
         status: TransactionStatus.pending,
         type: TransactionType.fundWallet,
@@ -36,6 +36,11 @@ class WalletController extends GetxController {
       await WalletService().fundWallet(transaction, reference: reference);
 
       fundWalletState.value = ControllerState.success;
+
+      Get.back();
+
+
+      await Future<dynamic>.delayed(const Duration(milliseconds: 200));
 
       showSuccessSnackBar('Payment SuccessFull!');
     } catch (e, s) {
