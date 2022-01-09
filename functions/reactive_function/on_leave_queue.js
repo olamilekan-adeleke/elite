@@ -9,7 +9,8 @@ const onLeaveEQueue = async (snapshot, context) => {
     await sendNotificationToUser(
       data.user.uid,
       "You have been removed from the queue",
-      `Hello ${data.user.username}, you have been removed from the queue.`
+      `Hello ${deletedData.user.username}, you have been removed from the` +
+        ` queue. You Money will be refunded to your wallet soon`
     );
 
     // Refund user money here

@@ -8,7 +8,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
-import '../../../cores/utils/firebase_messaging_utils.dart';
+import '../../notification/services/firebase_messaging_utils.dart';
 import '../../../cores/utils/local_database_repo.dart';
 import '../../../cores/utils/logger.dart';
 import '../../../features/auth/model/login_user_model.dart';
@@ -51,7 +51,7 @@ class AuthenticationRepo {
     final Map<String, dynamic> userData = await getLoggedInUser();
     userData.remove('date_joined');
     await localDatabaseRepo.saveUserDataToLocalDB(userData);
-    await NotificationMethods.subscribeToTopic(user!.uid);
+    await PushNotificationService.subscribeToTopic(user!.uid);
 
     return UserDetailsModel.fromMap(userData);
   }
@@ -107,7 +107,7 @@ class AuthenticationRepo {
 
     await addUserDataToFirestore(userDetailsModel);
 
-    await NotificationMethods.subscribeToTopic(user.uid);
+    await PushNotificationService.subscribeToTopic(user.uid);
 
     final UserDetailsModel userDetailsForLocalDb = UserDetailsModel(
       uid: user.uid,
