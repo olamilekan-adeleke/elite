@@ -23,6 +23,8 @@ const sendFundFunction = async (req, res) => {
 
     await transferFundToUserByUserId(req);
 
+    // TODO: add transaction history
+
     res
       .status(200)
       .json({ status: "success", msg: "Transfer Operation successful!" });

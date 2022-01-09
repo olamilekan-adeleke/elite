@@ -57,6 +57,9 @@ class PushNotificationService {
       log(notification.body.toString());
       final AndroidNotification? android = message.notification?.android;
 
+      BigTextStyleInformation bigTextStyleInformation =
+          BigTextStyleInformation(notification.body.toString());
+
       if (android != null) {
         _flutterLocalNotificationsPlugin.show(
           notification.hashCode,
@@ -68,6 +71,7 @@ class PushNotificationService {
               _channel.name,
               _channel.description,
               icon: android.smallIcon,
+              styleInformation: bigTextStyleInformation,
             ),
           ),
         );
