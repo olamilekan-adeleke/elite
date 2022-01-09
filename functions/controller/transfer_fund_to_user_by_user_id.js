@@ -1,4 +1,5 @@
 const admin = require("../firebase");
+const sendNotificationToUser = require("./send_notification_controller");
 
 const transferFundToUserByUserId = async (req) => {
   const { receiver_id, sender_id, amount, type } = req.body;
@@ -30,6 +31,23 @@ const transferFundToUserByUserId = async (req) => {
   }
 
   await batch.commit();
+
+  // send notification to sender
+  sendNotificationToUser(
+    sender_id,
+    "Fund Transfer 🎉💵",
+    `Your fund transfer of \u20A6 ${amount} to @${receiverDoc.username} was successful.`
+  );
+
+  // send notification to receiver
+  sendNotificationToUser(
+    sender_id,
+    "Fund Transfer 🎉💵",
+    `You just received a fund transfer of \u20A6 ${amount} from @${sendDoc.username}.`
+  );
+
+  // add history to sender
+  // add history to receiver
 };
 
 module.exports = transferFundToUserByUserId;

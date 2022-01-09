@@ -110,19 +110,19 @@ class TransactionHistoryItem extends StatelessWidget {
   Widget formatTitle(TransactionModel transaction) {
     if (transaction.type == TransactionType.fundWallet) {
       return CustomTextWidget(
-        'You made a deposit of \u20A6${currencyFormatter(transaction.amount)} to you cash wallet',
+        'You made a deposit of NGN ${currencyFormatter(transaction.amount)} to you cash wallet',
         fontSize: sizerSp(15),
         fontWeight: FontWeight.w600,
       );
     } else if (transaction.type == TransactionType.sendFund) {
       return CustomTextWidget(
-        'You made a fund transfer of \u20A6${currencyFormatter(transaction.amount)} to @${transaction.userDetails?.username} ',
+        'You made a fund transfer of NGN ${currencyFormatter(transaction.amount)} to @${transaction.userDetails?.username} ',
         fontSize: sizerSp(15),
         fontWeight: FontWeight.w600,
       );
     } else if (transaction.type == TransactionType.receiveFund) {
       return CustomTextWidget(
-        'You received a fund transfer of \u20A6${currencyFormatter(transaction.amount)} from @${transaction.userDetails?.username} ',
+        'You received a fund transfer of NGN ${currencyFormatter(transaction.amount)} from @${transaction.userDetails?.username} ',
         fontSize: sizerSp(15),
         fontWeight: FontWeight.w600,
       );
