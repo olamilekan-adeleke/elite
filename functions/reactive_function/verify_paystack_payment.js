@@ -8,6 +8,8 @@ const verifyPaystackPayment = async (snapshot, context) => {
   const transactionId = context.params.transactionId;
   const kSecretKey = "sk_test_33dfdc0d792c01298c04c42bbc2dcabba2bf8913";
 
+  if (reference === undefined) return Promise.resolve();
+
   const headers = {
     "Content-Type": "application/json",
     Accept: "application/json",
