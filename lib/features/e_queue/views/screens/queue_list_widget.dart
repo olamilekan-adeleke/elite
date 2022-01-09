@@ -4,8 +4,10 @@ import 'package:elite/cores/components/image_widget.dart';
 import 'package:elite/cores/utils/emums.dart';
 import 'package:elite/cores/utils/sizer_utils.dart';
 import 'package:elite/features/e_queue/model/queue_model.dart';
+import 'package:elite/features/e_queue/views/screens/procees_to_park_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:paginate_firestore/paginate_firestore.dart';
 
 class QueueListWidget extends StatelessWidget {
@@ -26,10 +28,7 @@ class QueueListWidget extends StatelessWidget {
           data ?? <String, dynamic>{},
         );
 
-        return QueueListTileWidget(
-          index + 1,
-          queueModel,
-        );
+        return QueueListTileWidget(index + 1, queueModel);
       },
       query: FirebaseFirestore.instance
           .collection('terminals')
@@ -75,96 +74,99 @@ class QueueListTileWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // margin: EdgeInsets.symmetric(horizontal: sizerSp(10.0)),
-      child: Card(
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: sizerSp(10.0),
-            vertical: sizerSp(10.0),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Row(
-                children: <Widget>[
-                  if ((queueModel.user.profilePicUrl ?? '').isNotEmpty)
-                    SizedBox(
-                      height: sizerSp(35),
-                      width: sizerSp(35),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(sizerSp(100)),
-                        child: CustomImageWidget(
-                          imageUrl: queueModel.user.profilePicUrl ?? '',
-                          imageTypes: ImageTypes.network,
+    return GestureDetector(
+      onTap: () => Get.to(() => ProceedToPartScreen()),
+      child: Container(
+        // margin: EdgeInsets.symmetric(horizontal: sizerSp(10.0)),
+        child: Card(
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: sizerSp(10.0),
+              vertical: sizerSp(10.0),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    if ((queueModel.user.profilePicUrl ?? '').isNotEmpty)
+                      SizedBox(
+                        height: sizerSp(35),
+                        width: sizerSp(35),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(sizerSp(100)),
+                          child: CustomImageWidget(
+                            imageUrl: queueModel.user.profilePicUrl ?? '',
+                            imageTypes: ImageTypes.network,
+                          ),
                         ),
+                      )
+                    else
+                      CircleAvatar(
+                        radius: sizerSp(30),
+                        child: const Icon(Icons.person),
                       ),
-                    )
-                  else
-                    CircleAvatar(
-                      radius: sizerSp(30),
-                      child: const Icon(Icons.person),
+                    SizedBox(width: sizerSp(10)),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        CustomTextWidget(
+                          queueModel.user.fullName,
+                          fontWeight: FontWeight.w500,
+                          fontSize: sizerSp(15),
+                        ),
+                        CustomTextWidget(
+                          '@${queueModel.user.username}',
+                          fontWeight: FontWeight.w200,
+                          fontSize: sizerSp(13),
+                        ),
+                      ],
                     ),
-                  SizedBox(width: sizerSp(10)),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  ],
+                ),
+                const Spacer(),
+                SizedBox(
+                  width: sizerSp(60),
+                  child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       CustomTextWidget(
-                        queueModel.user.fullName,
-                        fontWeight: FontWeight.w500,
-                        fontSize: sizerSp(15),
+                        '${queueModel.numberOfSeats}',
+                        fontWeight: FontWeight.bold,
+                        fontSize: sizerSp(12),
                       ),
                       CustomTextWidget(
-                        '@${queueModel.user.username}',
-                        fontWeight: FontWeight.w200,
+                        'Seat(s)',
                         fontSize: sizerSp(13),
+                        fontWeight: FontWeight.w200,
+                        textAlign: TextAlign.center,
                       ),
                     ],
                   ),
-                ],
-              ),
-              const Spacer(),
-              SizedBox(
-                width: sizerSp(60),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    CustomTextWidget(
-                      '${queueModel.numberOfSeats}',
-                      fontWeight: FontWeight.bold,
-                      fontSize: sizerSp(12),
-                    ),
-                    CustomTextWidget(
-                      'Seat(s)',
-                      fontSize: sizerSp(13),
-                      fontWeight: FontWeight.w200,
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
                 ),
-              ),
-              SizedBox(width: sizerSp(5)),
-              SizedBox(
-                width: sizerSp(50),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    CustomTextWidget(
-                      '$index',
-                      fontWeight: FontWeight.bold,
-                      fontSize: sizerSp(12),
-                    ),
-                    CustomTextWidget(
-                      'S/N',
-                      fontSize: sizerSp(13),
-                      textAlign: TextAlign.center,
-                      fontWeight: FontWeight.w200,
-                    ),
-                  ],
+                SizedBox(width: sizerSp(5)),
+                SizedBox(
+                  width: sizerSp(50),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      CustomTextWidget(
+                        '$index',
+                        fontWeight: FontWeight.bold,
+                        fontSize: sizerSp(12),
+                      ),
+                      CustomTextWidget(
+                        'S/N',
+                        fontSize: sizerSp(13),
+                        textAlign: TextAlign.center,
+                        fontWeight: FontWeight.w200,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

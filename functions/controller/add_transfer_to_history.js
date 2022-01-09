@@ -8,6 +8,16 @@ const addTransferToHistory = async (
   user_details,
   type
 ) => {
+  functions.logger.log({
+    userId: userId,
+    amount: amount,
+    description: "fund transfer",
+    sender_id: sender_id,
+    status: "success",
+    user_details: { ...user_details },
+    type: type,
+  });
+
   await admin
     .firestore()
     .collection("users")
@@ -18,7 +28,7 @@ const addTransferToHistory = async (
       description: "fund transfer",
       sender_id: sender_id,
       status: "success",
-      user_details: user_details,
+      user_details: { ...user_details },
       type: type,
     });
 };

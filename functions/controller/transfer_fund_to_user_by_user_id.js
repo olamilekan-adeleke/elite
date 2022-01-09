@@ -49,14 +49,18 @@ const transferFundToUserByUserId = async (req) => {
   await sendNotificationToUser(
     sender_id,
     "Fund Transfer 🎉💵",
-    `Your fund transfer of \u20A6 ${amount} was to @${receiverData.username} successful.`
+    `Your fund transfer of \u20A6 ${amount} was to @${
+      receiverData.data().username
+    } successful.`
   );
 
   // send notification to receiver
   await sendNotificationToUser(
-    sender_id,
+    receiver_id,
     "Fund Transfer 🎉💵",
-    `You just received a fund transfer of \u20A6 ${amount} from @${senderData.username}.`
+    `You just received a fund transfer of \u20A6 ${amount} from @${
+      senderData.data().username
+    }.`
   );
 
   // add history to sender
@@ -64,7 +68,7 @@ const transferFundToUserByUserId = async (req) => {
     sender_id,
     amount,
     sender_id,
-    receiverData,
+    receiverData.data(),
     "send_fund"
   );
 
@@ -73,7 +77,7 @@ const transferFundToUserByUserId = async (req) => {
     receiver_id,
     amount,
     sender_id,
-    senderData,
+    senderData.data(),
     "receive_fund"
   );
 };
