@@ -10,6 +10,7 @@ import 'package:elite/cores/utils/sizer_utils.dart';
 import 'package:elite/features/profile/controllers/profile_controller.dart';
 import 'package:elite/features/wallet/views/screen/fund_wallet%20screen.dart';
 import 'package:elite/features/wallet/views/widgets/balance_widget.dart';
+import 'package:elite/features/wallet/views/widgets/transaction_history_widegt.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -58,7 +59,7 @@ class WalletScreen extends StatelessWidget {
               children: <Widget>[
                 CustomButton(
                   text: 'Fund Wallet',
-                  onTap: () => Get.to(()=> FundWalletScreen()),
+                  onTap: () => Get.to(() => FundWalletScreen()),
                   width: sizerWidth(25),
                 ),
                 CustomButton(
@@ -74,21 +75,10 @@ class WalletScreen extends StatelessWidget {
               ],
             ),
             const Divider(),
-            Expanded(
-              child: ListView.builder(
-                itemBuilder: (_, __) {
-                  return const ListTile(
-                    leading: Icon(Icons.person),
-                    title: Text('Operation fund wallet'),
-                    subtitle: Text('Dec 12  6:45 pm'),
-                  );
-                },
-              ),
-            ),
+            Expanded(child: TransactionHistoryWidget()),
           ],
         ),
       ),
     );
   }
 }
-
