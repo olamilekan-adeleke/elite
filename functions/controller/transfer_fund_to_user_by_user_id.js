@@ -4,9 +4,7 @@ const transferFundToUserByUserId = async (req) => {
   const { receiver_id, sender_id, amount, type } = req.body;
 
   const batch = admin.firestore().batch();
-
   const sendDoc = admin.firestore().collection("wallets").doc(sender_id);
-
   const receiverDoc = admin.firestore().collection("wallets").doc(receiver_id);
 
   if (type === "cash") {

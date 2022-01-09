@@ -4,6 +4,7 @@ import 'package:elite/features/auth/model/user_details_model.dart';
 
 class TransactionModel {
   final TransactionType type;
+  final TransactionStatus status;
   final int amount;
   final String description;
   final String? senderId;
@@ -15,6 +16,7 @@ class TransactionModel {
     required this.amount,
     required this.description,
     required this.timestamp,
+    required this.status,
     this.senderId,
     this.userDetails,
   });
@@ -22,23 +24,25 @@ class TransactionModel {
   Map<String, dynamic> toMap() {
     return {
       'type': TransactionTypeHelper.convertToString(type),
+      'status': TransactionStatusHelper.convertToString(status),
       'amount': amount,
       'description': description,
-      'senderId': senderId,
+      'sender_id': senderId,
       'timestamp': timestamp,
-      'userDetails': userDetails?.toMap(),
+      'user_details': userDetails?.toMap(),
     };
   }
 
   factory TransactionModel.fromMap(Map<String, dynamic> map) {
     return TransactionModel(
       type: TransactionTypeHelper.fromString(map['type']),
+      status: TransactionStatusHelper.fromString(map['status']),
       amount: map['amount']?.toInt() ?? 0,
       description: map['description'] ?? '',
-      senderId: map['senderId'],
+      senderId: map['sender_id'],
       timestamp: map['timestamp']?.toInt() ?? 0,
-      userDetails: map['userDetails'] != null
-          ? UserDetailsModel.fromMap(map['userDetails'])
+      userDetails: map['user_details'] != null
+          ? UserDetailsModel.fromMap(map['user_details'])
           : null,
     );
   }
@@ -50,6 +54,7 @@ class TransactionModel {
 }
 
 enum TransactionType { sendFund, fundWallet, receiveFund }
+enum TransactionStatus { pending, success, failed }
 
 class TransactionTypeHelper {
   static TransactionType fromString(String string) {
@@ -75,6 +80,34 @@ class TransactionTypeHelper {
         return 'receive_fund';
       default:
         return 'fund_wallet';
+    }
+  }
+}
+
+class TransactionStatusHelper {
+  static TransactionStatus fromString(String string) {
+    switch (string) {
+      case 'success':
+        return TransactionStatus.success;
+      case 'pending':
+        return TransactionStatus.pending;
+      case 'failed':
+        return TransactionStatus.failed;
+      default:
+        return TransactionStatus.pending;
+    }
+  }
+
+  static String convertToString(TransactionStatus status) {
+    switch (status) {
+      case TransactionStatus.success:
+        return 'success';
+      case TransactionStatus.pending:
+        return 'pending';
+      case TransactionStatus.failed:
+        return 'failed';
+      default:
+        return 'pending';
     }
   }
 }
