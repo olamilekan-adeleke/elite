@@ -9,8 +9,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/route_manager.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
 
-class SelectRiderScreen extends StatelessWidget {
-  const SelectRiderScreen({Key? key}) : super(key: key);
+class SelectRideScreen extends StatelessWidget {
+  const SelectRideScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

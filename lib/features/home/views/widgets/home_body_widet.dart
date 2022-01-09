@@ -104,7 +104,7 @@ class HomeProfileWidget extends StatelessWidget {
                     CustomButton(
                       text: 'Get a ride',
                       onTap: () {
-                        Get.to(() => const SelectRiderScreen());
+                        Get.to(() => const SelectRideScreen());
                       },
                     ),
                     SizedBox(height: sizerSp(15)),

@@ -1,4 +1,4 @@
-import 'dart:developer';
+// import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elite/features/e_queue/model/terminal_model.dart';

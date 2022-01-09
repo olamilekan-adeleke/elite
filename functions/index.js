@@ -5,10 +5,6 @@ const sendFundFunction = require("./http_function/sendFundFunction");
 const sendUserNotificationOnJoinEQueue = require("./reactive_function/send_notification_on_join_queue");
 const onLeaveEQueue = require("./reactive_function/on_leave_queue");
 
-exports.helloWorld = functions.https.onRequest((request, response) => {
-  functions.logger.info("Hello logs!", { structuredData: true });
-  response.send("Hello from Firebase!");
-});
 
 exports.createWalletOnNewUsersCreated = functions.firestore
   .document("/users/{userId}")
