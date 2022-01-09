@@ -48,10 +48,16 @@ const transferFundToUserByUserId = async (req) => {
   );
 
   // add history to sender
-  addTransferToHistory(sender_id, amount, sender_id, receiverDoc, "send_fund");
+  await addTransferToHistory(
+    sender_id,
+    amount,
+    sender_id,
+    receiverDoc,
+    "send_fund"
+  );
 
   // add history to receiver
-  addTransferToHistory(
+  await addTransferToHistory(
     receiver_id,
     amount,
     sender_id,
