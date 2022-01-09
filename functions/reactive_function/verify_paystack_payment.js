@@ -3,9 +3,9 @@ const functions = require("firebase-functions");
 const admin = require("../firebase");
 const sendNotificationToUser = require("../controller/send_notification_controller");
 
-
 const verifyPaystackPayment = async (snapshot, context) => {
   const { reference, sender_id, amount } = snapshot.data();
+  const transactionId = context.params.transactionId;
   const kSecretKey = "sk_test_33dfdc0d792c01298c04c42bbc2dcabba2bf8913";
 
   const headers = {
@@ -34,6 +34,17 @@ const verifyPaystackPayment = async (snapshot, context) => {
         .doc(sender_id)
         .update({
           cash_balance: admin.firestore.FieldValue.increment(parseInt(amount)),
+        });
+
+      // update transaction status
+      await admin
+        .firestore()
+        .collection("users")
+        .doc(sender_id)
+        .collection("transactions")
+        .doc(`${transactionId}`)
+        .update({
+          status: "success",
         });
 
       // send success notification
