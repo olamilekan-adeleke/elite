@@ -10,6 +10,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:paginate_firestore/paginate_firestore.dart';
+import 'package:intl/intl.dart';
 
 class TransactionHistoryWidget extends StatelessWidget {
   const TransactionHistoryWidget({Key? key}) : super(key: key);
@@ -87,6 +88,8 @@ class TransactionHistoryItem extends StatelessWidget {
               child: formatTitle(transaction),
             ),
             formatStatus(transaction),
+            SizedBox(height: sizerSp(5)),
+            formatTime(transaction.timestamp),
           ],
         ),
       ],
@@ -195,5 +198,15 @@ class TransactionHistoryItem extends StatelessWidget {
     } else {
       return Container();
     }
+  }
+
+  Widget formatTime(int timestamp) {
+    DateTime dateTime = DateTime.fromMicrosecondsSinceEpoch(timestamp);
+
+    return CustomTextWidget(
+      '${DateFormat().format(dateTime)}',
+      fontSize: sizerSp(13),
+      fontWeight: FontWeight.w200,
+    );
   }
 }
