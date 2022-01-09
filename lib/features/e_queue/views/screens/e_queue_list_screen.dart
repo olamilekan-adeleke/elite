@@ -56,13 +56,14 @@ class SelectRiderScreen extends StatelessWidget {
                   }),
                   items: eQueueController.terminals.map((TerminalModel value) {
                     return DropdownMenuItem<String>(
+                      enabled: false,
                       value: value.name,
                       child: Text(value.name),
                     );
                   }).toList(),
                   onChanged: (String? val) {
                     if (val != null) {
-                      eQueueController.updateSelectedTerminal(val);
+                      // eQueueController.updateSelectedTerminal(val);
                     }
                   },
                   isExpanded: true,

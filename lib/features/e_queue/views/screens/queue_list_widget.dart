@@ -36,7 +36,8 @@ class QueueListWidget extends StatelessWidget {
       query: FirebaseFirestore.instance
           .collection('terminals')
           .doc(terminalId)
-          .collection('queue'),
+          .collection('queue')
+          .orderBy('timeJoined', descending: false),
       itemBuilderType: PaginateBuilderType.listView,
       isLive: true,
       emptyDisplay: SizedBox(

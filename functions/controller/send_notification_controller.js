@@ -31,4 +31,4 @@ async function sendNotificationToUser(userId, Heading, message) {
     });
 }
 
-model.exports = sendNotificationToUser;
+module.exports = sendNotificationToUser;
