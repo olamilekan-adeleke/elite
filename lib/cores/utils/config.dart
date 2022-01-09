@@ -11,6 +11,9 @@ class Config {
   static Future<void> setUpHiveLocalDB() async {
     await storage.GetStorage.init('box');
     await PushNotificationService.initNotification();
+  }
+
+  static Future<void> setUpPaystack() async {
     await paystackPlugin.initialize(publicKey: publicKey);
   }
 }

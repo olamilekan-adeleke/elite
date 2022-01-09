@@ -5,10 +5,18 @@ import 'package:get/get.dart';
 class WalletService {
   static final AuthenticationRepo authenticationRepo =
       Get.find<AuthenticationRepo>();
+  final CollectionReference<dynamic> userCollectionRef =
+      FirebaseFirestore.instance.collection('users');
   final CollectionReference<dynamic> walletCollectionRef =
       FirebaseFirestore.instance.collection('wallets');
 
   Stream<DocumentSnapshot<dynamic>> walletData() async* {
     yield* walletCollectionRef.doc(authenticationRepo.getUserUid()).snapshots();
+  }
+
+  Future<void> FundWallet() async {
+    await userCollectionRef
+        .doc(authenticationRepo.getUserUid())
+        .collection('transactions');
   }
 }

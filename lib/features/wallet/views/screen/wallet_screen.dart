@@ -11,6 +11,7 @@ import 'package:elite/cores/utils/emums.dart';
 import 'package:elite/cores/utils/sizer_utils.dart';
 import 'package:elite/features/profile/controllers/profile_controller.dart';
 import 'package:elite/features/wallet/services/wallet_service.dart';
+import 'package:elite/features/wallet/views/screen/fund_wallet%20screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -59,7 +60,7 @@ class WalletScreen extends StatelessWidget {
               children: <Widget>[
                 CustomButton(
                   text: 'Fund Wallet',
-                  onTap: () {},
+                  onTap: () => Get.to(()=> FundWalletScreen()),
                   width: sizerWidth(25),
                 ),
                 CustomButton(
