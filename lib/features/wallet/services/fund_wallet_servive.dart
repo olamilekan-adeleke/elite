@@ -104,7 +104,7 @@ class FundWalletService {
 
     if (response.status == true) {
       // await _verifyOnServer(response.reference ?? '');
-      await _walletController.fundWallet(reference: _getReference());
+      await _walletController.fundWallet(reference: response.reference ?? '');
     } else {
       print('error');
       _walletController.fundWalletState.value = ControllerState.error;
