@@ -1,6 +1,6 @@
 // ignore_for_file: always_specify_types
 
-import 'dart:developer';
+// import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elite/cores/components/custom_button.dart';

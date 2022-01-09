@@ -6,7 +6,6 @@ import 'package:elite/cores/components/custom_textfiled.dart';
 import 'package:elite/cores/components/image_widget.dart';
 import 'package:elite/cores/utils/emums.dart';
 import 'package:elite/cores/utils/sizer_utils.dart';
-import 'package:elite/cores/utils/validator.dart';
 import 'package:elite/features/profile/controllers/profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

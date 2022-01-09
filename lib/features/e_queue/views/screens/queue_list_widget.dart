@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elite/cores/components/custom_text_widget.dart';
 import 'package:elite/cores/components/image_widget.dart';

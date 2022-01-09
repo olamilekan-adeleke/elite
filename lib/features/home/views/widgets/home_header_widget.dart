@@ -4,7 +4,6 @@ import 'package:elite/features/home/controller/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/instance_manager.dart';
-import 'package:get/state_manager.dart';
 
 class HomeHeaderWidget extends StatelessWidget {
   const HomeHeaderWidget({Key? key}) : super(key: key);
