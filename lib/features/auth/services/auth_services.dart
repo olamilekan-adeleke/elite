@@ -39,6 +39,8 @@ class AuthenticationRepo {
     String email,
     String password,
   ) async {
+    await checkIfIsUser(email);
+
     final UserCredential userCredential =
         await firebaseAuth.signInWithEmailAndPassword(
       email: email,
@@ -223,6 +225,15 @@ class AuthenticationRepo {
       return true;
     } else {
       return false;
+    }
+  }
+
+  Future<void> checkIfIsUser(String email) async {
+    final QuerySnapshot querySnapshot =
+        await userCollectionRef.where('email', isEqualTo: email).limit(1).get();
+
+    if (querySnapshot.docs.isNotEmpty) {
+      throw 'User Account Was Not Found!';
     }
   }
 
