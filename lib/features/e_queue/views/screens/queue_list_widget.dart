@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:elite/cores/components/custom_text_widget.dart';
-import 'package:elite/cores/components/image_widget.dart';
-import 'package:elite/cores/utils/emums.dart';
-import 'package:elite/cores/utils/sizer_utils.dart';
-import 'package:elite/features/e_queue/model/queue_model.dart';
-import 'package:elite/features/e_queue/views/screens/procees_to_park_screen.dart';
+import '../../../../cores/components/custom_text_widget.dart';
+import '../../../../cores/components/image_widget.dart';
+import '../../../../cores/utils/emums.dart';
+import '../../../../cores/utils/sizer_utils.dart';
+import '../../model/queue_model.dart';
+import 'procees_to_park_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';

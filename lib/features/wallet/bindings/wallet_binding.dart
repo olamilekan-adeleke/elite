@@ -1,5 +1,5 @@
-import 'package:elite/features/wallet/controller/transfer_controller.dart';
-import 'package:elite/features/wallet/controller/wallet_controller.dart';
+import '../controller/transfer_controller.dart';
+import '../controller/wallet_controller.dart';
 import 'package:get/get.dart';
 
 class WalletBinding extends Bindings {

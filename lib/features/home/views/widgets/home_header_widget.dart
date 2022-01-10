@@ -1,6 +1,6 @@
-import 'package:elite/cores/utils/route_name.dart';
-import 'package:elite/cores/utils/sizer_utils.dart';
-import 'package:elite/features/home/controller/home_controller.dart';
+import '../../../../cores/utils/route_name.dart';
+import '../../../../cores/utils/sizer_utils.dart';
+import '../../controller/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/instance_manager.dart';

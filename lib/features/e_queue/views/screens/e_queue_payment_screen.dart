@@ -1,7 +1,7 @@
-import 'package:elite/cores/components/custom_button.dart';
-import 'package:elite/cores/components/custom_scaffold_widget.dart';
-import 'package:elite/cores/components/custom_text_widget.dart';
-import 'package:elite/cores/components/custom_textfiled.dart';
+import '../../../../cores/components/custom_button.dart';
+import '../../../../cores/components/custom_scaffold_widget.dart';
+import '../../../../cores/components/custom_text_widget.dart';
+import '../../../../cores/components/custom_textfiled.dart';
 import 'package:elite/cores/utils/emums.dart';
 import 'package:elite/cores/utils/sizer_utils.dart';
 import 'package:elite/cores/utils/validator.dart';

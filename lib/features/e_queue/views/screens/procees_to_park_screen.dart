@@ -1,7 +1,7 @@
-import 'package:elite/cores/components/custom_button.dart';
-import 'package:elite/cores/components/custom_text_widget.dart';
-import 'package:elite/cores/utils/sizer_utils.dart';
-import 'package:elite/features/e_queue/controllers/e_queu_controller.dart';
+import '../../../../cores/components/custom_button.dart';
+import '../../../../cores/components/custom_text_widget.dart';
+import '../../../../cores/utils/sizer_utils.dart';
+import '../../controllers/e_queu_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';

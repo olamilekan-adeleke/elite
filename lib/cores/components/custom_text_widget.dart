@@ -1,5 +1,5 @@
-import 'package:elite/cores/constants/color.dart';
-import 'package:elite/cores/constants/font_size.dart';
+import '../constants/color.dart';
+import '../constants/font_size.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

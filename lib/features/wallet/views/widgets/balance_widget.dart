@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:elite/cores/components/custom_text_widget.dart';
-import 'package:elite/cores/utils/sizer_utils.dart';
-import 'package:elite/features/wallet/services/wallet_service.dart';
+import '../../../../cores/components/custom_text_widget.dart';
+import '../../../../cores/utils/sizer_utils.dart';
+import '../../services/wallet_service.dart';
 import 'package:flutter/material.dart';
 
 

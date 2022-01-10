@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:elite/features/auth/services/auth_services.dart';
-import 'package:elite/features/wallet/model/transaction_model.dart';
+import '../../auth/services/auth_services.dart';
+import '../model/transaction_model.dart';
 import 'package:get/get.dart';
 
 class WalletService {

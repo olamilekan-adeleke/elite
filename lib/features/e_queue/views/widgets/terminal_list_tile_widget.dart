@@ -1,11 +1,11 @@
-import 'package:elite/cores/components/custom_text_widget.dart';
-import 'package:elite/features/e_queue/controllers/e_queu_controller.dart';
-import 'package:elite/features/e_queue/model/terminal_model.dart';
-import 'package:elite/features/e_queue/views/screens/e_queue_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../cores/components/custom_text_widget.dart';
 import '../../../../cores/utils/sizer_utils.dart';
+import '../../controllers/e_queu_controller.dart';
+import '../../model/terminal_model.dart';
+import '../screens/e_queue_list_screen.dart';
 
 class TerminalListTileWidget extends StatelessWidget {
   const TerminalListTileWidget(

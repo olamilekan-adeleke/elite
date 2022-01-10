@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:elite/cores/components/custom_text_widget.dart';
-import 'package:elite/cores/constants/color.dart';
-import 'package:elite/cores/utils/currency_formater.dart';
-import 'package:elite/cores/utils/sizer_utils.dart';
-import 'package:elite/features/auth/services/auth_services.dart';
-import 'package:elite/features/wallet/model/transaction_model.dart';
+import '../../../../cores/components/custom_text_widget.dart';
+import '../../../../cores/constants/color.dart';
+import '../../../../cores/utils/currency_formater.dart';
+import '../../../../cores/utils/sizer_utils.dart';
+import '../../../auth/services/auth_services.dart';
+import '../../model/transaction_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';

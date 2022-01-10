@@ -1,14 +1,15 @@
 import 'dart:io';
 
-import 'package:elite/cores/components/custom_button.dart';
-import 'package:elite/cores/components/custom_scaffold_widget.dart';
-import 'package:elite/cores/components/custom_textfiled.dart';
-import 'package:elite/cores/components/image_widget.dart';
-import 'package:elite/cores/utils/emums.dart';
-import 'package:elite/cores/utils/sizer_utils.dart';
-import 'package:elite/features/profile/controllers/profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../../cores/components/custom_button.dart';
+import '../../../../cores/components/custom_scaffold_widget.dart';
+import '../../../../cores/components/custom_textfiled.dart';
+import '../../../../cores/components/image_widget.dart';
+import '../../../../cores/utils/emums.dart';
+import '../../../../cores/utils/sizer_utils.dart';
+import '../../controllers/profile_controller.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);

@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:elite/features/auth/model/user_details_model.dart';
+import '../../auth/model/user_details_model.dart';
 import 'package:uuid/uuid.dart';
 
 

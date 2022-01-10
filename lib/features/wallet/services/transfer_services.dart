@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:elite/cores/constants/api.dart';
-import 'package:elite/features/auth/model/user_details_model.dart';
+import '../../../cores/constants/api.dart';
+import '../../auth/model/user_details_model.dart';
 import 'package:http/http.dart' as http;
 
 class TransferServices {

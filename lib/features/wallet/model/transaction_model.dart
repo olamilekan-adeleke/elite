@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:elite/features/auth/model/user_details_model.dart';
+import '../../auth/model/user_details_model.dart';
 
 class TransactionModel {
   final TransactionType type;

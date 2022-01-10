@@ -1,4 +1,4 @@
-import 'package:elite/cores/utils/sizer_utils.dart';
+import 'sizer_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

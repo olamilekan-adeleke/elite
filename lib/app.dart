@@ -1,6 +1,6 @@
-import 'package:elite/features/home/binding/home_bindings.dart';
-import 'package:elite/features/profile/bindings/profile_binding.dart';
-import 'package:elite/features/wallet/bindings/wallet_binding.dart';
+import 'features/home/binding/home_bindings.dart';
+import 'features/profile/bindings/profile_binding.dart';
+import 'features/wallet/bindings/wallet_binding.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';

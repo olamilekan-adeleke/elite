@@ -1,10 +1,10 @@
-import 'package:elite/cores/components/custom_scaffold_widget.dart';
-import 'package:elite/cores/constants/color.dart';
-import 'package:elite/cores/utils/sizer_utils.dart';
-import 'package:elite/features/e_queue/views/screens/termial_list_screen.dart';
-import 'package:elite/features/home/controller/home_controller.dart';
-import 'package:elite/features/home/views/widgets/home_body_widet.dart';
-import 'package:elite/features/home/views/widgets/home_drawer.dart';
+import '../../../../cores/components/custom_scaffold_widget.dart';
+import '../../../../cores/constants/color.dart';
+import '../../../../cores/utils/sizer_utils.dart';
+import '../../../e_queue/views/screens/termial_list_screen.dart';
+import '../../controller/home_controller.dart';
+import '../widgets/home_body_widet.dart';
+import '../widgets/home_drawer.dart';
 import 'package:elite/features/wallet/views/screen/wallet_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

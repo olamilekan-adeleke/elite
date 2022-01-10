@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:elite/cores/constants/keys.dart';
-import 'package:elite/cores/utils/config.dart';
-import 'package:elite/cores/utils/emums.dart';
-import 'package:elite/features/wallet/controller/wallet_controller.dart';
+import '../../../cores/constants/keys.dart';
+import '../../../cores/utils/config.dart';
+import '../../../cores/utils/emums.dart';
+import '../controller/wallet_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_paystack/flutter_paystack.dart';
 import 'package:get/get.dart';

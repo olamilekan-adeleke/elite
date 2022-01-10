@@ -1,15 +1,15 @@
 import 'dart:developer';
 
-import 'package:elite/cores/components/custom_button.dart';
-import 'package:elite/cores/components/custom_text_widget.dart';
-import 'package:elite/cores/utils/emums.dart';
-import 'package:elite/cores/utils/sizer_utils.dart';
-import 'package:elite/cores/utils/snack_bar_service.dart';
-import 'package:elite/features/auth/services/auth_services.dart';
-import 'package:elite/features/e_queue/model/queue_model.dart';
-import 'package:elite/features/e_queue/model/terminal_model.dart';
-import 'package:elite/features/e_queue/service/e_queue_service.dart';
-import 'package:elite/features/profile/controllers/profile_controller.dart';
+import '../../../cores/components/custom_button.dart';
+import '../../../cores/components/custom_text_widget.dart';
+import '../../../cores/utils/emums.dart';
+import '../../../cores/utils/sizer_utils.dart';
+import '../../../cores/utils/snack_bar_service.dart';
+import '../../auth/services/auth_services.dart';
+import '../model/queue_model.dart';
+import '../model/terminal_model.dart';
+import '../service/e_queue_service.dart';
+import '../../profile/controllers/profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

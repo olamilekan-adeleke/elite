@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+
 import '../../cores/utils/emums.dart';
 
 class CustomImageWidget extends StatelessWidget {

@@ -1,9 +1,9 @@
 import 'dart:developer';
 
-import 'package:elite/cores/components/custom_button.dart';
-import 'package:elite/cores/components/custom_text_widget.dart';
-import 'package:elite/cores/utils/emums.dart';
-import 'package:elite/cores/utils/sizer_utils.dart';
+import '../../../cores/components/custom_button.dart';
+import '../../../cores/components/custom_text_widget.dart';
+import '../../../cores/utils/emums.dart';
+import '../../../cores/utils/sizer_utils.dart';
 import 'package:elite/cores/utils/snack_bar_service.dart';
 import 'package:elite/features/auth/model/user_details_model.dart';
 import 'package:elite/features/auth/services/auth_services.dart';

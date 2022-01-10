@@ -1,11 +1,11 @@
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:elite/cores/utils/emums.dart';
-import 'package:elite/cores/utils/snack_bar_service.dart';
-import 'package:elite/features/auth/services/auth_services.dart';
-import 'package:elite/features/wallet/model/transaction_model.dart';
-import 'package:elite/features/wallet/services/wallet_service.dart';
+import '../../../cores/utils/emums.dart';
+import '../../../cores/utils/snack_bar_service.dart';
+import '../../auth/services/auth_services.dart';
+import '../model/transaction_model.dart';
+import '../services/wallet_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

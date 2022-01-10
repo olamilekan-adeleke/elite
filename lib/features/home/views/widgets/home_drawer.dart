@@ -1,10 +1,10 @@
-import 'package:elite/cores/components/custom_text_widget.dart';
-import 'package:elite/cores/components/image_widget.dart';
-import 'package:elite/cores/utils/emums.dart';
-import 'package:elite/cores/utils/sizer_utils.dart';
-import 'package:elite/features/auth/services/auth_services.dart';
-import 'package:elite/features/home/controller/home_controller.dart';
-import 'package:elite/features/profile/controllers/profile_controller.dart';
+import '../../../../cores/components/custom_text_widget.dart';
+import '../../../../cores/components/image_widget.dart';
+import '../../../../cores/utils/emums.dart';
+import '../../../../cores/utils/sizer_utils.dart';
+import '../../../auth/services/auth_services.dart';
+import '../../controller/home_controller.dart';
+import '../../../profile/controllers/profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

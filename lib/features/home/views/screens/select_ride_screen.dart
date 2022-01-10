@@ -1,9 +1,9 @@
-import 'package:elite/cores/components/custom_button.dart';
-import 'package:elite/cores/components/custom_scaffold_widget.dart';
-import 'package:elite/cores/components/custom_text_widget.dart';
-import 'package:elite/cores/constants/color.dart';
-import 'package:elite/cores/utils/sizer_utils.dart';
-import 'package:elite/features/e_queue/views/screens/e_queue_home.dart';
+import '../../../../cores/components/custom_button.dart';
+import '../../../../cores/components/custom_scaffold_widget.dart';
+import '../../../../cores/components/custom_text_widget.dart';
+import '../../../../cores/constants/color.dart';
+import '../../../../cores/utils/sizer_utils.dart';
+import '../../../e_queue/views/screens/e_queue_home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/route_manager.dart';

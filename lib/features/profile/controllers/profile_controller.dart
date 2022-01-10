@@ -2,10 +2,10 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:elite/cores/utils/emums.dart';
-import 'package:elite/cores/utils/snack_bar_service.dart';
-import 'package:elite/features/auth/model/user_details_model.dart';
-import 'package:elite/features/auth/services/auth_services.dart';
+import '../../../cores/utils/emums.dart';
+import '../../../cores/utils/snack_bar_service.dart';
+import '../../auth/model/user_details_model.dart';
+import '../../auth/services/auth_services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
