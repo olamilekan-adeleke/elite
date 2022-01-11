@@ -69,3 +69,8 @@ node_modules/
 build
 
 .git
+
+.dart_tool
+
+
+android/.gradle
