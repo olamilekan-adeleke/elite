@@ -18,89 +18,92 @@ class EQueueHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScaffoldWidget(
       usePadding: false,
-      body: Container(
-        padding: EdgeInsets.symmetric(horizontal: sizerSp(15.0)),
-        color: Colors.white,
-        child: Column(
-          children: <Widget>[
-            AppBar(
-              iconTheme: const IconThemeData(color: Colors.black),
-              elevation: 0,
-              backgroundColor: Colors.white,
-            ),
-            SizedBox(height: sizerSp(20)),
-            CustomTextWidget(
-              'Where would you like to be picked up?',
-              fontSize: sizerSp(18),
-              textColor: Colors.black,
-            ),
-            CustomTextWidget(
-              'Select your terminal',
-              fontSize: sizerSp(16),
-              textColor: Colors.black,
-              fontWeight: FontWeight.w300,
-            ),
-            SizedBox(height: sizerSp(40)),
-            DropdownButtonFormField<String>(
-              hint: Obx(() {
-                return CustomTextWidget(
-                  '${eQueueController.selectedTerminalText.value.isEmpty ? 'Select your terminal' : eQueueController.selectedTerminalText.value}',
-                  fontSize: sizerSp(16),
-                  textColor: Colors.black,
-                  fontWeight: FontWeight.w300,
-                );
-              }),
-              items: eQueueController.terminals.map((TerminalModel value) {
-                return DropdownMenuItem<String>(
-                  value: value.name,
-                  child: Text(value.name),
-                );
-              }).toList(),
-              onChanged: (String? val) {
-                if (val != null) {
-                  eQueueController.updateSelectedTerminal(val);
-                }
-              },
-              isExpanded: true,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(30.0)),
+      body: SingleChildScrollView(
+        child: Container(
+          height: sizerHeight(98),
+          padding: EdgeInsets.symmetric(horizontal: sizerSp(15.0)),
+          color: Colors.white,
+          child: Column(
+            children: <Widget>[
+              AppBar(
+                iconTheme: const IconThemeData(color: Colors.black),
+                elevation: 0,
+                backgroundColor: Colors.white,
+              ),
+              SizedBox(height: sizerSp(20)),
+              CustomTextWidget(
+                'Where would you like to be picked up?',
+                fontSize: sizerSp(18),
+                textColor: Colors.black,
+              ),
+              CustomTextWidget(
+                'Select your terminal',
+                fontSize: sizerSp(16),
+                textColor: Colors.black,
+                fontWeight: FontWeight.w300,
+              ),
+              SizedBox(height: sizerSp(40)),
+              DropdownButtonFormField<String>(
+                hint: Obx(() {
+                  return CustomTextWidget(
+                    '${eQueueController.selectedTerminalText.value.isEmpty ? 'Select your terminal' : eQueueController.selectedTerminalText.value}',
+                    fontSize: sizerSp(16),
+                    textColor: Colors.black,
+                    fontWeight: FontWeight.w300,
+                  );
+                }),
+                items: eQueueController.terminals.map((TerminalModel value) {
+                  return DropdownMenuItem<String>(
+                    value: value.name,
+                    child: Text(value.name),
+                  );
+                }).toList(),
+                onChanged: (String? val) {
+                  if (val != null) {
+                    eQueueController.updateSelectedTerminal(val);
+                  }
+                },
+                isExpanded: true,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                  ),
                 ),
               ),
-            ),
-            SizedBox(height: sizerSp(60)),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                CustomTextWidget(
-                  'Select your terminal',
-                  fontSize: sizerSp(16),
-                  textColor: Colors.black,
-                  fontWeight: FontWeight.bold,
-                ),
-                SizedBox(height: sizerSp(10)),
-                CustomTextWidget(
-                  'All destinations should be between The university school gate'
-                  ' and The university terminus and thus carry same price ',
-                  fontSize: sizerSp(16),
-                  textColor: Colors.black,
-                  fontWeight: FontWeight.w300,
-                ),
-              ],
-            ),
-            const Spacer(),
-            CustomButton(
-              text: 'Continue',
-              onTap: () {
-                if (eQueueController.selectedTerminalModel?.value != null) {
-                  Get.to(() => const SelectRiderScreen());
-                } else {
-                  showWarningSnackBar('Select your terminal');
-                }
-              },
-            ),
-            SizedBox(height: sizerSp(20)),
-          ],
+              SizedBox(height: sizerSp(60)),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  CustomTextWidget(
+                    'Select your terminal',
+                    fontSize: sizerSp(16),
+                    textColor: Colors.black,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  SizedBox(height: sizerSp(10)),
+                  CustomTextWidget(
+                    'All destinations should be between The university school gate'
+                    ' and The university terminus and thus carry same price ',
+                    fontSize: sizerSp(16),
+                    textColor: Colors.black,
+                    fontWeight: FontWeight.w300,
+                  ),
+                ],
+              ),
+              const Spacer(),
+              CustomButton(
+                text: 'Continue',
+                onTap: () {
+                  if (eQueueController.selectedTerminalModel?.value != null) {
+                    Get.to(() => const SelectRiderScreen());
+                  } else {
+                    showWarningSnackBar('Select your terminal');
+                  }
+                },
+              ),
+              SizedBox(height: sizerSp(20)),
+            ],
+          ),
         ),
       ),
     );
