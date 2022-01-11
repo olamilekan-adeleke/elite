@@ -21,7 +21,7 @@ class CustomImageWidget extends StatelessWidget {
       case ImageTypes.network:
         return CachedNetworkImage(
           imageUrl: imageUrl,
-          fit: BoxFit.fill,
+          fit: BoxFit.cover,
           errorWidget: (_, __, ___) => const Center(child: Icon(Icons.error)),
           placeholder: (_, __) =>
               const Center(child: CircularProgressIndicator()),
@@ -30,13 +30,13 @@ class CustomImageWidget extends StatelessWidget {
       case ImageTypes.file:
         return Image.file(
           File(imageUrl),
-          fit: BoxFit.fill,
+          fit: BoxFit.cover,
           errorBuilder: (_, __, ___) => const Center(child: Icon(Icons.error)),
         );
       case ImageTypes.asset:
         return Image.asset(
           imageUrl,
-          fit: BoxFit.fill,
+          fit: BoxFit.cover,
           errorBuilder: (_, __, ___) => const Center(child: Icon(Icons.error)),
         );
 

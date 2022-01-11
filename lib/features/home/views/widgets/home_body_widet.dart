@@ -80,6 +80,7 @@ class HomeProfileWidget extends StatelessWidget {
                                     .userDetailsModel?.value.profilePicUrl ??
                                 '',
                             imageTypes: ImageTypes.network,
+                            
                           ),
                         ),
                       )
