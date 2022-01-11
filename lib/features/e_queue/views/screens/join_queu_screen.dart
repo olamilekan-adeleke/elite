@@ -23,69 +23,61 @@ class JoinQueueWidget extends StatelessWidget {
         elevation: 0,
         backgroundColor: Colors.white,
       ),
-      body: SingleChildScrollView(
-        child: SizedBox(
-          height: sizerHeight(90),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              SizedBox(height: sizerSp(20)),
-              CustomTextWidget(
-                'E-queue',
-                fontSize: sizerSp(18),
-                textColor: Colors.black,
+      body: SizedBox(
+        height: sizerHeight(90),
+        child: ListView(
+          // crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            SizedBox(height: sizerSp(20)),
+            CustomTextWidget(
+              'E-queue',
+              fontSize: sizerSp(18),
+              textColor: Colors.black,
+            ),
+            SizedBox(height: sizerSp(40)),
+            Center(
+              child: SvgPicture.asset(
+                'assets/images/read.svg',
+                height: sizerSp(150),
+                width: sizerSp(200),
               ),
-              SizedBox(height: sizerSp(40)),
-              Center(
-                child: SvgPicture.asset(
-                  'assets/images/read.svg',
-                  height: sizerSp(150),
-                  width: sizerSp(200),
-                ),
-              ),
-              SizedBox(height: sizerSp(60)),
-              CustomTextWidget(
-                'Stay busy with your favorite things while you await your ride',
-                fontSize: sizerSp(16),
-                textColor: Colors.black,
-                fontWeight: FontWeight.w300,
-              ),
-              SizedBox(height: sizerSp(20)),
-              CustomTextWidget(
-                'Input your number of seats',
-                fontSize: sizerSp(18),
-                textColor: Colors.black,
-                fontWeight: FontWeight.w600,
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(height: sizerSp(20)),
-              CustomTextField(
-                hintText: 'Number of Seat(s)',
-                textEditingController: eQueueController.seatController,
-                textInputType: TextInputType.number,
-                validator: (String? value) => seatNumberValidator(value),
-              ),
-              // CustomTextWidget(
-              //   'You can queue with up to 5 seats',
-              //   fontSize: sizerSp(13),
-              //   textColor: Colors.black,
-              //   fontWeight: FontWeight.w200,
-              // ),
-              const Spacer(),
-              CustomButton(
-                text: 'Continue',
-                onTap: () {
-                  final String seatNo = eQueueController.seatController.text;
-                  if (seatNo.isNotEmpty &&
-                      int.parse(seatNo) > 0 &&
-                      int.parse(seatNo) <= 5) {
-                    Get.to(() => const EQueuePaymentPage());
-                  }
-                },
-              ),
-              SizedBox(height: sizerSp(20)),
-            ],
-          ),
+            ),
+            SizedBox(height: sizerSp(60)),
+            CustomTextWidget(
+              'Stay busy with your favorite things while you await your ride',
+              fontSize: sizerSp(16),
+              textColor: Colors.black,
+              fontWeight: FontWeight.w300,
+            ),
+            SizedBox(height: sizerSp(20)),
+            CustomTextWidget(
+              'Input your number of seats',
+              fontSize: sizerSp(18),
+              textColor: Colors.black,
+              fontWeight: FontWeight.w600,
+              textAlign: TextAlign.left,
+            ),
+            SizedBox(height: sizerSp(20)),
+            CustomTextField(
+              hintText: 'Number of Seat(s)',
+              textEditingController: eQueueController.seatController,
+              textInputType: TextInputType.number,
+              validator: (String? value) => seatNumberValidator(value),
+            ),
+            SizedBox(height: sizerSp(50)),
+            CustomButton(
+              text: 'Continue',
+              onTap: () {
+                final String seatNo = eQueueController.seatController.text;
+                if (seatNo.isNotEmpty &&
+                    int.parse(seatNo) > 0 &&
+                    int.parse(seatNo) <= 5) {
+                  Get.to(() => const EQueuePaymentPage());
+                }
+              },
+            ),
+            SizedBox(height: sizerSp(20)),
+          ],
         ),
       ),
     );
