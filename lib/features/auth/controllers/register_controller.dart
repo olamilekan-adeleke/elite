@@ -18,6 +18,7 @@ class RegisterController extends GetxController {
   final Rx<ControllerState> smsState = ControllerState.init.obs;
   final Rx<ControllerState> createWalletPinState = ControllerState.init.obs;
   final Rx<ControllerState> imageState = ControllerState.init.obs;
+  final Rx<ControllerState> resendOtpState = ControllerState.init.obs;
   static final AuthenticationRepo _authenticationRepo =
       Get.find<AuthenticationRepo>();
   final TextEditingController firstnameController =
@@ -84,6 +85,9 @@ class RegisterController extends GetxController {
   }
 
   Future<void> registerUser() async {
+    if (passwordController.text != confirmPasswordController.text) {
+      return showWarningSnackBar('Password must match!');
+    }
     _controllerStateEnum.value = ControllerState.busy;
 
     try {
@@ -126,6 +130,12 @@ class RegisterController extends GetxController {
   }
 
   Future<void> sendSms() async {
+    if (resendOtpState.value == ControllerState.busy) {
+      return;
+    }
+
+    resendOtpState.value = ControllerState.busy;
+
     await _authenticationRepo.firebaseAuth.verifyPhoneNumber(
       phoneNumber: getFormattedPhoneNumber(),
       // timeout: const Duration(seconds: 5),
@@ -133,6 +143,9 @@ class RegisterController extends GetxController {
       verificationCompleted: (PhoneAuthCredential credential) async {
         _verificationId = credential.verificationId;
         smsCodeController.text = credential.smsCode ?? '';
+
+        resendOtpState.value = ControllerState.success;
+
         CustomSnackBarService.showSuccessSnackBar(
           'Success',
           'Phone number automatically verified!',
@@ -150,13 +163,19 @@ class RegisterController extends GetxController {
         log(e.stackTrace.toString());
 
         CustomSnackBarService.showErrorSnackBar('Error', e.message ?? '');
+
+        resendOtpState.value = ControllerState.error;
       },
       codeSent: (String verificationId, int? resendToken) async {
         _verificationId = verificationId;
         _resendToken = resendToken;
+
+        resendOtpState.value = ControllerState.init;
       },
       codeAutoRetrievalTimeout: (String verificationId) {
         _verificationId = verificationId;
+
+        resendOtpState.value = ControllerState.init;
         // CustomSnackBarService.showErrorSnackBar(
         //   'Error',
         //   'verification code: $verificationId',

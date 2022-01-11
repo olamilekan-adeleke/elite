@@ -32,7 +32,7 @@ class SignUpScreen extends StatelessWidget {
             fontSize: sizerSp(30),
           ),
           CustomTextWidget(
-            'Welcome To Elite!\nFill the form below to create an account',
+            'Welcome To 1go!\nFill the form below to create an account',
             fontWeight: FontWeight.w200,
             fontSize: sizerSp(14),
           ),

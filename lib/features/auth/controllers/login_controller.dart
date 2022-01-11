@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:elite/cores/utils/route_name.dart';
+import 'package:elite/features/auth/controllers/register_controller.dart';
 import 'package:elite/features/auth/model/user_details_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,6 +15,8 @@ class LoginControllers extends GetxController {
   final Rx<ControllerState> _controllerStateEnum = ControllerState.init.obs;
   static final AuthenticationRepo _authenticationRepo =
       Get.find<AuthenticationRepo>();
+  static final RegisterController registerController =
+      Get.find<RegisterController>();
   final TextEditingController emailController =
       TextEditingController(text: ' ola100@gmail.com');
   final TextEditingController passwordController =
@@ -29,9 +32,11 @@ class LoginControllers extends GetxController {
         emailController.text.trim(),
         passwordController.text.trim(),
       );
+
       _controllerStateEnum.value = ControllerState.success;
 
       if (userDetails.hasVerifyNumber == false) {
+        registerController.phoneController.text = userDetails.phoneNumber;
         Get.toNamed(RouteName.smsCode);
       } else if (userDetails.hasCreateWalletPin == false) {
         Get.toNamed('/create-wallet-pin');

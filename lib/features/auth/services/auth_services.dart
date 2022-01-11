@@ -229,10 +229,14 @@ class AuthenticationRepo {
   }
 
   Future<void> checkIfIsUser(String email) async {
-    final QuerySnapshot querySnapshot =
-        await userCollectionRef.where('email', isEqualTo: email).limit(1).get();
+    final QuerySnapshot querySnapshot = await userCollectionRef
+        .where('email', isEqualTo: email)
+        .limit(1)
+        .get(GetOptions(source: Source.server));
 
-    if (querySnapshot.docs.isNotEmpty) {
+    log(querySnapshot.docs.toString());
+
+    if (querySnapshot.docs.isEmpty) {
       throw 'User Account Was Not Found!';
     }
   }

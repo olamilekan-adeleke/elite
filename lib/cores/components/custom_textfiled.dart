@@ -11,6 +11,7 @@ class CustomTextField extends StatefulWidget {
     required this.hintText,
     // required this.labelText,
     this.validator,
+    this.onChanged,
     this.textInputType = TextInputType.text,
     this.isPassword = false,
     this.maxLine = 1,
@@ -21,6 +22,7 @@ class CustomTextField extends StatefulWidget {
   final String hintText;
   // final String labelText;
   final String? Function(String?)? validator;
+  final String? Function(String?)? onChanged;
   final TextInputType textInputType;
   final bool isPassword;
   final int? maxLine;
@@ -79,6 +81,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           keyboardType: widget.textInputType,
           obscureText: value,
           validator: (String? val) => widget.validator!(val?.trim()),
+          onChanged: (String? val) => widget.onChanged!(val?.trim()),
         );
       },
     );
