@@ -45,7 +45,7 @@ class TransactionHistoryWidget extends StatelessWidget {
       itemBuilderType: PaginateBuilderType.listView,
       isLive: true,
       emptyDisplay: SizedBox(
-        height: sizerSp(250),
+        height: sizerSp(150),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
