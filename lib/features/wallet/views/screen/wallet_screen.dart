@@ -24,7 +24,7 @@ class WalletScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScaffoldWidget(
       body: SizedBox(
-        height: sizerHeight(100),
+        height: sizerHeight(98),
         child: Column(
           children: <Widget>[
             SizedBox(height: sizerSp(20)),

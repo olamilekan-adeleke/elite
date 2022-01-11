@@ -11,7 +11,7 @@ exports.createWalletOnNewUsersCreated = functions.firestore
   .document("/users/{userId}")
   .onCreate(createUserWallet);
 
-exports.createWalletOnNewUsersCreated = functions.firestore
+exports.createWalletOnNewRiderCreated = functions.firestore
   .document("/riders/{riderId}")
   .onCreate(createRiderWallet);
 
