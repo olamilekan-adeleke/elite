@@ -33,6 +33,8 @@ class LoginControllers extends GetxController {
         passwordController.text.trim(),
       );
 
+      throw 'Something went, Server UnReachable! Please try again later';
+
       _controllerStateEnum.value = ControllerState.success;
 
       if (userDetails.hasVerifyNumber == false) {
