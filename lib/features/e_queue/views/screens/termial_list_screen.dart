@@ -12,16 +12,16 @@ class TerminalsListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PaginateFirestore(
-      itemBuilder: (int index, _, DocumentSnapshot<Object?> documentSnapshots) {
+      itemBuilder:
+          (_, List<DocumentSnapshot<Object?>> documentSnapshots, int index) {
         final Map<String, dynamic>? data =
-            documentSnapshots.data() as Map<String, dynamic>?;
-
+            documentSnapshots[index].data() as Map<String, dynamic>?;
         // log(data.toString());
 
         final TerminalModel terminalModel = TerminalModel.fromMap(
           {
             ...data ?? <String, dynamic>{},
-            'id': documentSnapshots.id,
+            'id': documentSnapshots[index].id,
           },
         );
 

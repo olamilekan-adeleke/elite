@@ -18,9 +18,10 @@ class QueueListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PaginateFirestore(
-      itemBuilder: (int index, _, DocumentSnapshot<Object?> documentSnapshots) {
+      itemBuilder:
+          (_, List<DocumentSnapshot<Object?>> documentSnapshots, int index) {
         final Map<String, dynamic>? data =
-            documentSnapshots.data() as Map<String, dynamic>?;
+            documentSnapshots[index].data() as Map<String, dynamic>?;
 
         // log(data.toString());
 
@@ -37,7 +38,7 @@ class QueueListWidget extends StatelessWidget {
           .orderBy('timeJoined', descending: false),
       itemBuilderType: PaginateBuilderType.listView,
       isLive: true,
-      emptyDisplay: SizedBox(
+      onEmpty: SizedBox(
         height: sizerSp(250),
         child: Column(
           mainAxisSize: MainAxisSize.min,
