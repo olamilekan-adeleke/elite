@@ -6,7 +6,7 @@ import '../../../cores/utils/config.dart';
 import '../../../cores/utils/emums.dart';
 import '../controller/wallet_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_paystack/flutter_paystack.dart';
+// import 'package:flutter_paystack/flutter_paystack.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
@@ -85,29 +85,29 @@ class FundWalletService {
   }) async {
     _walletController.fundWalletState.value = ControllerState.busy;
 
-    Charge charge = Charge()
-      ..amount = (price * 100).toInt()
-      ..reference = _getReference()
-      ..accessCode = await _createAccessCode(
-        secretKey,
-        _getReference(),
-        userEmail,
-      )
-      ..email = userEmail;
+    // Charge charge = Charge()
+    //   ..amount = (price * 100).toInt()
+    //   ..reference = _getReference()
+    //   ..accessCode = await _createAccessCode(
+    //     secretKey,
+    //     _getReference(),
+    //     userEmail,
+    //   )
+    //   ..email = userEmail;
 
-    CheckoutResponse response = await Config.paystackPlugin.checkout(
-      context,
-      method: CheckoutMethod.card,
-      fullscreen: true,
-      charge: charge,
-    );
+    // CheckoutResponse response = await Config.paystackPlugin.checkout(
+    //   context,
+    //   method: CheckoutMethod.card,
+    //   fullscreen: true,
+    //   charge: charge,
+    // );
 
-    if (response.status == true) {
-      // await _verifyOnServer(response.reference ?? '');
-      await _walletController.fundWallet(reference: response.reference ?? '');
-    } else {
-      print('error');
-      _walletController.fundWalletState.value = ControllerState.error;
-    }
+    // if (response.status == true) {
+    //   // await _verifyOnServer(response.reference ?? '');
+    //   await _walletController.fundWallet(reference: response.reference ?? '');
+    // } else {
+    //   print('error');
+    //   _walletController.fundWalletState.value = ControllerState.error;
+    // }
   }
 }
