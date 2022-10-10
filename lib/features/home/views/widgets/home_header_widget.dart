@@ -1,8 +1,6 @@
-import '../../../../cores/utils/route_name.dart';
 import '../../../../cores/utils/sizer_utils.dart';
 import '../../controller/home_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/instance_manager.dart';
 
 class HomeHeaderWidget extends StatelessWidget {
@@ -25,8 +23,9 @@ class HomeHeaderWidget extends StatelessWidget {
             ),
           ),
           IconButton(
-            onPressed: () =>
-                Get.toNamed(RouteName.notificationScreen),
+            onPressed: () {
+              // Get.toNamed(RouteName.notificationScreen);
+            },
             icon: Icon(
               Icons.notifications,
               size: sizerSp(20.0),

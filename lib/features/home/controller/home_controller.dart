@@ -39,7 +39,7 @@ class HomeController extends GetxController {
 
   // ignore: use_setters_to_change_properties
   void updateIndex(int index) {
-    currentIndex.value = index;
+    // currentIndex.value = index;
   }
 
   @override

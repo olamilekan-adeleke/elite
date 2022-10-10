@@ -100,7 +100,7 @@ class RegisterController extends GetxController {
         username: usernameController.text.trim(),
       );
 
-      throw 'Something went, Server UnReachable! Please try again later';
+      // throw 'Something went, Server UnReachable! Please try again later';
 
       _controllerStateEnum.value = ControllerState.success;
       await Get.offAndToNamed('/smsCode');
